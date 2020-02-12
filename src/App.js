@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 import './App.css';
 
+
 function App() {
+  const [items, setItems] = useState([]);
+
+  const fetch = async ()=>{
+    
+  }
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="header">
+        <form onSubmit={e=>e.preventDefault()}>
+          <input type="text"/>
+        </form>
+      </div>
+      <div className="body">
+        <div className="infinite_scroll">
+          <InfiniteScroll
+            pageStart={0}
+            // loadMore={}
+            hasMore={items.length < 30}
+            loader={<div>Loading ...</div>}
+            useWindow={false}>
+          </InfiniteScroll>
+        </div>
+        <div className="sideBar">
+          <div className="SideItem">PlaceHolder</div>
+        </div>
+      </div>
+    </>
   );
 }
 
