@@ -36,7 +36,7 @@ function App() {
           </InfiniteScroll>
         </div>
         <div className="sideBar">
-          <div className="SideItem">PlaceHolder</div>
+          <div className="SideItem">This should be at the top when the browser is smaller</div>
         </div>
       </div>
     </>
