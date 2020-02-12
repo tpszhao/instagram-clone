@@ -22,12 +22,12 @@ function App() {
           <input type="text"/>
         </form>
       </div>
-      <div className="body">
+      <div className="container">
         <div className="infinite_scroll">
           <InfiniteScroll
             pageStart={0}
             loadMore={loadMore}
-            hasMore={items.length < 30}
+            hasMore={items.length < 5}
             loader={<div>Loading ...</div>}
             useWindow={true}>
               {items.map(item=>{
@@ -36,7 +36,7 @@ function App() {
           </InfiniteScroll>
         </div>
         <div className="sideBar">
-          <div className="SideItem">This should be at the top when the browser is smaller</div>
+          <div className="sideItem">This should be at the top when the browser is smaller</div>
         </div>
       </div>
     </>

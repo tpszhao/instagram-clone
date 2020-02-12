@@ -16,15 +16,17 @@ input{
     outline: none;
 }
 
-.body{
+.container{
     display: flex;
     position: relative;
     justify-content: center;
 }
 .infinite_scroll{
+    max-width: 100%;
     width: 616px;
     margin: 16px;
     display: flex;
+    align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
 }
@@ -32,10 +34,12 @@ input{
 .sideBar{
     margin: 16px;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    align-items: center;
+
 }
 
-.SideItem {
+.sideItem {
     width: 296px;
     height: 224px;
     color: white;
@@ -43,13 +47,21 @@ input{
 }
 
 img{
-    max-width: 95%;
+    margin: 5px;
+    width: 95%;
 }
 
-@media only screen and (max-width: 1000px){
-    body{
+@media only screen and (max-width: 585px){
+    .container{
         background-color: blue;
         flex-direction: column-reverse;
-        flex-wrap: nowrap;
+    }
+
+    .sideItem{
+        width: 100%;
+    }
+
+    img{
+        margin: auto;
     }
 }
