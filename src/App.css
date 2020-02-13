@@ -23,8 +23,7 @@ input{
     justify-content: center;
 }
 .infinite_scroll{
-    max-width: 100%;
-    width: 616px;
+    max-width: 616px;
     margin: 16px;
     display: flex;
     align-items: center;
@@ -47,18 +46,6 @@ input{
     top: 100px;
 }
 
-img{
-    width: 95%;
-}
-
-.Card{
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 @media only screen and (max-width: 585px){
     .container{
@@ -70,7 +57,4 @@ img{
         min-width: 100%;
     }
 
-    img{
-        margin: auto;
-    }
 }

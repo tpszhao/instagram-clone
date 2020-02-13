@@ -1,6 +1,7 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from 'axios'
+import Card from './Components/Card'
 import './App.css';
 
 function getRandomInt(min, max) {
@@ -10,19 +11,28 @@ function getRandomInt(min, max) {
 }
 
 function App() {
+  const [searchValue, setSearchValue] = useState('')
   const [items, setItems] = useState([]);
+  const searchBar = useRef();
 
   const loadMore = ()=>{
-    axios.get(`https://source.unsplash.com/700x${getRandomInt(300,900)}`)
+    console.log(searchValue)
+    axios.get(`https://source.unsplash.com/700x${getRandomInt(300,900)}?${searchValue}`)
     .then(data=>setItems([...items,data.request.responseURL]))
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setSearchValue(searchBar.current.value);
+    setItems([]);
   }
 
   
   return (
     <>
       <div className="header">
-        <form onSubmit={e=>e.preventDefault()}>
-          <input type="text"/>
+        <form onSubmit={handleSubmit}>
+          <input type="text" ref={searchBar}/>
         </form>
       </div>
       <div className="container">
@@ -31,11 +41,9 @@ function App() {
             pageStart={0}
             loadMore={loadMore}
             hasMore={items.length < 500}
-            loader={<div>Loading ...</div>}
+            loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
-              {items.map(item=>{
-                return <div className="Card"><img src={item} alt="placeholder"/></div>
-              })}
+              {items.map(image=> <Card image={image}/>)}
           </InfiniteScroll>
         </div>
         <div className="sideBar">
