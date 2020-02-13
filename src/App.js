@@ -1,17 +1,20 @@
 import React,{useState} from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
+import axios from 'axios'
 import './App.css';
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
 
 function App() {
   const [items, setItems] = useState([]);
 
-  const loadMore = async ()=>{
-    fetch(`https://source.unsplash.com/1600x900/?beach`)
-    .then(res=>{
-      setItems([...items,res.url])
-    }
-    )
+  const loadMore = ()=>{
+    axios.get(`https://source.unsplash.com/700x${getRandomInt(300,900)}`)
+    .then(data=>setItems([...items,data.request.responseURL]))
   }
 
   
@@ -27,16 +30,16 @@ function App() {
           <InfiniteScroll
             pageStart={0}
             loadMore={loadMore}
-            hasMore={items.length < 5}
+            hasMore={items.length < 500}
             loader={<div>Loading ...</div>}
             useWindow={true}>
               {items.map(item=>{
-                return <img src={item} alt="placeholder"/>
+                return <div className="Card"><img src={item} alt="placeholder"/></div>
               })}
           </InfiniteScroll>
         </div>
         <div className="sideBar">
-          <div className="sideItem">This should be at the top when the browser is smaller</div>
+          <div className="sideItem">placeholder</div>
         </div>
       </div>
     </>

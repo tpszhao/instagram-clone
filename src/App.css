@@ -17,6 +17,7 @@ input{
 }
 
 .container{
+    margin: auto;
     display: flex;
     position: relative;
     justify-content: center;
@@ -36,29 +37,37 @@ input{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .sideItem {
     width: 296px;
     height: 224px;
-    color: white;
-    background-color: purple;
+    border: 1px solid gray;
+    position: sticky;
+    top: 100px;
 }
 
 img{
-    margin: 5px;
     width: 95%;
+}
+
+.Card{
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (max-width: 585px){
     .container{
-        background-color: blue;
         flex-direction: column-reverse;
+        align-items: center;
     }
 
     .sideItem{
-        width: 100%;
+        min-width: 100%;
     }
 
     img{
