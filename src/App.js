@@ -10,15 +10,29 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
+let url = "https://source.unsplash.com/700x"
+
 function App() {
   const [searchValue, setSearchValue] = useState('')
   const [items, setItems] = useState([]);
   const searchBar = useRef();
 
   const loadMore = ()=>{
-    console.log(searchValue)
     axios.get(`https://source.unsplash.com/700x${getRandomInt(300,900)}?${searchValue}`)
     .then(data=>setItems([...items,data.request.responseURL]))
+  }
+
+  const loadMoreAsync = async()=>{
+    try{
+      const responses = [
+        await axios.get(`${url}${getRandomInt(300,900)}?${searchValue}`),
+        await axios.get(`${url}${getRandomInt(300,900)}?${searchValue}`),
+        await axios.get(`${url}${getRandomInt(300,900)}?${searchValue}`)]
+      const data = responses.map(response=>response.request.responseURL)
+      setItems([...items, ...data])
+    }catch{
+      console.log("error")
+    }
   }
 
   const handleSubmit = e => {
@@ -39,7 +53,7 @@ function App() {
         <div className="infinite_scroll">
           <InfiniteScroll
             pageStart={0}
-            loadMore={loadMore}
+            loadMore={loadMoreAsync}
             hasMore={items.length < 500}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
