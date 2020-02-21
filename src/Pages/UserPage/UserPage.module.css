@@ -1,0 +1,72 @@
+.container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 936px;
+    align-items: center;
+}
+
+.userheader{
+    width: 100%;
+    height: 256px;
+    display: grid;
+    grid-template-columns:300px auto;
+    grid-template-rows: 60px 50px 40px auto;
+}
+
+.profile_image{
+    max-width: 150px;
+    grid-column: 1/2;
+    grid-row: 1/5;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+.username{
+    align-self: center;
+    font-size: x-large;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.userstat{
+    max-width: 368px;
+    font-size: large;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.photos{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 32px;
+    row-gap: 32px;
+}
+
+.samplephoto{
+    width: 100%;
+}
+
+@media only screen and (max-width: 720px){
+    .userheader{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .userstat{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .photos{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+}
