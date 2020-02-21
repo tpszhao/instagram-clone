@@ -1,0 +1,42 @@
+.container{
+    margin: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+.infinite_scroll{
+    max-width: 616px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.sideBar{
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sideItem {
+    width: 296px;
+    height: 224px;
+    border: 1px solid gray;
+    position: sticky;
+    top: 100px;
+}
+
+
+@media only screen and (max-width: 585px){
+    .container{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .sideItem{
+        min-width: 100%;
+    }
+
+}
