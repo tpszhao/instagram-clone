@@ -10,19 +10,20 @@ export default function PhotoGrid({username}) {
     const [hasMore, setHasMore] = useState(true);
 
     const loadMore = async()=>{
-        try{
-            const response = await unsplash.users.photos(username, page, 15,"latest");
-            const json = await toJson(response);
-            console.log(json);
-            if(!json.length){
-            console.log("no more photos")
-            setHasMore(false);
-            }
-            setPhotos([...photos, ...json]);
-            setPage(page + 1);
-        }catch{
-            console.log("something went wrong")
+      try{
+        setHasMore(false);
+        const response = await unsplash.users.photos(username, page, 15,"latest");
+        const json = await toJson(response);
+        setPhotos([...photos, ...json]);
+        setPage(page + 1);
+        setHasMore(true);
+        if(!json.length){
+        console.log("no more photos")
+        setHasMore(false);
         }
+      }catch{
+        console.log("something went wrong")
+      }
     }
 
     const GridStyle={

@@ -1026,7 +1026,7 @@ export default function UserPage(props) {
             });
     }, [props.match.params.username]);
 
-    if(!user) return null;
+    if(!user||user.errors) return null;
     return (
         <div className={styles.container}>
             <div className={styles.userheader}>
