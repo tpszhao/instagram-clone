@@ -20,7 +20,7 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
             setHasMore(false);
             const response = await unsplash.search.photos(searchvalue, page, 15);
             const json = await toJson(response);
-            setTotal(json.total);
+            (page === 1)&&setTotal(json.total);
             setPhotos([...photos, ...json.results]);
             setPage(page + 1);
             setHasMore(true);
