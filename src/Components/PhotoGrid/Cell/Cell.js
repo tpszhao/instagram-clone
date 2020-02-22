@@ -3,8 +3,8 @@ import styles from './Cell.module.css'
 
 export default function Cell({photo}) {
     return (
-            <img src={photo} alt="placeholder" className={styles.photo}/>
-        // <div className={styles.cell}>
-        // </div>
+        <div className={styles.cell}>
+        <img src={photo} alt="placeholder" className={styles.photo}/>
+        </div>
     )
 }
