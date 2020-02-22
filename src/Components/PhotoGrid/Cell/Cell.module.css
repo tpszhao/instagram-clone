@@ -1,0 +1,11 @@
+.cell{
+    flex: 0 0 30%;
+    margin: 8px;
+}
+.photo{
+    flex: 0 0 30%;
+    margin: 8px;
+    max-width: 30%;
+    object-fit: cover;
+}
+

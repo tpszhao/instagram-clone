@@ -12,8 +12,8 @@ function App() {
     <Router>
       <NavBar/>
       <Switch>
-        {/* <Route path="/" exact component={HomePage}/> */}
-        <Route path="/" component={UserPage}/>
+        <Route path="/" exact component={HomePage}/>
+        <Route path="/user/:username" component={UserPage} />      
       </Switch>
     </Router>
   );

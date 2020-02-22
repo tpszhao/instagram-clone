@@ -15,6 +15,7 @@
 }
 
 .profile_image{
+    width: 100%;
     max-width: 150px;
     grid-column: 1/2;
     grid-row: 1/5;
@@ -40,15 +41,9 @@
     justify-content: space-between;
 }
 
-.photos{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 32px;
-    row-gap: 32px;
-}
-
-.samplephoto{
-    width: 100%;
+.photosList{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 720px){
@@ -63,10 +58,4 @@
         text-align: center;
     }
 
-    .photos{
-        display: grid;
-        grid-template-columns: auto auto auto;
-        column-gap: 5px;
-        row-gap: 5px;
-    }
 }
