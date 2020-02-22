@@ -23,10 +23,10 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
             (page === 1)&&setTotal(json.total);
             setPhotos([...photos, ...json.results]);
             setPage(page + 1);
-            setHasMore(true);
-            if(!json.length){
-            console.log("no more photos")
-            setHasMore(false);
+            if(json.results.length === 15){
+                setHasMore(true);
+            }else{
+                console.log("no more photos")
             }
         }catch{
             console.log("something went wrong")

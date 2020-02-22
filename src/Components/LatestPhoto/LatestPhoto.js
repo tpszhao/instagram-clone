@@ -12,14 +12,16 @@ export default function LatestPhoto() {
 
     const loadMore = async()=>{
         try{
+            setHasMore(false);
             const response = await unsplash.photos.listPhotos(page, 15, "latest");
             const json = await toJson(response);
-            if(!json.length){
-            console.log("no more photos")
-            setHasMore(false);
-            }
             setPhotos([...photos, ...json]);
             setPage(page + 1);
+            if(json.length === 15){
+                setHasMore(true);
+            }else{
+            console.log("no more photos")
+            }
         }catch{
             console.log('something went wrong');
         }

@@ -18,9 +18,10 @@ export default function UserPhotoGrid({username}) {
         setPhotos([...photos, ...json]);
         setPage(page + 1);
         setHasMore(true);
-        if(!json.length){
-        console.log("no more photos")
-        setHasMore(false);
+        if(json.length === 15){
+          setHasMore(true);
+        }else{
+          console.log("no more photos")
         }
       }catch{
         console.log("something went wrong")
