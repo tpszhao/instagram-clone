@@ -8,7 +8,7 @@ function NavBar({history}) {
         <div className={styles.header}>
             <form onSubmit={()=>{
                 const searchvalue = inputRef.current.value;
-                history.push(`/user/${searchvalue}`)
+                history.push(`/search/${searchvalue}`)
             }}>
                 <input 
                     className={styles.input} 

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {toJson} from 'unsplash-js'
-import {PhotoGrid} from '../Components'
+import {UserPhotoGrid} from '../Components'
 import unsplash from '../api'
 import styles from './UserPage.module.css'
 
@@ -1023,6 +1023,8 @@ export default function UserPage(props) {
             .then(toJson)
             .then(json => {
                 setUser(json);
+            }).catch(()=>{
+                setUser(null);
             });
     }, [props.match.params.username]);
 
@@ -1041,7 +1043,7 @@ export default function UserPage(props) {
                     <span>{user.followers_count} followers</span>
                 </div>
             </div>
-            <PhotoGrid username={user.username} className={styles.photoGrid}/>
+            <UserPhotoGrid username={user.username} className={styles.photoGrid}/>
         </div>
     )
 }

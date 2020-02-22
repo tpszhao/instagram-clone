@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {NavBar} from './Pages/Components'
-import {HomePage,UserPage} from './Pages'
+import {HomePage,UserPage,SearchPage} from './Pages'
 
 function App() {
   return (
@@ -13,7 +13,8 @@ function App() {
       <NavBar/>
       <Switch>
         <Route path="/" exact component={HomePage}/>
-        <Route path="/user/:username" component={UserPage} />      
+        <Route path="/user/:username" component={UserPage} />   
+        <Route path="/search/:searchvalue" component={SearchPage} />      
       </Switch>
     </Router>
   );
