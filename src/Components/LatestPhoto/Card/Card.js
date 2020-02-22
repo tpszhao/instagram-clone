@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Image from "react-graceful-image";
 import styles from "./Card.module.css";
 
 export default function Card({photo}) {
@@ -8,7 +9,7 @@ export default function Card({photo}) {
     <div className={styles.Card}>
       <div className={styles.User}>
         <Link to={url}>
-          <img
+          <Image
             className={styles.Profile_Image}
             src={photo.user.profile_image.medium}
             alt="placeholder"/>
@@ -17,9 +18,10 @@ export default function Card({photo}) {
           <span className={styles.name}>{photo.user.name}</span>
         </Link>
       </div>
-      <img
+      <Image
         className={styles.image}
         src={photo.urls.regular}
+        placeholderColor={photo.color}
         alt="placeholder"
         />
     </div>
