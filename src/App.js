@@ -4,8 +4,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {NavBar} from './Pages/Components'
-import {HomePage,UserPage,SearchPage} from './Pages'
+import {NavBar} from 'Components'
+import {HomePage,UserPage,SearchPage} from 'Pages'
 
 function App() {
   return (

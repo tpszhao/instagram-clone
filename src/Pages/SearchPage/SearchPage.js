@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {SearchPhotoGrid} from '../Components'
+import {SearchPhotoGrid} from 'Components'
 import styles from './SearchPage.module.css'
 
 export default function SearchPage(props) {

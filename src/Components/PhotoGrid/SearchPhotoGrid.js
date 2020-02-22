@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Cell from './Cell/Cell'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
-import unsplash from '../api'
+import unsplash from 'API/unsplash'
 import {GridStyle} from './GridStyle.module.css'
 
 export default function SearchPhotoGrid({searchvalue,setTotal}) {
