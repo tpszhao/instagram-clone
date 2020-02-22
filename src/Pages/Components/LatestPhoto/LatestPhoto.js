@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
 import Card from './Card/Card';
-import unsplash from '../../API/unsplash'
+import unsplash from '../api'
 
 const sampleData={
     "id": "MAhPucR_Hq4",
@@ -114,12 +114,23 @@ export default function LatestPhoto() {
             console.log("no more photos")
             setHasMore(false);
             }
-            setPage(page + 1);
             setPhotos([...photos, ...json]);
+            setPage(page + 1);
         }catch{
-            setPhotos([...photos,sampleData])
+            setPhotos([...photos,sampleData]);
         }
     }
+
+    const InfiniteScrollStyle ={
+        maxWidth:'616px',
+        margin:'16px',
+        display:'flex',
+        alignItems:'center',
+        flexDirection:'column',
+        flexWrap:'nowrap'
+    }
+
+
     return (
         <InfiniteScroll
             pageStart={0}
@@ -127,7 +138,9 @@ export default function LatestPhoto() {
             hasMore={hasMore}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
-            {photos.map((photo,i)=> <Card key={i} photo={photo}/>)}
+                <div style={InfiniteScrollStyle}>
+                    {photos.map((photo,i)=> <Card key={i} photo={photo}/>)}
+                </div>
         </InfiniteScroll>
     )
 }

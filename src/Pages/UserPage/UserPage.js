@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {toJson} from 'unsplash-js'
-import {PhotoGrid} from '../../Components'
-import unsplash from '../../API/unsplash'
+import {PhotoGrid} from '../Components'
+import unsplash from '../api'
 import styles from './UserPage.module.css'
 
 
@@ -1041,9 +1041,7 @@ export default function UserPage(props) {
                     <span>{user.followers_count} followers</span>
                 </div>
             </div>
-            <div className={styles.photosList}>
-                <PhotoGrid username={user.username}/>
-            </div>
+            <PhotoGrid username={user.username} className={styles.photoGrid}/>
         </div>
     )
 }

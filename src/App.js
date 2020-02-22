@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {NavBar} from './Components'
+import {NavBar} from './Pages/Components'
 import {HomePage,UserPage} from './Pages'
 
 function App() {

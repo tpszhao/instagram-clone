@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import Cell from './Cell/Cell'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
-import unsplash from '../../API/unsplash'
+import unsplash from '../api'
 
 export default function PhotoGrid({username}) {
     const [photos, setPhotos] = useState([]);
@@ -18,11 +18,18 @@ export default function PhotoGrid({username}) {
             console.log("no more photos")
             setHasMore(false);
             }
-            setPage(page + 1);
             setPhotos([...photos, ...json]);
+            setPage(page + 1);
         }catch{
             console.log("something went wrong")
         }
+    }
+
+    const GridStyle={
+      margin:'auto',
+      display:'grid',
+      gap:'8px',
+      gridTemplateColumns:'auto auto auto'
     }
     return (
         <InfiniteScroll
@@ -31,7 +38,9 @@ export default function PhotoGrid({username}) {
             hasMore={hasMore}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
-            {photos.map((photo,i)=> <Cell key={i} photo={photo.urls.regular}/>)}
+            <div style={GridStyle}>
+              {photos.map((photo,i)=> <Cell key={i} photo={photo.urls.regular}/>)}
+            </div>
         </InfiniteScroll>
     )
 }
