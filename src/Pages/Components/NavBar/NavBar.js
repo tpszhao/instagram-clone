@@ -6,7 +6,8 @@ function NavBar({history}) {
     const inputRef = useRef('')
     return (
         <div className={styles.header}>
-            <form onSubmit={()=>{
+            <form onSubmit={e=>{
+                e.preventDefault();
                 const searchvalue = inputRef.current.value;
                 history.push(`/search/${searchvalue}`)
             }}>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Cell from './Cell/Cell'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
@@ -10,6 +10,11 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
+    useEffect(()=>{
+        setPhotos([]);
+        setPage(1);
+        setHasMore(true);
+    },[searchvalue])
     const loadMore = async()=>{
         try{
             setHasMore(false);
