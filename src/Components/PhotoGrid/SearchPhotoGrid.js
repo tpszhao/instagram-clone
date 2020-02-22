@@ -9,6 +9,7 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(()=>{
         setPhotos([]);
@@ -17,15 +18,14 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
     },[searchvalue])
     const loadMore = async()=>{
         try{
-            setHasMore(false);
+            setIsLoading(true);
             const response = await unsplash.search.photos(searchvalue, page, 15);
             const json = await toJson(response);
             (page === 1)&&setTotal(json.total);
             setPhotos([...photos, ...json.results]);
             setPage(page + 1);
-            if(json.results.length === 15){
-                setHasMore(true);
-            }else{
+            if(json.results.length < 15){
+                setHasMore(false);
                 console.log("no more photos")
             }
         }catch{
@@ -37,7 +37,7 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
         <InfiniteScroll
             pageStart={0}
             loadMore={loadMore}
-            hasMore={hasMore}
+            hasMore={hasMore&&!isLoading}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
             <div className={GridStyle}>

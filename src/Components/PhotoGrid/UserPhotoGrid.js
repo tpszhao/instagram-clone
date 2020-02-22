@@ -9,20 +9,20 @@ export default function UserPhotoGrid({username}) {
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const loadMore = async()=>{
       try{
-        setHasMore(false);
+        setIsLoading(true);
         const response = await unsplash.users.photos(username, page, 15,"latest");
         const json = await toJson(response);
         setPhotos([...photos, ...json]);
         setPage(page + 1);
         setHasMore(true);
-        if(json.length === 15){
-          setHasMore(true);
-        }else{
+        if(json.length < 15){
+          setHasMore(false);
           console.log("no more photos")
-        }
+      }
       }catch{
         console.log("something went wrong")
       }
@@ -32,7 +32,7 @@ export default function UserPhotoGrid({username}) {
         <InfiniteScroll
             pageStart={0}
             loadMore={loadMore}
-            hasMore={hasMore}
+            hasMore={hasMore&&!isLoading}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
             <div className={GridStyle}>
