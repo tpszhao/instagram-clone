@@ -24,6 +24,8 @@ export default function LatestPhoto() {
             }
         }catch{
             console.log('something went wrong');
+        }finally{
+            setIsLoading(false);
         }
     }
 

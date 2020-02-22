@@ -30,6 +30,8 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
             }
         }catch{
             console.log("something went wrong")
+        }finally{
+            setIsLoading(false);
         }
 }
 

@@ -25,7 +25,9 @@ export default function UserPhotoGrid({username}) {
       }
       }catch{
         console.log("something went wrong")
-      }
+      }finally{
+        setIsLoading(false);
+    }
     }
 
     return (
