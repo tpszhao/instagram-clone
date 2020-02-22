@@ -1,0 +1,7 @@
+.GridStyle{
+    margin: auto;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: auto auto auto;
+}
+

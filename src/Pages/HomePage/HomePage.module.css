@@ -4,14 +4,7 @@
     position: relative;
     justify-content: center;
 }
-.infinite_scroll{
-    max-width: 616px;
-    margin: 16px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
+
 
 .sideBar{
     margin: 16px;
