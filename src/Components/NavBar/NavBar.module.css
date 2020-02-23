@@ -1,4 +1,5 @@
 .header{
+    box-sizing: border-box;
     background-color: white;
     top: 0px;
     position: sticky;

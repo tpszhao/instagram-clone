@@ -10,7 +10,7 @@ export default function Card({photo}) {
       <div className={styles.User}>
         <Link to={url}>
           <Image
-            className={styles.Profile_Image}
+            className={styles.profile_image}
             src={photo.user.profile_image.medium}
             alt="placeholder"/>
         </Link>
@@ -24,6 +24,7 @@ export default function Card({photo}) {
         placeholderColor={photo.color}
         alt="placeholder"
         />
+      <div className={styles.photostat}>{`${photo.likes} likes`}</div>
     </div>
   );
 }

@@ -1,8 +1,4 @@
-.image{
-    width: 100%;
-    max-height: 700px;
-    object-fit: cover;
-}
+
 
 .Card{
     width: 100%;
@@ -22,7 +18,7 @@
     width: 100%;
 }
 
-.Profile_Image{
+.profile_image{
     margin: 5px;
     width: 36px;
     height: 36px;
@@ -32,4 +28,17 @@
 .name{
     text-decoration: none;
     color: black;
+}
+
+.image{
+    width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+}
+
+.photostat{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    padding-left:30px;
 }
