@@ -4,6 +4,5 @@
     display: grid;
     gap: 8px;
     grid-template-columns: auto auto auto;
-    grid-template-columns: repeat(3,calc((100% - 16px)/3));
 }
 
