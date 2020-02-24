@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './HomePage.module.css'
 import styled from 'styled-components'
 import {LatestPhoto} from 'Components'
 
@@ -13,7 +12,6 @@ const Container = styled.div`
         align-items: center;
     }
 `;
-
 const SideBar = styled.div`
     margin: 10px 16px;
     position: relative;

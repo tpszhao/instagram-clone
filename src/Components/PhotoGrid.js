@@ -1,9 +1,17 @@
 import React,{useState,useEffect} from 'react'
-import {GridItem} from '..'
-import InfiniteScroll from 'react-infinite-scroller';
+import {GridItem} from './'
+import InfiniteScroll from 'react-infinite-scroller'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
-import {GridStyle} from './GridStyle.module.css'
+import styled from 'styled-components'
+
+const Grid = styled.div`
+  margin: auto;
+  margin-bottom: 20px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3,auto);
+`;
 
 export default function PhotoGrid({
   photos,
@@ -59,9 +67,9 @@ export default function PhotoGrid({
             hasMore={hasMore&&!isLoading}
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
-            <div className={GridStyle}>
+            <Grid>
               {photos.map((photo,i)=> <GridItem key={i} photo={photo}/>)}
-            </div>
+            </Grid>
         </InfiniteScroll>
     )
 }
