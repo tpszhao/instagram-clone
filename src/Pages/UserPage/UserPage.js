@@ -1,13 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import {toJson} from 'unsplash-js'
-import {UserPhotoGrid} from 'Components'
+import {PhotoGrid} from 'Components'
 import unsplash from 'API/unsplash'
 import styles from './UserPage.module.css'
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
+    const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
+        setPhotos([]);
         unsplash.users
             .profile(props.match.params.username)
             .then(toJson)
@@ -33,7 +35,11 @@ export default function UserPage(props) {
                     <span>{user.followers_count} followers</span>
                 </div>
             </div>
-            <UserPhotoGrid username={user.username} className={styles.photoGrid}/>
+            <PhotoGrid
+                photos={photos}
+                setPhotos={setPhotos}
+                query='users'
+                searchValue={user.username} />
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from "react-graceful-image";
-import styles from './Cell.module.css'
+import styles from './GridItem.module.css'
 
-export default function Cell({photo}) {
+export default function GridItem({photo}) {
     return (
         <div className={styles.cell}>
             <Image 
