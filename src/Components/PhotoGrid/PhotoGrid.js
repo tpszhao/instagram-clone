@@ -17,8 +17,6 @@ export default function PhotoGrid({
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-      setTotal(0);
-      setPhotos([]);
       setPage(1);
       setHasMore(true);
       setIsLoading(false);

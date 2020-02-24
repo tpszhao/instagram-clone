@@ -8,8 +8,8 @@ function NavBar({history}) {
         <div className={styles.header}>
             <form onSubmit={e=>{
                 e.preventDefault();
-                const searchvalue = inputRef.current.value;
-                history.push(`/search/${searchvalue}`)
+                const searchValue = inputRef.current.value;
+                history.push(`/search/${searchValue}`)
             }}>
                 <input 
                     className={styles.input} 
