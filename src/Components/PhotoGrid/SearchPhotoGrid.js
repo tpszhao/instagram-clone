@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
-import Cell from './Cell/Cell'
+import {GridItem} from '../'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
 import {GridStyle} from './GridStyle.module.css'
 
-export default function SearchPhotoGrid({searchvalue,setTotal}) {
+export default function PhotoGrid({searchvalue,setTotal}) {
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
@@ -43,7 +43,7 @@ export default function SearchPhotoGrid({searchvalue,setTotal}) {
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
             <div className={GridStyle}>
-                {photos.map((photo,i)=> <Cell key={i} photo={photo}/>)}
+                {photos.map((photo,i)=> <GridItem key={i} photo={photo}/>)}
             </div>
         </InfiniteScroll>
     )

@@ -1,10 +1,12 @@
 import React,{useState} from 'react'
-import {SearchPhotoGrid} from 'Components'
+import {PhotoGrid} from 'Components'
 import styles from './SearchPage.module.css'
 
 export default function SearchPage(props) {
     const searchvalue = props.match.params.searchvalue;
     const [total, setTotal] = useState(0);
+    const [photos, setPhotos] = useState([]);
+
 
     return (
         <div className={styles.container}>
@@ -14,7 +16,12 @@ export default function SearchPage(props) {
                     <span>{total} photos</span>
                 </div>
             </div>
-            <SearchPhotoGrid setTotal={setTotal} searchvalue={searchvalue}/>
+            <PhotoGrid
+                photos={photos}
+                setPhotos={setPhotos}
+                query='search'
+                setTotal={setTotal}
+                searchValue={searchvalue}/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
-import Card from './Card/Card';
+import {Card} from '../';
 import unsplash from 'API/unsplash'
 
 

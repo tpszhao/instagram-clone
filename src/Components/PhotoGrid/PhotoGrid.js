@@ -1,25 +1,49 @@
-import React,{useState} from 'react'
-import Cell from './Cell/Cell'
+import React,{useState,useEffect} from 'react'
+import {GridItem} from '..'
 import InfiniteScroll from 'react-infinite-scroller';
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
 import {GridStyle} from './GridStyle.module.css'
 
-export default function UserPhotoGrid({username}) {
-    const [photos, setPhotos] = useState([]);
+export default function PhotoGrid({
+  photos,
+  setPhotos,
+  query,
+  searchValue,
+  setTotal=()=>{}
+}){
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
+    useEffect(() => {
+      setTotal(0);
+      setPhotos([]);
+      setPage(1);
+      setHasMore(true);
+      setIsLoading(false);
+    }, [query,searchValue])
+
     const loadMore = async()=>{
       try{
         setIsLoading(true);
-        const response = await unsplash.users.photos(username, page, 15,"latest");
+        const response = await unsplash[query].photos(searchValue, page, 15);
         const json = await toJson(response);
-        setPhotos([...photos, ...json]);
+        let newPhotos;
+        switch(query){
+          case 'users':
+            newPhotos = json;
+            break;
+          case 'search':
+            (page === 1)&&setTotal(json.total);
+            newPhotos = json.results;
+            break;
+          default:
+        }
+        setPhotos([...photos, ...newPhotos]);
         setPage(page + 1);
         setHasMore(true);
-        if(json.length < 15){
+        if(newPhotos.length < 15){
           setHasMore(false);
           console.log("no more photos")
       }
@@ -38,7 +62,7 @@ export default function UserPhotoGrid({username}) {
             loader={<div key={0}>Loading ...</div>}
             useWindow={true}>
             <div className={GridStyle}>
-              {photos.map((photo,i)=> <Cell key={i} photo={photo}/>)}
+              {photos.map((photo,i)=> <GridItem key={i} photo={photo}/>)}
             </div>
         </InfiniteScroll>
     )
