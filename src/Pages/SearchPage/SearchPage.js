@@ -9,7 +9,7 @@ export default function SearchPage(props) {
     useEffect(() => {
         setPhotos([]);
         setTotal(0);
-    }, [props.match.params.username]);
+    }, [props.match.params.searchValue]);
 
     return (
         <div className={styles.container}>
