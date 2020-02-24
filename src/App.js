@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import {NavBar} from 'Components'
 import {HomePage,UserPage,SearchPage} from 'Pages'
+import './App.css'
 
 function App() {
   return (

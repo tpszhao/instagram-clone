@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {GridItem} from './'
+import {GridItem,GridLoader} from './'
 import InfiniteScroll from 'react-infinite-scroller'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
@@ -57,7 +57,7 @@ export default function PhotoGrid({
         console.log("something went wrong")
       }finally{
         setIsLoading(false);
-    }
+      }
     }
 
     return (
@@ -65,7 +65,7 @@ export default function PhotoGrid({
             pageStart={0}
             loadMore={loadMore}
             hasMore={hasMore&&!isLoading}
-            loader={<div key={0}>Loading ...</div>}
+            loader={<GridLoader key={0} />}
             useWindow={true}>
             <Grid>
               {photos.map((photo,i)=> <GridItem key={i} photo={photo}/>)}
