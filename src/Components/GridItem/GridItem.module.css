@@ -1,5 +1,6 @@
 .cell{
-    width: 100%;
+    width: calc((100vw - 16px)/3);
+    max-width: calc((936px - 16px)/3);
     height: calc((100vw - 16px)/3);
     max-height: calc((936px - 16px)/3);
     overflow: hidden;
