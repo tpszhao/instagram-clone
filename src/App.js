@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import {NavBar} from 'Components'
 import {HomePage,UserPage,SearchPage} from 'Pages'
+import './App.css'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage}/>
         <Route path="/user/:username" component={UserPage} />   
-        <Route path="/search/:searchvalue" component={SearchPage} />      
+        <Route path="/search/:searchValue" component={SearchPage} />      
       </Switch>
     </Router>
   );
