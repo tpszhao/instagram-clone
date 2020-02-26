@@ -8,7 +8,7 @@ const Header = styled.div`
     position: sticky;
     width: 100vw;
     max-width: 100%;
-    height: 51px;
+    height: 52px;
     border-bottom: 1px solid rgb(219,219,219);
     display: flex;
     justify-content: space-around;
