@@ -1,23 +1,25 @@
 import React,{useState,useEffect} from 'react'
-import {GridItem} from '..'
-import InfiniteScroll from 'react-infinite-scroller';
+import {GridItem,GridLoader} from 'Components'
+import InfiniteScroll from 'react-infinite-scroller'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
-import {GridStyle} from './GridStyle.module.css'
+import styled from 'styled-components'
 
-export default function PhotoGrid({
-  photos,
-  setPhotos,
-  query,
-  searchValue,
-  setTotal=()=>{}
-}){
+const Grid = styled.div`
+  margin: auto;
+  margin-bottom: 20px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3,auto);
+`;
+
+export default function PhotoGrid({query,searchValue,setTotal=()=>{}}){
+    const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-      setTotal(0);
       setPhotos([]);
       setPage(1);
       setHasMore(true);
@@ -51,7 +53,7 @@ export default function PhotoGrid({
         console.log("something went wrong")
       }finally{
         setIsLoading(false);
-    }
+      }
     }
 
     return (
@@ -59,11 +61,11 @@ export default function PhotoGrid({
             pageStart={0}
             loadMore={loadMore}
             hasMore={hasMore&&!isLoading}
-            loader={<div key={0}>Loading ...</div>}
+            loader={<GridLoader key={0} />}
             useWindow={true}>
-            <div className={GridStyle}>
+            <Grid>
               {photos.map((photo,i)=> <GridItem key={i} photo={photo}/>)}
-            </div>
+            </Grid>
         </InfiniteScroll>
     )
 }
