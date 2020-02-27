@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {GridItem,GridLoader} from './'
+import {GridItem,GridLoader} from 'Components'
 import InfiniteScroll from 'react-infinite-scroller'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
@@ -13,18 +13,14 @@ const Grid = styled.div`
   grid-template-columns: repeat(3,auto);
 `;
 
-export default function PhotoGrid({
-  photos,
-  setPhotos,
-  query,
-  searchValue,
-  setTotal=()=>{}
-}){
+export default function PhotoGrid({query,searchValue,setTotal=()=>{}}){
+    const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+      setPhotos([]);
       setPage(1);
       setHasMore(true);
       setIsLoading(false);

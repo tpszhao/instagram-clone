@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import {toJson} from 'unsplash-js'
 import styled from 'styled-components'
-import {Card,CardLoader} from './'
+import {Card,CardLoader} from 'Components'
 import unsplash from 'API/unsplash'
 
 const InfiniteContainer = styled.div`

@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
-import {LatestPhoto} from 'Components'
+import {LatestPhoto,HighlightsMenu, PhotoCarousel} from 'Components'
 
 const Container = styled.div`
     margin: auto;
@@ -14,34 +14,30 @@ const Container = styled.div`
 `;
 const SideBar = styled.div`
     margin: 10px 16px;
-    position: relative;
+    width:296px;
+    height:100%;
+    position: sticky;
+    top:${props=>`${props.stickyPos?62-props.stickyPos:62}px`};
     display: flex;
     flex-direction: column;
     align-items: center;
     @media only screen and (max-width: 976px){
+        position:relative;
         width:616px;
+        top:0px;
         max-width:calc(100vw - 32px);
     }
 `;
-const SideItem = styled.div`
-    width: 296px;
-    height: 224px;
-    border: 1px solid rgb(219,219,219);
-    border-radius: 3px;
-    position: sticky;
-    top: 78px;
-    @media only screen and (max-width: 976px){
-        width:100%;
-    }
 
-`;
 
 export default function HomePage() {
+    const [stickyPos, setStickyPos] = useState(0);
     return (
         <Container>
             <LatestPhoto/>
-            <SideBar>
-                <SideItem>placeholder</SideItem>
+            <SideBar stickyPos={stickyPos}>
+                <HighlightsMenu setStickyPos={setStickyPos}/>
+                {/* <PhotoCarousel /> */}
             </SideBar>
         </Container>
     )

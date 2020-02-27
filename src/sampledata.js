@@ -1200,4 +1200,9 @@ const samplePhoto ={
     }
 }
 
-export {sampleLatestPhoto,samplePhoto,sampleUser}
+const sampleError = {
+    "errors": [
+        "Couldn't find User"
+    ]
+}
+export {sampleLatestPhoto,samplePhoto,sampleUser,sampleError}
