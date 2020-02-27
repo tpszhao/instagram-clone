@@ -4,7 +4,10 @@ import Modal from 'react-modal';
 import {toJson} from 'unsplash-js';
 import unsplash from 'API/unsplash';
 import {localGet,localSet} from 'API/local';
-import {FavouriteModal,FavouriteCard,ButtonIcon} from 'Components'
+import {
+    HighlightAddCard,
+    HighlightCard,
+    ButtonIcon} from 'Components'
 
 
 const Card = styled.div`
@@ -58,38 +61,35 @@ const modalStyle = {
     }
 };
 Modal.setAppElement('#root');
-export default function FavouritesMenu({setStickyPos}) {
+export default function HighlightsMenu({setStickyPos}) {
     const [cardlist, setCardlist] = useState([]);
     const [modalisOpen, setModalisOpen] = useState(false);
 
     useEffect(() => {
-        let oldphotos = localGet("Favourites",[]);
-        Promise.all(oldphotos.map(fetchPhoto))
-            .then(photos=>updatePhoto(photos,oldphotos));
+        let keywordList = localGet("Highlights",[]);
+        Promise.all(keywordList.map(fetchPhoto))
+            .then(photoLists=>updateCardlist(photoLists,keywordList));
     }, [])
 
     useEffect(() => {
-        localSet("Favourites",cardlist);
+        let keywordlist = cardlist.map(card=>card.keyword);
+        localSet("Highlights",keywordlist);
         if(cardlist.length > 1){
             setStickyPos((cardlist.length-1)*316);
         }else{
-            setStickyPos(cardlist.length*0);
+            setStickyPos(0);
         }
     }, [cardlist])
 
-    const fetchPhoto = async item =>{
-        if(Date.now() - item.time < 5000){
-            return Promise.resolve(item.photo);
-        }
-        console.log('make request');
-        return unsplash.photos.getRandomPhoto({query:item.keyword}).then(toJson);
+    const fetchPhoto = async keyword =>{
+        return unsplash.photos.getRandomPhoto({query:keyword,count:10}).then(toJson);
     }
 
-    const updatePhoto = (photos,oldphotos)=>{
-        let newPhotos = photos.map((photo,i)=>{
-            return {keyword:oldphotos[i].keyword,photo,time:Date.now()}
+    const updateCardlist = (photoLists,keywordList)=>{
+        let newCardList = photoLists.map((photolist,i)=>{
+            return {keyword:keywordList[i],photolist}
         })
-        setCardlist(newPhotos);
+        setCardlist(newCardList);
     }
 
     const deleteCard = card=>{
@@ -101,15 +101,15 @@ export default function FavouritesMenu({setStickyPos}) {
         <>
             <Card length={cardlist.length}> 
                 <Header>
-                    <span>Favourites</span>
+                    <span>Highlights</span>
                     {cardlist.length<3
                     &&<ButtonIcon 
                     style={{top:'2px',right:'12px'}}
                     onClick={()=>setModalisOpen(true)}/>}
                 </Header>
                 <PhotoContainer>
-                    {cardlist.map((card,i)=>{
-                        return <FavouriteCard key={i} card={card} deleteCard={deleteCard}/>
+                    {cardlist.map(card=>{
+                        return <HighlightCard key={card.keyword} card={card} deleteCard={deleteCard}/>
                     })}
                 </PhotoContainer>
             </Card>
@@ -118,10 +118,10 @@ export default function FavouritesMenu({setStickyPos}) {
                 onRequestClose={()=>{setModalisOpen(false)}}
                 style={modalStyle}
                 >
-                <FavouriteModal 
-                    cardlist={cardlist}
-                    setCardlist={setCardlist}
-                    closeModal={()=>{setModalisOpen(false)}}/>
+                <HighlightAddCard 
+                            cardlist={cardlist}
+                            setCardlist={setCardlist}
+                            closeModal={()=>{setModalisOpen(false)}}/>
             </Modal>
         </>
     )

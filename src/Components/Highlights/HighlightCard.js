@@ -41,13 +41,13 @@ const BackGround = styled.div`
 
 
 
-export default function FavouriteCard({card,deleteCard}) {
+export default function HighlightCard({card,deleteCard}) {
     return (
         <Container>
             <span>{card.keyword}</span>
             <Photo 
-                src={card.photo.urls.regular} 
-                placeholderColor={card.photo.color}
+                src={card.photolist[0].urls.regular} 
+                placeholderColor={card.photolist[0].color}
                 alt="placeholder"/>
             <BackGround>
                 <ButtonIcon 

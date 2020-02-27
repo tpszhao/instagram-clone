@@ -34,7 +34,7 @@ function NavBar({history}) {
             }}>
                 <SearchBar 
                     type="text"
-                    placeholder="search something..."
+                    placeholder="search for photos..."
                     ref={inputRef}
                     />
             </form>

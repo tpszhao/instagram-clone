@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import {LatestPhoto,FavouritesMenu} from 'Components'
+import {LatestPhoto,HighlightsMenu, PhotoCarousel} from 'Components'
 
 const Container = styled.div`
     margin: auto;
@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 const SideBar = styled.div`
     margin: 10px 16px;
+    width:296px;
     height:100%;
     position: sticky;
     top:${props=>`${props.stickyPos?62-props.stickyPos:62}px`};
@@ -22,8 +23,8 @@ const SideBar = styled.div`
     align-items: center;
     @media only screen and (max-width: 976px){
         position:relative;
-        top:0px;
         width:616px;
+        top:0px;
         max-width:calc(100vw - 32px);
     }
 `;
@@ -35,7 +36,8 @@ export default function HomePage() {
         <Container>
             <LatestPhoto/>
             <SideBar stickyPos={stickyPos}>
-                <FavouritesMenu setStickyPos={setStickyPos}/>
+                <HighlightsMenu setStickyPos={setStickyPos}/>
+                {/* <PhotoCarousel /> */}
             </SideBar>
         </Container>
     )

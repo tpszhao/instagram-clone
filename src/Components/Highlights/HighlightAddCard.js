@@ -54,7 +54,7 @@ const ButtonIcon = styled.button`
     };
 `;
 
-export default function FavouriteModal({cardlist,setCardlist,closeModal}) {
+export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
     const [message, setMessage] = useState(null);
     const [card, setCard] = useState(null);
     const searchBar = useRef('');
@@ -68,7 +68,7 @@ export default function FavouriteModal({cardlist,setCardlist,closeModal}) {
             setMessage(message);
             return
         }
-        unsplash.photos.getRandomPhoto({query:newKeyword})
+        unsplash.photos.getRandomPhoto({query:newKeyword,count:10})
             .then(toJson)
             .then(Json=>{
                 if (Json.errors){
@@ -77,7 +77,7 @@ export default function FavouriteModal({cardlist,setCardlist,closeModal}) {
                     return;
                 }
                 setMessage(null);
-                setCard({keyword:newKeyword,photo:Json,time:Date.now()});
+                setCard({keyword:newKeyword,photolist:Json});
             })
     }
     
@@ -90,8 +90,8 @@ export default function FavouriteModal({cardlist,setCardlist,closeModal}) {
         <Container>
             {message&&<div>{message}</div>}
             {!message&&card&&<Photo 
-                                    src={card.photo.urls.regular} 
-                                    placeholderColor={card.photo.color}
+                                    src={card.photolist[0].urls.regular} 
+                                    placeholderColor={card.photolist[0].color}
                                     alt="placeholder"/>}
             <form onSubmit={handleSubmit}>
                 <SearchBar ref={searchBar} type="text" placeholder="Search..."/>
