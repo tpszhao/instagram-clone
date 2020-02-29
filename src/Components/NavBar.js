@@ -31,7 +31,6 @@ const SearchSuggestions = styled.div`
     ${props=>!props.active&&"display:none;"}
     padding-top:20px;
     top:17px;
-    min-height:500px;
     width:171px;
     background-color:white;
     background-clip: content-box;
