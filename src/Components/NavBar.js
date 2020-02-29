@@ -68,15 +68,10 @@ function NavBar({history}) {
         localSet("SearchHistory",searchHistory);
     }, [searchHistory])
 
-    useEffect(()=>{
-        console.log(inputRef.current.value)
-        console.log(isSearching)
-    })
-
     const changeSuggestions=()=>{
+        console.log("onchange event")
         const searchValue=inputRef.current.value;
         const suggestions = searchHistory.filter(item=>item.includes(searchValue));
-        searchValue!==''&&setIsSearching(true);
         setSearchSuggestion(suggestions);
     }
 
@@ -88,9 +83,10 @@ function NavBar({history}) {
 
     const redirect = (value="search")=>{
         let removeRepeat = searchHistory.filter(item=>item!==value);
+        inputRef.current.value=value;
+        history.push(`/search/${value}`)
         setSearchHistory([value,...removeRepeat]);
         setIsSearching(false);
-        history.push(`/search/${value}`)
     }
 
 

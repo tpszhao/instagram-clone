@@ -12,11 +12,11 @@ function App() {
   return (
     <Router>
       <NavBar/>
-      <Switch>
+      {/* <Switch>
         <Route path="/" exact component={HomePage}/>
         <Route path="/user/:username" component={UserPage} />   
         <Route path="/search/:searchValue" component={SearchPage} />      
-      </Switch>
+      </Switch> */}
     </Router>
   );
 }
