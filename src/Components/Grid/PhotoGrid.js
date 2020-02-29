@@ -37,7 +37,7 @@ export default function PhotoGrid({query,searchValue,setTotal=()=>{}}){
             newPhotos = json;
             break;
           case 'search':
-            (page === 1)&&setTotal(json.total);
+            setTotal(json.total);
             newPhotos = json.results;
             break;
           default:
