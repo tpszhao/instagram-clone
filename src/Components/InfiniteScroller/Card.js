@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "react-graceful-image";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const CardContainer = styled.div`
   width: 100%;
   margin: 10px;
-  border: 1px solid rgb(219,219,219);
+  border: 1px solid rgb(219, 219, 219);
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -14,15 +14,16 @@ const CardContainer = styled.div`
   align-items: center;
 `;
 
-const UserInfo = styled.div`
+const UserInfo = styled(Link)`
   display: flex;
   align-items: center;
   height: 60px;
   width: 100%;
+  text-decoration: none;
 `;
 
 const ProfileImage = styled(Image)`
-  margin: 5px;  
+  margin: 5px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -43,30 +44,22 @@ const PhotoStat = styled.div`
   display: flex;
   width: 100%;
   padding: 10px;
-  padding-left:30px;
+  padding-left: 30px;
 `;
 
-
-
-export default function Card({photo}) {
-  const url = `/user/${photo.user.username}`
+export default function Card({ photo }) {
+  const url = `/user/${photo.user.username}`;
   return (
     <CardContainer>
-      <UserInfo>
-        <Link to={url}>
-          <ProfileImage
-            src={photo.user.profile_image.medium}
-            alt="placeholder"/>
-        </Link>
-        <Link to={url} style={{textDecoration:'none'}}>
-          <UserName>{photo.user.name}</UserName>
-        </Link>
+      <UserInfo to={url}>
+        <ProfileImage src={photo.user.profile_image.medium} alt="placeholder" />
+        <UserName>{photo.user.name}</UserName>
       </UserInfo>
       <Photo
         src={photo.urls.regular}
         placeholderColor={photo.color}
         alt="placeholder"
-        />
+      />
       <PhotoStat>{`${photo.likes} likes`}</PhotoStat>
     </CardContainer>
   );
