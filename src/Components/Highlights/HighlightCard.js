@@ -44,7 +44,7 @@ export default function HighlightCard({ card, deleteCard, isPlaying }) {
         isPlaying={isPlaying}
         autoplay
         containerCSS={containerCSS}
-        photolist={card.photolist}
+        photoList={card.photoList}
       />
       <BackGround>
         <ButtonIcon

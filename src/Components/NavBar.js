@@ -52,6 +52,17 @@ const SearchItem = styled.div`
   }
 `;
 
+const Input = styled.input`
+  position: relative;
+  z-index: 1;
+  width: 171px;
+  line-height: 20px;
+  text-align: left;
+  outline: none;
+  border: 1px solid rgb(219, 219, 219);
+`;
+
+
 function NavBar({ history }) {
   const [inputValue, setInputValue] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
@@ -59,17 +70,15 @@ function NavBar({ history }) {
   const [searchSuggestions, setSearchSuggestion] = useState([]);
 
   useEffect(() => {
-    let history = localGet("SearchHistory");
-    setSearchHistory(history);
+    const savedSearchHistory = localGet("SearchHistory");
+    setSearchHistory(savedSearchHistory);
   }, []);
 
   useEffect(() => {
-    changeSuggestions();
     localSet("SearchHistory", searchHistory);
   }, [searchHistory]);
 
   const changeSuggestions = e => {
-    if (!e) return;
     const searchValue = e.target.value;
     const suggestions = searchHistory.filter(item =>
       item.includes(searchValue)
@@ -103,8 +112,7 @@ function NavBar({ history }) {
           onClick={() => setIsSearching(true)}
           onFocus={() => setIsSearching(true)}
           value={inputValue}
-          onChange={changeSuggestions}
-        />
+          onChange={changeSuggestions}/>
       </form>
       <SearchSuggestions
         active={isSearching}

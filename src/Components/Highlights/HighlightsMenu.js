@@ -89,8 +89,8 @@ export default function HighlightsMenu({ setStickyPos }) {
   };
 
   const updateCardlist = (photoLists, keywordList) => {
-    let newCardList = photoLists.map((photolist, i) => {
-      return { keyword: keywordList[i], photolist };
+    let newCardList = photoLists.map((photoList, i) => {
+      return { keyword: keywordList[i], photoList };
     });
     setCardlist(newCardList);
   };

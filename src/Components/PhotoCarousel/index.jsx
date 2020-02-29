@@ -18,7 +18,7 @@ export default function PhotoCarousel({
   containerCSS,
   scaleDown = false,
   autoplay = false,
-  photolist,
+  photoList,
   isPlaying
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
@@ -45,7 +45,7 @@ export default function PhotoCarousel({
   return (
     <Container ref={container} containerCSS={containerCSS}>
       <Slider {...defaultSetting} ref={slider} autoplay={autoplay}>
-        {photolist.map(photo => {
+        {photoList.map(photo => {
           return (
             <Item key={photo.id} {...itemSize}>
               <Photo

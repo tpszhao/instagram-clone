@@ -20,7 +20,7 @@ const Container = styled.div`
     padding:30px;
 `;
 
-const SearchBar = styled.input`
+const SearchInput = styled.input`
     line-height: 20px;
     text-align: center;
     outline: none;
@@ -77,7 +77,7 @@ export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
                     return;
                 }
                 setMessage(null);
-                setCard({keyword:newKeyword,photolist:Json});
+                setCard({keyword:newKeyword,photoList:Json});
             })
     }
     
@@ -90,11 +90,11 @@ export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
         <Container>
             {message&&<div>{message}</div>}
             {!message&&card&&<Photo 
-                                    src={card.photolist[0].urls.regular} 
-                                    placeholderColor={card.photolist[0].color}
+                                    src={card.photoList[0].urls.regular} 
+                                    placeholderColor={card.photoList[0].color}
                                     alt="placeholder"/>}
             <form onSubmit={handleSubmit}>
-                <SearchBar ref={searchBar} type="text" placeholder="Search..."/>
+                <SearchInput ref={searchBar} type="text" placeholder="Search..."/>
             </form>
             {card&&<ButtonIcon onClick={addToCollection}>Add to Collection</ButtonIcon>}
         </Container>

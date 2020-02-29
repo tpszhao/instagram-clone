@@ -13,46 +13,46 @@ const ButtonPart = styled.div`
   z-index: 5;
 `;
 
-// export default function ButtonIcon({style={},rotate=0, onClick,opacity=1}) {
-//     return (
-//         <ButtonPart style={{...style,opacity}} rotate={rotate} onClick={onClick}>
-//             <ButtonPart horizontal/>
-//         </ButtonPart>)
-// }
-
-const Button = styled.div`
-  width: 40px;
-  height: 40px;
-  background: black;
-  position: relative;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    background: red;
-  }
-  &::before {
-    width: 5px;
-    height: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  &::after {
-    width: 40px;
-    height: 5px;
-
-    top: 50%;
-    transform: translateY(-50%);
-  }
-`;
-
-export default function ButtonIcon({
-  style = {},
-  rotate = 0,
-  onClick,
-  opacity = 1
-}) {
-  return <Button style={{ ...style, opacity }} onClick={onClick}></Button>;
+export default function ButtonIcon({style={},rotate=0, onClick,opacity=1}) {
+    return (
+        <ButtonPart style={{...style,opacity}} rotate={rotate} onClick={onClick}>
+            <ButtonPart horizontal/>
+        </ButtonPart>)
 }
+
+// const Button = styled.div`
+//   width: 40px;
+//   height: 40px;
+//   background: black;
+//   position: relative;
+
+//   &::before,
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     background: red;
+//   }
+//   &::before {
+//     width: 5px;
+//     height: 40px;
+//     left: 50%;
+//     transform: translateX(-50%);
+//   }
+
+//   &::after {
+//     width: 40px;
+//     height: 5px;
+
+//     top: 50%;
+//     transform: translateY(-50%);
+//   }
+// `;
+
+// export default function ButtonIcon({
+//   style = {},
+//   rotate = 0,
+//   onClick,
+//   opacity = 1
+// }) {
+//   return <Button style={{ ...style, opacity }} onClick={onClick}></Button>;
+// }

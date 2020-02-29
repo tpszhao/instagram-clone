@@ -44,7 +44,6 @@ export default function PhotoGrid({ query, searchValue, setTotal = () => {} }) {
       }
       setPhotos([...photos, ...newPhotos]);
       setPage(page + 1);
-      setHasMore(true);
       if (newPhotos.length < 15) {
         setHasMore(false);
         console.log("no more photos");

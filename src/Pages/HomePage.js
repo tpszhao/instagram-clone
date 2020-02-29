@@ -37,7 +37,6 @@ export default function HomePage() {
             <LatestPhoto/>
             <SideBar stickyPos={stickyPos}>
                 <HighlightsMenu setStickyPos={setStickyPos}/>
-                {/* <PhotoCarousel /> */}
             </SideBar>
         </Container>
     )
