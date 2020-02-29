@@ -20,6 +20,7 @@ const Header = styled.div`
 const SearchBar = styled.input`
     position:relative;
     z-index:1;
+    width:171px;
     line-height: 20px;
     text-align: center;
     outline: none;
@@ -30,6 +31,7 @@ const SearchSuggestions = styled.div`
     ${props=>!props.active&&"display:none;"}
     padding-top:20px;
     top:17px;
+    min-height:500px;
     width:171px;
     background-color:white;
     background-clip: content-box;
@@ -40,7 +42,6 @@ const SearchSuggestions = styled.div`
     border-top: none;
     cursor:text;
     z-index:2;
-
 `;
 
 const SearchItem = styled.div`
