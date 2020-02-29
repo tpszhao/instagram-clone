@@ -1,41 +1,75 @@
-import React from 'react';
+import React,{useState,useRef,useEffect} from 'react';
 import styled from 'styled-components';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Container = styled.div`
-    height:120px;
-    width:100%;
-    background-color:teal;
+  ${props=>props.containerCSS};
 `;
 
 const Item = styled.div`
-    margin:auto;
-    height:50px;
-    background-color:red;
-    width:100%;
-    text-align:center;
+  ${props=>`
+    height:${props.height}px;
+    width:${props.width}px
+  `}
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+`;
+
+const Photo = styled.img`
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:${props=>props.scaleDown||"cover"};
 `;
 
 
-var settings = {
-    vertical:true,
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+var defaultSetting = {
+  autoplaySpeed:4000,
+  arrows:false,
+  vertical:false,
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
 };
 
 
-export default function PhotoCarousel() {
+export default function PhotoCarousel({
+  containerCSS,
+  scaleDown=false,
+  autoplay=false,
+  photolist}) {
+    const [itemSize, setItemSize] = useState({width:0,height:0});
+    const container = useRef(null);
+
+    useEffect(() => {
+      const changeItemSize = ()=>{
+        const {clientWidth:width,clientHeight:height} = container.current;
+        setItemSize({width,height});
+      }
+      window.addEventListener('resize', changeItemSize);
+      changeItemSize();
+      return ()=> window.removeEventListener('resize', changeItemSize);
+    },[])
+
     return (
-        <Container>
-            <Slider {...settings}>
-                <Item>stuff</Item>
-                <Item>stuff</Item>
-                <Item>stuff</Item>
+        <Container ref={container} containerCSS={containerCSS}>
+            <Slider {...defaultSetting} autoplay={autoplay}>
+              {photolist.map(photo=>{
+                return (
+                <Item key={photo.id} {...itemSize}>
+                  <Photo 
+                    scaleDown={scaleDown}
+                    src={photo.urls.regular} 
+                    alt="placeholder"/>
+                </Item>
+                )
+              })}
             </Slider>
         </Container>
     )

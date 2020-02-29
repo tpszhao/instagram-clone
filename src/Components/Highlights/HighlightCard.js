@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import Image from "react-graceful-image";
-import {ButtonIcon} from 'Components'
+import styled,{css} from 'styled-components';
+import {ButtonIcon,PhotoCarousel} from 'Components'
 
 const Container = styled.div`
+    overflow:hidden;
     position:relative;
     text-align:center;
     margin:10px auto;
@@ -16,14 +16,12 @@ const Container = styled.div`
     @media only screen and (max-width: 976px){
         width:calc((100vw - 32px)/3);
         height:calc((100vw - 32px)/3);
-        width:100%;
     }
 `;
 
-const Photo = styled(Image)`
+const containerCSS = css`
     width: 90%;
     height: 80%;
-    object-fit: cover;
 `;
 
 const BackGround = styled.div`
@@ -38,17 +36,14 @@ const BackGround = styled.div`
     }
 `;
 
-
-
-
 export default function HighlightCard({card,deleteCard}) {
     return (
         <Container>
             <span>{card.keyword}</span>
-            <Photo 
-                src={card.photolist[0].urls.regular} 
-                placeholderColor={card.photolist[0].color}
-                alt="placeholder"/>
+            <PhotoCarousel 
+                autoplay
+                containerCSS={containerCSS}
+                photolist={card.photolist}/>
             <BackGround>
                 <ButtonIcon 
                     rotate={45}
