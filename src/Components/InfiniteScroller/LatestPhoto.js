@@ -33,6 +33,7 @@ export default function LatestPhoto() {
                 console.log("no more photos")
             }
         }catch{
+            setHasMore(false);
             console.log('something went wrong');
         }finally{
             setIsLoading(false);

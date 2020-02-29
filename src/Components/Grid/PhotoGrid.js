@@ -50,6 +50,7 @@ export default function PhotoGrid({query,searchValue,setTotal=()=>{}}){
           console.log("no more photos")
       }
       }catch{
+        setHasMore(false);
         console.log("something went wrong")
       }finally{
         setIsLoading(false);
