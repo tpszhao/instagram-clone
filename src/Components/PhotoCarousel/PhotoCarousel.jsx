@@ -35,6 +35,7 @@ export default function PhotoCarousel({
   }, []);
 
   useEffect(() => {
+    console.log("start playing")
     if (isPlaying) {
       slider.current.slickPlay();
     } else {

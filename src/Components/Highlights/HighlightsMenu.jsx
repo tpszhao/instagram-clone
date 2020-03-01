@@ -26,7 +26,7 @@ Modal.setAppElement("#root");
 export default function HighlightsMenu({ setStickyPos }) {
   const [cardList, setCardList] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     let keywordList = localGet("Highlights", []);

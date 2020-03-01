@@ -7,8 +7,8 @@ export default function HighlightCard({ card, deleteCard, isPlaying }) {
     <Card>
       <span>{card.keyword}</span>
       <PhotoCarousel
-        isPlaying={isPlaying}
         autoplay
+        isPlaying={isPlaying}
         containerCSS={cardCSS}
         photoList={card.photoList}
       />
