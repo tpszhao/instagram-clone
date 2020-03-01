@@ -1,60 +1,9 @@
 import React,{useState,useRef} from 'react'
-import styled from 'styled-components'
-import Image from "react-graceful-image"
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
+import {ModalContainer, SearchInput, Photo, ButtonIcon} from './Highlights.styles'
 
-const Container = styled.div`
-    position:relative;
-    width:750px;
-    height:500px;
-    max-height:80vh;
-    max-width:80vw;
-    display:flex;
-    flex-direction:column;
-    flex-wrap:nowrap;
-    justify-content:space-around;
-    align-items:center;
-    border: 1px solid rgb(219,219,219);
-    border-radius:5px;
-    padding:30px;
-`;
-
-const SearchInput = styled.input`
-    line-height: 20px;
-    text-align: center;
-    outline: none;
-    border: 1px solid rgb(219,219,219);
-`;
-
-const Photo = styled(Image)`
-    margin:10px;
-    max-width:70%;
-    max-height:70%;
-    object-fit:scale-down;
-`;
-
-const ButtonIcon = styled.button`
-    outline:none;
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    color:rgb(150,150,150);
-    border: 2px solid rgb(219,219,219);
-    background-color:white;
-    border-radius: 3px;
-    &:hover{
-        cursor: pointer;
-        background-color:rgb(219,219,219,0.3);
-    };
-    &:active{
-        cursor: pointer;
-        background-color:rgb(219,219,219);
-        color: white;
-    };
-`;
-
-export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
+export default function HighlightModal({cardList,setCardList,closeModal}) {
     const [message, setMessage] = useState(null);
     const [card, setCard] = useState(null);
     const searchBar = useRef('');
@@ -62,7 +11,7 @@ export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
     const handleSubmit = e =>{
         e.preventDefault();
         let newKeyword = searchBar.current.value;
-        let repeated = cardlist.find(card=>card.keyword === newKeyword)||false;
+        let repeated = cardList.find(card=>card.keyword === newKeyword)||false;
         if(repeated){
             let message = `${newKeyword} already exists, please try something else`;
             setMessage(message);
@@ -82,12 +31,12 @@ export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
     }
     
     const addToCollection = ()=>{
-        setCardlist([...cardlist,card]);
+        setCardList([...cardList,card]);
         closeModal();
     }
 
     return (
-        <Container>
+        <ModalContainer>
             {message&&<div>{message}</div>}
             {!message&&card&&<Photo 
                                     src={card.photoList[0].urls.regular} 
@@ -97,6 +46,6 @@ export default function HighlightAddCard({cardlist,setCardlist,closeModal}) {
                 <SearchInput ref={searchBar} type="text" placeholder="Search..."/>
             </form>
             {card&&<ButtonIcon onClick={addToCollection}>Add to Collection</ButtonIcon>}
-        </Container>
+        </ModalContainer>
     )
 }
