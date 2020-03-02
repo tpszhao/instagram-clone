@@ -24,7 +24,6 @@ export const Image = styled.div`
     align-self: center;
     background-image:url("${props=>props.src}");
     background-size:cover;
-    background-color:white;
 `;
 
 export const Title = styled.span`

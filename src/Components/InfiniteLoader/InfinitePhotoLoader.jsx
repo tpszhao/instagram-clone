@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import { Card, CardLoader } from "Components";
-import {InfiniteContainer} from 'Styles/InfiniteScroller'
+import {InfiniteContainer} from 'Styles/InfiniteLoader'
 import unsplash from "API/unsplash";
 
 export default function InfinitePhotoLoader() {

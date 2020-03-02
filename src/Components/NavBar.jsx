@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { localGet, localSet } from "API/local";
 
-const Header = styled.div`
+const SearchBar = styled.div`
   background-color: white;
   top: 0px;
   position: sticky;
@@ -93,7 +93,7 @@ function NavBar({ history }) {
   };
 
   return (
-    <Header>
+    <SearchBar>
       <form onSubmit={handleSubmit}>
         <SearchInput
           type="text"
@@ -124,7 +124,7 @@ function NavBar({ history }) {
           </SearchItem>
         )}
       </SearchSuggestions>
-    </Header>
+    </SearchBar>
   );
 }
 

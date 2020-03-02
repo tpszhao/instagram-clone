@@ -6,7 +6,7 @@ import {
   ProfileImage,
   UserName,
   Photo,
-  PhotoStat} from 'Styles/InfiniteScroller'
+  PhotoStat} from 'Styles/InfiniteLoader'
 
 export default function Card({ photo }) {
   const url = `/user/${photo.user.username}`;
