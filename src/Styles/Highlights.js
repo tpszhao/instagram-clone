@@ -31,7 +31,7 @@ export const Photo = styled(Image)`
     object-fit:scale-down;
 `;
 
-export const ButtonIcon = styled.button`
+export const AddToCollection = styled.button`
     outline:none;
     font-size: 1em;
     margin: 1em;

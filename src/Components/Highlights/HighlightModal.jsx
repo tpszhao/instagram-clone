@@ -5,7 +5,7 @@ import {
     ModalContainer, 
     SearchInput, 
     Photo, 
-    ButtonIcon
+    AddToCollection
 } from 'Styles/Highlights'
 
 export default function HighlightModal({cardList,setCardList,closeModal}) {
@@ -50,7 +50,7 @@ export default function HighlightModal({cardList,setCardList,closeModal}) {
             <form onSubmit={handleSubmit}>
                 <SearchInput ref={searchBar} type="text" placeholder="Search..."/>
             </form>
-            {card&&<ButtonIcon onClick={addToCollection}>Add to Collection</ButtonIcon>}
+            {card&&<AddToCollection onClick={addToCollection}>Add to Collection</AddToCollection>}
         </ModalContainer>
     )
 }
