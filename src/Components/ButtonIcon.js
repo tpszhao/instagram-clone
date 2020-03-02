@@ -4,11 +4,12 @@ import cross from 'SVG/cross.svg'
 
 const Button = styled.div`
   cursor: pointer;
-  background-image:url("${props=>props.src}");
   width:20px;
   height:20px;
   transform: ${props => `rotate(${props.rotate}deg)`};
+  background-image:url("${props=>props.src}");
   background-size:cover;
+  background-position:center center;
   position: absolute;
   z-index: 10;
 `;

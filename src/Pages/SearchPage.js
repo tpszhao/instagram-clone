@@ -10,14 +10,14 @@ const Container = styled.div`
     align-items: center;
 `;
 
-export default function SearchPage(props) {
-    const searchValue = props.match.params.searchValue;
+export default function SearchPage({match}) {
+    const searchValue = match.params.searchValue;
     const [total, setTotal] = useState(null);
     const [photos, setPhotos] = useState([]);
     useEffect(() => {
         setPhotos([]);
         setTotal(null);
-    }, [props.match.params.searchValue]);
+    }, [match.params.searchValue]);
 
     return (
         <Container>

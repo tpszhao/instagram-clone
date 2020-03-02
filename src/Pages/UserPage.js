@@ -27,7 +27,6 @@ export default function UserPage(props) {
                 setUser(null);
             });
     }, [props.match.params.username]);
-    console.log(props);
     if(!user||user.errors) return null;
     return (
         <Container>
