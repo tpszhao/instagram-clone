@@ -38,13 +38,12 @@ export default function HighlightsMenu({ setStickyPos }) {
   useEffect(() => {
     let keywordList = cardList.map(card => card.keyword);
     localSet("Highlights", keywordList);
-
     if (cardList.length > 1) {
       setStickyPos((cardList.length - 1) * 316);
       setIsPlaying(false);
       setTimeout(() => {
         setIsPlaying(true);
-      }, 500);
+      }, 3000);
     } else {
       setStickyPos(0);
     }

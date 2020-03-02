@@ -30,7 +30,6 @@ export default function LatestPhoto() {
       setIsLoading(false);
     }
   };
-
   return (
     <InfiniteScroll
       pageStart={0}

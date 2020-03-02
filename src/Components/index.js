@@ -4,6 +4,6 @@ export { PhotoCarousel } from "./PhotoCarousel";
 
 export { LatestPhoto, Card, CardLoader} from "./InfiniteScroller";
 
-export { PhotoGrid, GridItem, GridLoader } from "./Grid";
+export { PhotoGrid, GridItem, GridLoader, GridHeader } from "./Grid";
 
-export {HighlightsMenu, HighlightModal, HighlightCard} from './Highlights'
+export { HighlightsMenu, HighlightModal, HighlightCard } from './Highlights'
