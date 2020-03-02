@@ -1,8 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import searchIcon from 'SVG/searchIcon.svg'
-
-const Container = styled.div`
+export const Container = styled.div`
     width: 100%;
     height: 256px;
     display: grid;
@@ -17,8 +14,7 @@ const Container = styled.div`
     }
 `;
 
-const Image = styled.img`
-    fill:red;
+export const Image = styled.div`
     width: 150px;
     height:150px;
     grid-column: 1/2;
@@ -26,17 +22,19 @@ const Image = styled.img`
     border-radius: 50%;
     justify-self: center;
     align-self: center;
-    object-fit:cover;
+    background-image:url("${props=>props.src}");
+    background-size:cover;
+    background-color:white;
 `;
 
-const Title = styled.span`
+export const Title = styled.span`
     align-self: center;
     font-size: x-large;
     grid-column: 2/3;
     grid-row: 2/3;
 `;
 
-const Stats = styled.div`
+export const Stats = styled.div`
     max-width: 368px;
     font-size: large;
     grid-column: 2/3;
@@ -51,24 +49,3 @@ const Stats = styled.div`
         text-align: center;
     }
 `;
-
-export default function GridHeader({type,user=null,total=null,searchValue=''}) {
-    const imageSrc = user?user.profile_image.large:searchIcon;    
-    
-    return (
-        <Container>
-            <Image src={imageSrc} alt="avatar"/>
-            {user&&<Title>{user.name}</Title>}
-            {!user&&<Title>Search results for "{searchValue}"</Title>}
-            <Stats>
-                {user&&
-                <>
-                    <span>{user.total_likes} likes</span>
-                    <span>{user.total_photos} photos</span>
-                    <span>{user.followers_count} followers</span>
-                </>}
-                {!user&&total&&<span>{total} {type} found</span>}
-            </Stats>
-        </Container>
-    )
-}

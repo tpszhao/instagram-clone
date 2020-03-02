@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const Item = styled.div`
   ${props => `
     height:${props.height}px;
-    width:${props.width}px
+    width:${props.width+1}px
   `}
   display:flex !important;
   justify-content: center;

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import { Card, CardLoader } from "Components";
-import {InfiniteContainer} from './InfiniteScroller.styles'
+import {InfiniteContainer} from 'Styles/InfiniteScroller'
 import unsplash from "API/unsplash";
 
-export default function LatestPhoto() {
+export default function InfinitePhotoLoader() {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);

@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import {LatestPhoto,HighlightsMenu} from 'Components'
+import {InfinitePhotoLoader,HighlightsMenu} from 'Components'
 
 const Container = styled.div`
     margin: auto;
@@ -34,7 +34,7 @@ export default function HomePage() {
     const [stickyPos, setStickyPos] = useState(0);
     return (
         <Container>
-            <LatestPhoto/>
+            <InfinitePhotoLoader/>
             <SideBar stickyPos={stickyPos}>
                 <HighlightsMenu setStickyPos={setStickyPos}/>
             </SideBar>

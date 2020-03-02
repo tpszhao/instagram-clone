@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonIcon, PhotoCarousel } from "Components";
-import { Card, cardCSS, CardBackground} from './Highlights.styles'
+import { Card, cardCSS, CardBackground} from 'Styles/Highlights'
 
 export default function HighlightCard({ card, deleteCard, isPlaying }) {
   return (

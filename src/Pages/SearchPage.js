@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {PhotoGrid,GridHeader} from 'Components'
+import {InfiniteGrid,SearchHeader} from 'Components'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -21,8 +21,8 @@ export default function SearchPage(props) {
 
     return (
         <Container>
-            <GridHeader type='photos' searchValue={searchValue} total={total}/>
-            <PhotoGrid
+            <SearchHeader type='photos' searchValue={searchValue} total={total}/>
+            <InfiniteGrid
                 photos={photos}
                 setPhotos={setPhotos}
                 query='search'

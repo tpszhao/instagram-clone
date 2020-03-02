@@ -7,7 +7,7 @@ import { HighlightModal, HighlightCard, ButtonIcon } from "Components";
 import {
   HighlightMenuCard, 
   HighlightHeader, 
-  HighlightPhotoContainer} from './Highlights.styles'
+  HighlightPhotoContainer} from 'Styles/Highlights'
 
 const modalStyle = {
   content: {

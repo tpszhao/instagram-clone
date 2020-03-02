@@ -1,5 +1,5 @@
 import React from 'react'
-import {GridCell, GridCellOverlay, GridCellPhoto} from './Grid.styles'
+import {GridCell, GridCellOverlay, GridCellPhoto} from 'Styles/Grid'
 
 export default function GridItem({photo}) {
     return (

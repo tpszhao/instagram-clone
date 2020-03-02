@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {toJson} from 'unsplash-js'
-import {PhotoGrid, GridHeader} from 'Components'
+import {InfiniteGrid, SearchHeader} from 'Components'
 import unsplash from 'API/unsplash'
 import styled from 'styled-components'
 
@@ -31,8 +31,8 @@ export default function UserPage(props) {
     if(!user||user.errors) return null;
     return (
         <Container>
-            <GridHeader type='user' user={user}/>
-            <PhotoGrid
+            <SearchHeader type='user' user={user}/>
+            <InfiniteGrid
                 photos={photos}
                 setPhotos={setPhotos}
                 query='users'

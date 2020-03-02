@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 
-import { Container, Item, Photo } from "./photoCarousel.styles";
+import { Container, Item, Photo } from "Styles/PhotoCarousel";
 
 var defaultSetting = {
   autoplaySpeed: 4000,
@@ -18,8 +18,8 @@ export default function PhotoCarousel({
   containerCSS,
   scaleDown = false,
   autoplay = false,
-  photoList,
-  isPlaying
+  isPlaying = false,
+  photoList
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
   const container = useRef(null);

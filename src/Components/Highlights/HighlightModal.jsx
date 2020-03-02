@@ -1,7 +1,12 @@
 import React,{useState,useRef} from 'react'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
-import {ModalContainer, SearchInput, Photo, ButtonIcon} from './Highlights.styles'
+import {
+    ModalContainer, 
+    SearchInput, 
+    Photo, 
+    ButtonIcon
+} from 'Styles/Highlights'
 
 export default function HighlightModal({cardList,setCardList,closeModal}) {
     const [message, setMessage] = useState(null);

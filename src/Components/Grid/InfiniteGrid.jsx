@@ -3,9 +3,9 @@ import { GridItem, GridLoader } from "Components";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
-import {GridContainer} from './Grid.styles';
+import {GridContainer} from '../../Styles/Grid';
 
-export default function PhotoGrid({ query, searchValue, setTotal = () => {} }) {
+export default function InfiniteGrid({ query, searchValue, setTotal = () => {} }) {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
