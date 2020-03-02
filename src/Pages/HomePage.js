@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import {LatestPhoto,HighlightsMenu, PhotoCarousel} from 'Components'
+import {LatestPhoto,HighlightsMenu} from 'Components'
 
 const Container = styled.div`
     margin: auto;
