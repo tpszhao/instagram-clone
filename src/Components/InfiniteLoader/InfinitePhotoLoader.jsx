@@ -1,21 +1,11 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
-import styled from "styled-components";
 import { Card, CardLoader } from "Components";
+import {InfiniteContainer} from 'Styles/InfiniteLoader'
 import unsplash from "API/unsplash";
 
-const InfiniteContainer = styled.div`
-  margin: 16px;
-  width: 616px;
-  max-width: calc(100vw - 32px);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: nowrap;
-`;
-
-export default function LatestPhoto() {
+export default function InfinitePhotoLoader() {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -40,7 +30,6 @@ export default function LatestPhoto() {
       setIsLoading(false);
     }
   };
-
   return (
     <InfiniteScroll
       pageStart={0}

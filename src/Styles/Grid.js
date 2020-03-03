@@ -1,8 +1,6 @@
-import React from 'react'
-import Image from "react-graceful-image"
 import styled from 'styled-components'
 
-const Cell = styled.div`
+export const GridCell = styled.div`
     width: calc((100vw - 16px)/3);
     max-width: calc((936px - 16px)/3);
     height: calc((100vw - 16px)/3);
@@ -11,7 +9,7 @@ const Cell = styled.div`
     position: relative;
 `;
 
-const PhotoStat = styled.div`
+export const GridCellOverlay = styled.div`
     width: 100%;
     height: 100%;
     color: white;
@@ -32,24 +30,10 @@ const PhotoStat = styled.div`
     }
 `;
 
-const Photo = styled(Image)`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+export const GridContainer = styled.div`
+    margin: auto;
+    margin-bottom: 20px;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3, auto);
 `;
-
-
-
-export default function GridItem({photo}) {
-    return (
-        <Cell>
-            <Photo 
-                src={photo.urls.regular} 
-                placeholderColor={photo.color}
-                alt="placeholder"/>
-            <PhotoStat>
-                <div>{`${photo.likes} likes`}</div>
-            </PhotoStat>
-        </Cell>
-    )
-}

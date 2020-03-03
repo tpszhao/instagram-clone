@@ -1006,7 +1006,7 @@ const sampleUser={
     "downloads": 2077708
 }
 
-const sampleLatestPhoto={
+const sampleInfinitePhotoLoader={
     "id": "MAhPucR_Hq4",
     "created_at": "2019-05-27T14:11:35-04:00",
     "updated_at": "2020-02-21T00:02:53-05:00",
@@ -1205,4 +1205,4 @@ const sampleError = {
         "Couldn't find User"
     ]
 }
-export {sampleLatestPhoto,samplePhoto,sampleUser,sampleError}
+export {sampleInfinitePhotoLoader,samplePhoto,sampleUser,sampleError}
