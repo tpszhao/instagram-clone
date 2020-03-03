@@ -1,10 +1,23 @@
 import React,{useState,useEffect,useReducer} from 'react'
 import {toJson} from 'unsplash-js'
-import {InfiniteGrid, SearchHeader} from 'Components'
+import {InfiniteGrid, GridHeader} from 'Components'
 import unsplash from 'API/unsplash'
 import { GridPageContainer } from 'Styles/Page'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
 import { start } from 'Actions/InfiniteGridActions'
+
+const UserHeader = ({user}) => {
+    const statList = [
+        `${user.total_likes} likes`,
+        `${user.total_photos} photos`,
+        `${user.followers_count} followers`
+    ]
+    return <GridHeader 
+                src={user.profile_image.large} 
+                title={user.name} 
+                statList={statList}/>
+}
+
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
@@ -25,7 +38,7 @@ export default function UserPage(props) {
     if(!user||user.errors) return null;
     return (
         <GridPageContainer>
-            <SearchHeader type='user' user={user}/>
+            <UserHeader user={user}/>
             <InfiniteGrid
                 state={state}
                 dispatch={dispatch}

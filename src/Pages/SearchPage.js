@@ -1,8 +1,14 @@
 import React,{ useEffect, useReducer } from 'react'
-import { InfiniteGrid,SearchHeader } from 'Components'
+import { InfiniteGrid,GridHeader } from 'Components'
 import { GridPageContainer } from 'Styles/Page'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
 import { start } from 'Actions/InfiniteGridActions'
+
+const SearchHeader = ({searchValue,total})=>{
+    const title = `Search results for "${searchValue}"`;
+    const statList = (total !== null)?[`${total} photos found`]:[];
+    return <GridHeader title={title} statList={statList}/>
+}
 
 export default function SearchPage({match}) {
     const searchValue = match.params.searchValue;
@@ -14,7 +20,7 @@ export default function SearchPage({match}) {
 
     return (
         <GridPageContainer>
-            <SearchHeader type='photos' searchValue={searchValue} total={state.total}/>
+            <SearchHeader searchValue={searchValue} total={state.total}/>
             <InfiniteGrid
                 state={state}
                 dispatch={dispatch}

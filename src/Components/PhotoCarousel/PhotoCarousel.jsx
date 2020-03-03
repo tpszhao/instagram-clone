@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import {css} from 'styled-components';
 import Slider from "react-slick";
-
-import { Container, Item, Photo } from "Styles/PhotoCarousel";
+import { Container, Item } from "Styles/PhotoCarousel";
+import {ImageLazyLoader} from 'Components'
 
 var defaultSetting = {
   autoplaySpeed: 4000,
@@ -14,9 +15,14 @@ var defaultSetting = {
   slidesToScroll: 1
 };
 
+const imageContainerCSS=css`
+  width: 100%;
+  height: 100%;
+`;
+
 export default function PhotoCarousel({
   containerCSS,
-  scaleDown = false,
+  objectFit = 'cover',
   autoplay = false,
   isPlaying = false,
   photoList
@@ -48,11 +54,10 @@ export default function PhotoCarousel({
         {photoList.map(photo => {
           return (
             <Item key={photo.id} {...itemSize}>
-              <Photo
-                scaleDown={scaleDown}
+              <ImageLazyLoader 
                 src={photo.urls.regular}
-                alt="placeholder"
-              />
+                placeholderColor={photo.color}
+                imageContainerCSS={imageContainerCSS}/>
             </Item>
           );
         })}
