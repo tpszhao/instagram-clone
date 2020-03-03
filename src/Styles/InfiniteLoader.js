@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Image from "react-graceful-image";
 
 export const CardContainer = styled.div`
+    position:relative;
     width: 100%;
     margin: 10px;
     border: 1px solid rgb(219, 219, 219);
@@ -21,7 +21,7 @@ export const UserInfo = styled(Link)`
     text-decoration: none;
 `;
 
-export const ProfileImage = styled(Image)`
+export const ProfileImage = styled.img`
     margin: 5px;
     width: 36px;
     height: 36px;
@@ -31,12 +31,6 @@ export const ProfileImage = styled(Image)`
 export const UserName = styled.span`
     text-decoration: none;
     color: black;
-`;
-
-export const Photo = styled(Image)`
-    width: 100%;
-    max-height: 700px;
-    object-fit: cover;
 `;
 
 export const PhotoStat = styled.div`

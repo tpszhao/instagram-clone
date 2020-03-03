@@ -1,4 +1,3 @@
-import Image from "react-graceful-image"
 import styled from 'styled-components'
 
 export const GridCell = styled.div`
@@ -29,12 +28,6 @@ export const GridCellOverlay = styled.div`
         cursor: pointer;
         opacity: 0.8;
     }
-`;
-
-export const GridCellPhoto = styled(Image)`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 `;
 
 export const GridContainer = styled.div`

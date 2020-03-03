@@ -19,7 +19,7 @@ const SearchBar = styled.div`
 
 const SearchInput = styled.input`
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 171px;
   line-height: 20px;
   text-align: left;
@@ -40,7 +40,7 @@ const SearchSuggestions = styled.div`
   border: 1px solid rgb(219, 219, 219);
   border-top: none;
   cursor: text;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const SearchItem = styled.div`
@@ -71,16 +71,16 @@ function NavBar({ history }) {
     const searchValue = e.target.value;
     const suggestions = searchHistory.filter(item =>
       item.includes(searchValue)
-    );
-
+      );
+    setIsSearching(true);
     setInputValue(searchValue);
-
     setSearchSuggestion(suggestions);
   };
 
   const redirect = (value = "search") => {
+    console.log("redirect");
     const removeRepeat = searchHistory.filter(item => item !== value);
-    history.push(`/search/${inputValue}`);
+    history.push(`/search/${value}`);
 
     setSearchHistory([value, ...removeRepeat]);
     setIsSearching(false);
@@ -88,9 +88,12 @@ function NavBar({ history }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     redirect(inputValue);
   };
+
+  const onBlur = ()=>{
+    setTimeout(()=>setIsSearching(false),150);
+  }
 
   return (
     <SearchBar>
@@ -98,15 +101,12 @@ function NavBar({ history }) {
         <SearchInput
           type="text"
           placeholder="search for photos..."
-          onClick={() => setIsSearching(true)}
           onFocus={() => setIsSearching(true)}
+          onBlur={onBlur}
           value={inputValue}
           onChange={changeSuggestions}/>
       </form>
-      <SearchSuggestions
-        active={isSearching}
-        onMouseLeave={() => setIsSearching(false)}
-      >
+      <SearchSuggestions active={isSearching}>
         {searchSuggestions.map(item => {
           return (
             <SearchItem key={item} onClick={() => redirect(item)}>
@@ -118,6 +118,7 @@ function NavBar({ history }) {
           <SearchItem
             onClick={() => {
               setSearchHistory([]);
+              setSearchSuggestion([]);
             }}
           >
             Clear History

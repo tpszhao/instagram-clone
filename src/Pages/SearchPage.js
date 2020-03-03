@@ -1,33 +1,26 @@
-import React,{useState,useEffect} from 'react'
-import {InfiniteGrid,SearchHeader} from 'Components'
-import styled from 'styled-components'
-
-const Container = styled.div`
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 936px;
-    align-items: center;
-`;
+import React,{ useEffect, useReducer } from 'react'
+import { InfiniteGrid,SearchHeader } from 'Components'
+import { GridPageContainer } from 'Styles/Page'
+import GridReducer, { initialState } from 'Reducers/GridReducer'
+import { start } from 'Actions/InfiniteGridActions'
 
 export default function SearchPage({match}) {
     const searchValue = match.params.searchValue;
-    const [total, setTotal] = useState(null);
-    const [photos, setPhotos] = useState([]);
+    const [state, dispatch] = useReducer(GridReducer, initialState);
+
     useEffect(() => {
-        setPhotos([]);
-        setTotal(null);
-    }, [match.params.searchValue]);
+        dispatch(start);
+    }, [searchValue])
 
     return (
-        <Container>
-            <SearchHeader type='photos' searchValue={searchValue} total={total}/>
+        <GridPageContainer>
+            <SearchHeader type='photos' searchValue={searchValue} total={state.total}/>
             <InfiniteGrid
-                photos={photos}
-                setPhotos={setPhotos}
+                state={state}
+                dispatch={dispatch}
                 query='search'
-                setTotal={setTotal}
+                type='photos'
                 searchValue={searchValue}/>
-        </Container>
+        </GridPageContainer>
     )
 }

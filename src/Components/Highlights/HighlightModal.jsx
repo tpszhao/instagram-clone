@@ -44,9 +44,8 @@ export default function HighlightModal({cardList,setCardList,closeModal}) {
         <ModalContainer>
             {message&&<div>{message}</div>}
             {!message&&card&&<Photo 
-                                    src={card.photoList[0].urls.regular} 
-                                    placeholderColor={card.photoList[0].color}
-                                    alt="placeholder"/>}
+                                src={card.photoList[0].urls.regular} 
+                                alt="placeholder"/>}
             <form onSubmit={handleSubmit}>
                 <SearchInput ref={searchBar} type="text" placeholder="Search..."/>
             </form>

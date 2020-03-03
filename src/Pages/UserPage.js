@@ -1,23 +1,17 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useReducer} from 'react'
 import {toJson} from 'unsplash-js'
 import {InfiniteGrid, SearchHeader} from 'Components'
 import unsplash from 'API/unsplash'
-import styled from 'styled-components'
-
-const Container = styled.div`
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 936px;
-    align-items: center;
-`;
+import { GridPageContainer } from 'Styles/Page'
+import GridReducer, { initialState } from 'Reducers/GridReducer'
+import { start } from 'Actions/InfiniteGridActions'
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
-    const [photos, setPhotos] = useState([]);
+    const [state, dispatch] = useReducer(GridReducer, initialState);
 
     useEffect(() => {
-        setPhotos([]);
+        dispatch(start);
         unsplash.users
             .profile(props.match.params.username)
             .then(toJson)
@@ -27,15 +21,17 @@ export default function UserPage(props) {
                 setUser(null);
             });
     }, [props.match.params.username]);
+    
     if(!user||user.errors) return null;
     return (
-        <Container>
+        <GridPageContainer>
             <SearchHeader type='user' user={user}/>
             <InfiniteGrid
-                photos={photos}
-                setPhotos={setPhotos}
+                state={state}
+                dispatch={dispatch}
                 query='users'
+                type='photos'
                 searchValue={user.username} />
-        </Container>
+        </GridPageContainer>
     )
 }

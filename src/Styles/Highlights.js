@@ -1,5 +1,4 @@
 import styled,{css} from 'styled-components'
-import Image from "react-graceful-image"
 
 export const ModalContainer = styled.div`
     position:relative;
@@ -24,7 +23,7 @@ export const SearchInput = styled.input`
     border: 1px solid rgb(219,219,219);
 `;
 
-export const Photo = styled(Image)`
+export const Photo = styled.img`
     margin:10px;
     max-width:70%;
     max-height:70%;

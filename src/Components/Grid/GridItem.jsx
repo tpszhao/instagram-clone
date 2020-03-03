@@ -1,13 +1,20 @@
 import React from 'react'
-import {GridCell, GridCellOverlay, GridCellPhoto} from 'Styles/Grid'
+import {css} from 'styled-components';
+import {GridCell, GridCellOverlay} from 'Styles/Grid'
+import {ImageLazyLoader} from 'Components'
+
+const imageContainerCSS=css`
+    width: 100%;
+    height: 100%;
+`;
 
 export default function GridItem({photo}) {
     return (
         <GridCell>
-            <GridCellPhoto 
-                src={photo.urls.regular} 
+            <ImageLazyLoader 
                 placeholderColor={photo.color}
-                alt="placeholder"/>
+                src={photo.urls.regular}
+                imageContainerCSS={imageContainerCSS} />
             <GridCellOverlay>
                 <div>{`${photo.likes} likes`}</div>
             </GridCellOverlay>
