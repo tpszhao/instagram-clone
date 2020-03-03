@@ -43,7 +43,7 @@ export default function HighlightsMenu({ setStickyPos }) {
       setIsPlaying(false);
       setTimeout(() => {
         setIsPlaying(true);
-      }, 3000);
+      }, 5000);
     } else {
       setStickyPos(0);
     }
