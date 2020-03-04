@@ -32,7 +32,10 @@ export default function SearchPage({history,match}) {
     const [collections, collectionsDispatch] = useReducer(GridReducer, initialState);
 
     const state = {photos,collections};
-    const dispatch = {photos:photosDispatch,collections:collectionsDispatch};
+    const dispatch = {
+        photos:photosDispatch,
+        collections:collectionsDispatch
+    };
 
     useEffect(() => {
         dispatch[searchType](allowFetching);
