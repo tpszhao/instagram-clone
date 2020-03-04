@@ -1,10 +1,18 @@
 import React,{useState,useEffect,useReducer} from 'react'
+import styled from 'styled-components';
 import {toJson} from 'unsplash-js'
 import {InfiniteGrid, GridHeader} from 'Components'
 import unsplash from 'API/unsplash'
-import { GridPageContainer } from 'Styles/Page'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { start } from 'Actions/InfiniteGridActions'
+import { reset, start } from 'Actions/InfiniteGridActions'
+
+const PageContainer = styled.div`
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 936px;
+    align-items: center;
+`;
 
 const UserHeader = ({user}) => {
     const statList = [
@@ -24,6 +32,7 @@ export default function UserPage(props) {
     const [state, dispatch] = useReducer(GridReducer, initialState);
 
     useEffect(() => {
+        dispatch(reset);
         dispatch(start);
         unsplash.users
             .profile(props.match.params.username)
@@ -37,7 +46,7 @@ export default function UserPage(props) {
     
     if(!user||user.errors) return null;
     return (
-        <GridPageContainer>
+        <PageContainer>
             <UserHeader user={user}/>
             <InfiniteGrid
                 state={state}
@@ -45,6 +54,6 @@ export default function UserPage(props) {
                 query='users'
                 type='photos'
                 searchValue={user.username} />
-        </GridPageContainer>
+        </PageContainer>
     )
 }

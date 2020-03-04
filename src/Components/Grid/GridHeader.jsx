@@ -1,8 +1,7 @@
 import React from 'react';
-import searchIcon from 'SVG/searchIcon.svg'
 import {Container,Image,Title,Stats} from 'Styles/GridHeader'
 
-export default function GridHeader({src=searchIcon,title,statList=[]}) {    
+export default function GridHeader({src,title,statList=[]}) {    
     return (
     <Container>
         <Image src={src} alt="avatar"/>

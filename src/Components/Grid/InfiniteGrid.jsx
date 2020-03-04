@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GridItem, GridLoader } from "Components";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import {GridContainer} from 'Styles/Grid';
 import {
-  reset,
   startLoading,
   nextPage,
   updateTotal,
@@ -20,13 +19,10 @@ export default function InfiniteGrid({
   dispatch
 }) {
 
-  useEffect(() => {
-    dispatch(reset);
-  }, [searchValue])
-
   const loadMore = async () => {
+    console.log("fetch attempt")
+    if(isLoading || !allowFetching) return
     console.log(`page ${page} loading is ${isLoading}`);
-    if(isLoading) return
     try {
       console.log(`fetching page ${page}`);
       dispatch(startLoading);
@@ -62,13 +58,13 @@ export default function InfiniteGrid({
     <InfiniteScroll
       pageStart={1}
       loadMore={loadMore}
-      hasMore={allowFetching && hasMore && !isLoading}
+      hasMore={hasMore&&allowFetching}
       loader={<GridLoader key={0} />}
       useWindow={true}
     >
       <GridContainer>
-        {photos.map((photo, i) => {
-          return <GridItem key={i} photo={photo} />
+        {photos.map(photo => {
+          return <GridItem key={photo.id} photo={photo} />
         })}
       </GridContainer>
     </InfiniteScroll>

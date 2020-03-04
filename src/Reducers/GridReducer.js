@@ -12,7 +12,7 @@ const GridReducer = (state = initialState,action) =>{
         case "reset":
             return initialState;
         case "start":
-            return {...initialState,allowFetching:true}
+            return {...state,allowFetching:true}
         case "startLoading":
             return {...state,isLoading:true};
         case "nextPage":

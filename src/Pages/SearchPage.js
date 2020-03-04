@@ -1,13 +1,23 @@
 import React,{ useEffect, useReducer } from 'react'
+import styled from 'styled-components';
 import { InfiniteGrid,GridHeader } from 'Components'
-import { GridPageContainer } from 'Styles/Page'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { start } from 'Actions/InfiniteGridActions'
+import { reset, start } from 'Actions/InfiniteGridActions'
+import searchIcon from 'SVG/searchIcon.svg'
+
+const PageContainer = styled.div`
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 936px;
+    align-items: center;
+`;
+
 
 const SearchHeader = ({searchValue,total})=>{
     const title = `Search results for "${searchValue}"`;
     const statList = (total !== null)?[`${total} photos found`]:[];
-    return <GridHeader title={title} statList={statList}/>
+    return <GridHeader src={searchIcon} title={title} statList={statList}/>
 }
 
 export default function SearchPage({match}) {
@@ -15,11 +25,12 @@ export default function SearchPage({match}) {
     const [state, dispatch] = useReducer(GridReducer, initialState);
 
     useEffect(() => {
+        dispatch(reset);
         dispatch(start);
     }, [searchValue])
 
     return (
-        <GridPageContainer>
+        <PageContainer>
             <SearchHeader searchValue={searchValue} total={state.total}/>
             <InfiniteGrid
                 state={state}
@@ -27,6 +38,6 @@ export default function SearchPage({match}) {
                 query='search'
                 type='photos'
                 searchValue={searchValue}/>
-        </GridPageContainer>
+        </PageContainer>
     )
 }
