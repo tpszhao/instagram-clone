@@ -30,9 +30,12 @@ const SearchInput = styled.input`
   z-index: 2;
   width: 171px;
   line-height: 20px;
-  text-align: left;
   outline: none;
+  text-align:center;
   border: 1px solid rgb(219, 219, 219);
+  &:focus{
+    text-align:left;
+  }
 `;
 
 const SearchSuggestions = styled.div`
@@ -68,8 +71,7 @@ const IconBar = styled.div`
   justify-content:flex-start;
   align-items:center;
   @media only screen and (max-width: 976px) {
-    width: 616px;
-    max-width:100vw;
+    ${props=>(props.pathname === "/")&&'width:616px'};
   }
 `;
 
@@ -83,7 +85,7 @@ const Icon = styled.div`
 
 
 
-function NavBar({ history }) {
+function NavBar({ history, location }) {
   const [inputValue, setInputValue] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -155,7 +157,7 @@ function NavBar({ history }) {
           </SearchItem>
         )}
       </SearchSuggestions>
-      <IconBar>
+      <IconBar pathname={location.pathname}>
         <Icon src={home} onClick={()=>history.push('/')}/>
       </IconBar>
     </SearchBar>

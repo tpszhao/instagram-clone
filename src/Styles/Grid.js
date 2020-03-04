@@ -36,4 +36,5 @@ export const GridContainer = styled.div`
     display: grid;
     gap: 8px;
     grid-template-columns: repeat(3, auto);
+    max-width:100%
 `;
