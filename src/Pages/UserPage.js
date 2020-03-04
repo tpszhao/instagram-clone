@@ -12,6 +12,9 @@ const PageContainer = styled.div`
     flex-direction: column;
     max-width: 936px;
     align-items: center;
+    @media only screen and (max-width: 976px){
+        max-width:100vw;
+    }
 `;
 
 const UserHeader = ({user}) => {

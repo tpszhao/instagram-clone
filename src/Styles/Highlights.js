@@ -103,11 +103,13 @@ export const HighlightMenuCard = styled.div`
     border-radius: 3px;
     position: relative;
     margin-top: 16px;
+    margin-bottom:16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     @media only screen and (max-width: 976px) {
         width: 100%;
+        max-width:100vw;
     }
 `;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {InfinitePhotoLoader,HighlightsMenu} from 'Components'
 
 const Container = styled.div`
+    max-width:100vw;
     margin: auto;
     display: flex;
     position: relative;
@@ -25,6 +26,7 @@ const SideBar = styled.div`
         position:relative;
         width:616px;
         top:0px;
+        margin:0px;
         max-width:calc(100vw - 32px);
     }
 `;

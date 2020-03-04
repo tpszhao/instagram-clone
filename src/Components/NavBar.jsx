@@ -2,19 +2,27 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { localGet, localSet } from "API/local";
+import home from "SVG/home.svg"
 
 const SearchBar = styled.div`
   background-color: white;
-  top: 0px;
   position: sticky;
-  width: 100vw;
-  max-width: 100%;
+  top: 0px;
+  z-index: 20;
+  width: 100%;
+  max-width: 100vw;
   height: 52px;
   border-bottom: 1px solid rgb(219, 219, 219);
-  display: flex;
-  justify-content: space-around;
+  display:flex;
+  justify-content:center;
   align-items: center;
-  z-index: 20;
+`;
+
+const Form = styled.form`
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 `;
 
 const SearchInput = styled.input`
@@ -51,6 +59,29 @@ const SearchItem = styled.div`
     color: white;
   }
 `;
+
+const IconBar = styled.div`
+  width:944px;
+  max-width:100vw;
+  margin:auto;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  @media only screen and (max-width: 976px) {
+    width: 616px;
+    max-width:100vw;
+  }
+`;
+
+const Icon = styled.div`
+  width:40px;
+  height:40px;
+  background-size:cover;
+  background-image:${props=>`url("${props.src}")`};
+  cursor:pointer;
+`;
+
+
 
 function NavBar({ history }) {
   const [inputValue, setInputValue] = useState("");
@@ -97,7 +128,7 @@ function NavBar({ history }) {
 
   return (
     <SearchBar>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <SearchInput
           type="text"
           placeholder="search for photos..."
@@ -105,7 +136,7 @@ function NavBar({ history }) {
           onBlur={onBlur}
           value={inputValue}
           onChange={changeSuggestions}/>
-      </form>
+      </Form>
       <SearchSuggestions active={isSearching}>
         {searchSuggestions.map(item => {
           return (
@@ -119,12 +150,14 @@ function NavBar({ history }) {
             onClick={() => {
               setSearchHistory([]);
               setSearchSuggestion([]);
-            }}
-          >
+            }}>
             Clear History
           </SearchItem>
         )}
       </SearchSuggestions>
+      <IconBar>
+        <Icon src={home} onClick={()=>history.push('/')}/>
+      </IconBar>
     </SearchBar>
   );
 }
