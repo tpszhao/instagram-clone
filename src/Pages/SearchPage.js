@@ -2,7 +2,7 @@ import React,{ useEffect, useReducer } from 'react'
 import styled from 'styled-components';
 import { InfiniteGrid,GridHeader } from 'Components'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, start } from 'Actions/InfiniteGridActions'
+import { reset, allowFetching } from 'Actions/InfiniteGridActions'
 import searchIcon from 'SVG/searchIcon.svg'
 
 const PageContainer = styled.div`
@@ -25,8 +25,10 @@ export default function SearchPage({match}) {
     const [state, dispatch] = useReducer(GridReducer, initialState);
 
     useEffect(() => {
-        dispatch(reset);
-        dispatch(start);
+        dispatch(allowFetching);
+        return ()=>{
+            dispatch(reset);
+        }
     }, [searchValue])
 
     return (

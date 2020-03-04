@@ -1,5 +1,5 @@
-export const start = {
-    type:'start'
+export const allowFetching = {
+    type:'allowFetching'
 }
 
 export const reset = {

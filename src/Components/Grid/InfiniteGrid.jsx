@@ -20,11 +20,8 @@ export default function InfiniteGrid({
 }) {
 
   const loadMore = async () => {
-    console.log("fetch attempt")
-    if(isLoading || !allowFetching) return
-    console.log(`page ${page} loading is ${isLoading}`);
+    if(isLoading || !allowFetching || !hasMore) return
     try {
-      console.log(`fetching page ${page}`);
       dispatch(startLoading);
       const response = await unsplash[query][type](searchValue, page, 15);
       const json = await toJson(response);
@@ -39,7 +36,6 @@ export default function InfiniteGrid({
           break;
         default:
       }
-      console.log(`page ${page} received`);
 
       dispatch(nextPage(newPhotos));
 
