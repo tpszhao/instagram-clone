@@ -20,7 +20,7 @@ export const GridCellOverlay = styled.div`
     opacity: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     text-align: center;
     transition: 0.5s;

@@ -1,4 +1,5 @@
 import styled,{css} from 'styled-components'
+import { Link } from "react-router-dom";
 
 export const ModalContainer = styled.div`
     position:relative;
@@ -67,10 +68,21 @@ export const Card = styled.div`
     }
 `;
 
+export const CardHeaderLink = styled(Link)`
+    position:relative;
+    z-index:2;
+    padding-left:20px;
+    align-self:flex-start;
+    text-decoration:none!important;
+    color:black;
+    cursor:pointer;
+`;
+
 export const cardCSS = css`
     width: 90%;
     height: 80%;
 `;
+
 
 export const CardBackground = styled.div`
     position: absolute;

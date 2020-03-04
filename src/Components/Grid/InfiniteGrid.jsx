@@ -8,14 +8,14 @@ import {
   startLoading,
   nextPage,
   updateTotal,
-  noMorePhotos,
+  noMoreResults,
   requestError} from 'Actions/InfiniteGridActions'
 
 export default function InfiniteGrid({ 
   query, 
   searchValue, 
-  type,
-  state:{photos,page,hasMore,isLoading,allowFetching},
+  searchType,
+  state:{dataList,page,hasMore,isLoading,allowFetching},
   dispatch
 }) {
 
@@ -23,25 +23,25 @@ export default function InfiniteGrid({
     if(isLoading || !allowFetching || !hasMore) return
     try {
       dispatch(startLoading);
-      const response = await unsplash[query][type](searchValue, page, 15);
+      const response = await unsplash[query][searchType](searchValue, page, 15);
       const json = await toJson(response);
-      let newPhotos;
+      let results;
       switch (query) {
         case "users":
-          newPhotos = json;
+          results = json;
           break;
         case "search":
           dispatch(updateTotal(json.total));
-          newPhotos = json.results;
+          results = json.results;
           break;
         default:
       }
 
-      dispatch(nextPage(newPhotos));
+      dispatch(nextPage(results));
 
-      if (!newPhotos.length) {
-        dispatch(noMorePhotos);
-        console.log("no more photos");
+      if (!results.length) {
+        dispatch(noMoreResults);
+        console.log("no more results");
       }
 
     } catch {
@@ -50,18 +50,37 @@ export default function InfiniteGrid({
     } 
   };
 
+  const photosMap = photo =>{
+    const src = photo.urls.regular;
+    const color = photo.color;
+    const overlayElement = <div>{photo.likes} likes</div>
+    const props = {src,color,overlayElement}
+    return <GridItem {...props} key={photo.id}/>
+  }
+
+  const collectionsMap = collection=>{
+    const coverPhoto = collection.cover_photo;
+    const src = coverPhoto.urls.regular;
+    const color = coverPhoto.color;
+    const overlayElement = <div>{collection.total_photos} photos</div>;
+    const props = {src,color,overlayElement};
+    return <GridItem {...props} key={collection.id}/>
+  }
+
+  const dataMap = {
+    photos:photosMap,
+    collections:collectionsMap
+  }
+
   return (
     <InfiniteScroll
       pageStart={1}
       loadMore={loadMore}
       hasMore={hasMore&&allowFetching}
       loader={<GridLoader key={0} />}
-      useWindow={true}
-    >
+      useWindow={true}>
       <GridContainer>
-        {photos.map(photo => {
-          return <GridItem key={photo.id} photo={photo} />
-        })}
+        {dataList.map(dataMap[searchType])}
       </GridContainer>
     </InfiniteScroll>
   );

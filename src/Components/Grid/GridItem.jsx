@@ -8,16 +8,17 @@ const imageContainerCSS=css`
     height: 100%;
 `;
 
-export default function GridItem({photo}) {
+export default function GridItem({src,color='grey',overlayElement=null}) {
     return (
         <GridCell>
             <ImageLazyLoader 
-                placeholderColor={photo.color}
-                src={photo.urls.regular}
+                placeholderColor={color}
+                src={src}
                 imageContainerCSS={imageContainerCSS} />
-            <GridCellOverlay>
-                <div>{`${photo.likes} likes`}</div>
-            </GridCellOverlay>
+            {overlayElement&&
+                <GridCellOverlay>
+                    {overlayElement}
+                </GridCellOverlay>}
         </GridCell>
     )
 }

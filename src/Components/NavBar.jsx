@@ -80,7 +80,7 @@ function NavBar({ history }) {
   const redirect = (value = "search") => {
     console.log("redirect");
     const removeRepeat = searchHistory.filter(item => item !== value);
-    history.push(`/search/${value}`);
+    history.push(`/search/photos/${value}`);
 
     setSearchHistory([value, ...removeRepeat]);
     setIsSearching(false);

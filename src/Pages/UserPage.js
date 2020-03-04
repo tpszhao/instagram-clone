@@ -4,7 +4,7 @@ import {toJson} from 'unsplash-js'
 import {InfiniteGrid, GridHeader} from 'Components'
 import unsplash from 'API/unsplash'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, start } from 'Actions/InfiniteGridActions'
+import { reset, allowFetching } from 'Actions/InfiniteGridActions'
 
 const PageContainer = styled.div`
     margin: auto;
@@ -33,7 +33,7 @@ export default function UserPage(props) {
 
     useEffect(() => {
         dispatch(reset);
-        dispatch(start);
+        dispatch(allowFetching);
         unsplash.users
             .profile(props.match.params.username)
             .then(toJson)
@@ -52,7 +52,7 @@ export default function UserPage(props) {
                 state={state}
                 dispatch={dispatch}
                 query='users'
-                type='photos'
+                searchType='photos'
                 searchValue={user.username} />
         </PageContainer>
     )

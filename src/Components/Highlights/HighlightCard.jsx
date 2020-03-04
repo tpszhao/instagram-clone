@@ -1,11 +1,14 @@
 import React from "react";
 import { ButtonIcon, PhotoCarousel } from "Components";
-import { Card, cardCSS, CardBackground} from 'Styles/Highlights'
+import { Card, cardCSS, CardBackground, CardHeaderLink} from 'Styles/Highlights'
 
 export default function HighlightCard({ card, deleteCard, isPlaying }) {
+  const url = `/search/collections/${card.keyword}`;
   return (
     <Card>
-      <span>{card.keyword}</span>
+      <CardHeaderLink to={url}>
+        {card.keyword}
+      </CardHeaderLink>
       <PhotoCarousel
         autoplay
         isPlaying={isPlaying}

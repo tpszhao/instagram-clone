@@ -2,7 +2,7 @@ import React,{ useEffect, useReducer } from 'react'
 import styled from 'styled-components';
 import { InfiniteGrid,GridHeader } from 'Components'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, allowFetching } from 'Actions/InfiniteGridActions'
+import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteGridActions'
 import searchIcon from 'SVG/searchIcon.svg'
 
 const PageContainer = styled.div`
@@ -13,32 +13,62 @@ const PageContainer = styled.div`
     align-items: center;
 `;
 
+const SearchTypeList = styled.div`
+    width: 100%;
+    display:flex;
+    justify-content:space-around;
+`;
 
-const SearchHeader = ({searchValue,total})=>{
+
+const SearchHeader = ({searchValue,searchType, total})=>{
     const title = `Search results for "${searchValue}"`;
-    const statList = (total !== null)?[`${total} photos found`]:[];
+    const statList = (total !== null)?[`${total} ${searchType} found`]:[];
     return <GridHeader src={searchIcon} title={title} statList={statList}/>
 }
 
-export default function SearchPage({match}) {
-    const searchValue = match.params.searchValue;
-    const [state, dispatch] = useReducer(GridReducer, initialState);
+export default function SearchPage({history,match}) {
+    const {searchValue,searchType} = match.params;
+    const [photos, photosDispatch] = useReducer(GridReducer, initialState);
+    const [collections, collectionsDispatch] = useReducer(GridReducer, initialState);
+
+    const state = {photos,collections};
+    const dispatch = {photos:photosDispatch,collections:collectionsDispatch};
 
     useEffect(() => {
-        dispatch(allowFetching);
+        dispatch[searchType](allowFetching);
+        return () => {
+            photosDispatch(pauseFetching);
+            collectionsDispatch(pauseFetching);
+        };
+    }, [searchType])
+
+    useEffect(() => {
+        photosDispatch(allowFetching);
         return ()=>{
-            dispatch(reset);
+            photosDispatch(reset);
+            collectionsDispatch(reset);
         }
     }, [searchValue])
 
+    const changeSearchType = searchType=>{
+        history.push(`/search/${searchType}/${searchValue}`)
+    }
+
     return (
         <PageContainer>
-            <SearchHeader searchValue={searchValue} total={state.total}/>
+            <SearchHeader 
+                searchValue={searchValue} 
+                searchType={searchType}
+                total={state[searchType].total}/>
+            <SearchTypeList>
+                <button onClick={()=>changeSearchType('photos')}>Search Photos</button>
+                <button onClick={()=>changeSearchType('collections')}>Search Collections</button>
+            </SearchTypeList>
             <InfiniteGrid
-                state={state}
-                dispatch={dispatch}
+                state={state[searchType]}
+                dispatch={dispatch[searchType]}
                 query='search'
-                type='photos'
+                searchType={searchType}
                 searchValue={searchValue}/>
         </PageContainer>
     )
