@@ -31,10 +31,9 @@ export const GridCellOverlay = styled.div`
 `;
 
 export const GridContainer = styled.div`
-    margin: auto;
     margin-bottom: 20px;
     display: grid;
     gap: 8px;
     grid-template-columns: repeat(3, calc((100% - 16px)/3));
-    max-width:100%
+    width: 100%;
 `;

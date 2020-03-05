@@ -10,10 +10,10 @@ const PageContainer = styled.div`
     margin: auto;
     display: flex;
     flex-direction: column;
-    max-width: 936px;
-    align-items: center;
-    @media only screen and (max-width: 976px){
-        max-width:100vw;
+    align-items: stretch;
+    width:936px;
+    @media only screen and (max-width: 936px) {
+        width: 100%;
     }
 `;
 
