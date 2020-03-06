@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import {css} from 'styled-components';
 import Slider from "react-slick";
-import { Container, Item } from "Styles/PhotoCarousel";
-import {ImageLazyLoader} from 'Components'
+import { Container, Item } from "Styles/Carousel";
 
 var defaultSetting = {
   autoplaySpeed: 4000,
@@ -15,16 +13,12 @@ var defaultSetting = {
   slidesToScroll: 1
 };
 
-const imageContainerCSS=css`
-  width: 100%;
-  height: 100%;
-`;
-
-export default function PhotoCarousel({
+export default function Carousel({
   containerCSS,
+  reference=null,
   autoplay = false,
   isPlaying = false,
-  photoList
+  children
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
   const container = useRef(null);
@@ -36,6 +30,7 @@ export default function PhotoCarousel({
     };
     window.addEventListener("resize", changeItemSize);
     changeItemSize();
+    if(reference) reference.current=slider;
     return () => window.removeEventListener("resize", changeItemSize);
   }, []);
 
@@ -50,16 +45,8 @@ export default function PhotoCarousel({
   return (
     <Container ref={container} containerCSS={containerCSS}>
       <Slider {...defaultSetting} ref={slider} autoplay={autoplay}>
-        {photoList.map(photo => {
-          return (
-            <Item key={photo.id} {...itemSize}>
-              <ImageLazyLoader 
-                src={photo.urls.regular}
-                placeholderColor={photo.color}
-                imageContainerCSS={imageContainerCSS}/>
-            </Item>
-          );
-        })}
+        {children.map((child,i)=>{
+          return <Item key={i} {...itemSize}>{child}</Item>})}
       </Slider>
     </Container>
   );
