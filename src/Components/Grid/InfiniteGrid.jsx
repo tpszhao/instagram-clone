@@ -11,6 +11,29 @@ import {
   noMoreResults,
   requestError} from 'Actions/InfiniteGridActions'
 
+const mapPhotos = photo =>{
+  const src = photo.urls.regular;
+  const color = photo.color;
+  const overlayElement = <div>{photo.likes} likes</div>
+  const props = {src,color,overlayElement}
+  return <GridItem {...props} key={photo.id}/>
+}
+
+const mapCollections = collection=>{
+  const coverPhoto = collection.cover_photo;
+  const src = coverPhoto.urls.regular;
+  const color = coverPhoto.color;
+  const overlayElement = <div>{collection.total_photos} photos</div>;
+  const props = {src,color,overlayElement};
+  return <GridItem {...props} key={collection.id}/>
+}
+
+const mapData = {
+  photos:mapPhotos,
+  collections:mapCollections
+}
+
+
 export default function InfiniteGrid({ 
   query, 
   searchValue, 
@@ -50,28 +73,6 @@ export default function InfiniteGrid({
     } 
   };
 
-  const photosMap = photo =>{
-    const src = photo.urls.regular;
-    const color = photo.color;
-    const overlayElement = <div>{photo.likes} likes</div>
-    const props = {src,color,overlayElement}
-    return <GridItem {...props} key={photo.id}/>
-  }
-
-  const collectionsMap = collection=>{
-    const coverPhoto = collection.cover_photo;
-    const src = coverPhoto.urls.regular;
-    const color = coverPhoto.color;
-    const overlayElement = <div>{collection.total_photos} photos</div>;
-    const props = {src,color,overlayElement};
-    return <GridItem {...props} key={collection.id}/>
-  }
-
-  const dataMap = {
-    photos:photosMap,
-    collections:collectionsMap
-  }
-
   return (
     <InfiniteScroll
       pageStart={1}
@@ -80,7 +81,7 @@ export default function InfiniteGrid({
       loader={<GridLoader key={0} />}
       useWindow={true}>
       <GridContainer>
-        {dataList.map(dataMap[searchType])}
+        {dataList.map(mapData[searchType])}
       </GridContainer>
     </InfiniteScroll>
   );

@@ -19,8 +19,24 @@ const PageContainer = styled.div`
 const SearchTypeList = styled.div`
     width: 100%;
     display:flex;
-    justify-content:space-around;
+    justify-content:flex-start;
 `;
+
+const SearchTypeLink = styled.div`
+    cursor:pointer;
+    padding:5px 15px;
+    margin:10px;
+    position:relative;
+    font-size: x-large;
+    ${props=>props.isSelected&&`
+    border-bottom:2px solid black;
+    `}    
+
+    &:hover{
+        border-bottom:2px solid black;
+    }
+`;
+
 
 
 const SearchHeader = ({searchValue,searchType, total})=>{
@@ -67,8 +83,16 @@ export default function SearchPage({history,match}) {
                 searchType={searchType}
                 total={state[searchType].total}/>
             <SearchTypeList>
-                <button onClick={()=>changeSearchType('photos')}>Search Photos</button>
-                <button onClick={()=>changeSearchType('collections')}>Search Collections</button>
+                <SearchTypeLink 
+                    onClick={()=>changeSearchType('photos')}
+                    isSelected={searchType === 'photos'}>
+                    Photos
+                </SearchTypeLink>
+                <SearchTypeLink 
+                    onClick={()=>changeSearchType('collections')}
+                    isSelected={searchType === 'collections'}>
+                    Collections
+                </SearchTypeLink>
             </SearchTypeList>
             <InfiniteGrid
                 state={state[searchType]}
