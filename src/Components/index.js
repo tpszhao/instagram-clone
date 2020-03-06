@@ -7,6 +7,6 @@ export { InfinitePhotoLoader, Card, CardLoader} from "./InfiniteLoader";
 
 export { InfiniteGrid, GridItem, GridLoader, GridHeader } from "./Grid";
 
-export { HighlightsMenu, HighlightModal, HighlightCard } from './Highlights'
+export { HighlightsMenu, HighlightAddCollection, HighlightCard } from './Highlights'
 
 

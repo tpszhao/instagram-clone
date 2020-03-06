@@ -9,7 +9,7 @@ import {
     AddToCollection
 } from 'Styles/Highlights'
 
-export default function HighlightModal({cardList,setCardList,closeModal}) {
+export default function HighlightAddCollection({cardList,setCardList,closeModal}) {
     const [message, setMessage] = useState(null);
     const [card, setCard] = useState(null);
     const [searchValue, setSearchValue] = useState();

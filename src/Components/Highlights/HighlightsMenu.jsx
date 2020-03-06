@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
-import { HighlightModal, HighlightCard, ButtonIcon } from "Components";
+import { HighlightAddCollection, HighlightCard, ButtonIcon } from "Components";
 import {
   HighlightMenuCard, 
   HighlightHeader, 
@@ -99,7 +99,7 @@ export default function HighlightsMenu({ setStickyPos }) {
         }}
         style={modalStyle}
       >
-        <HighlightModal
+        <HighlightAddCollection
           cardList={cardList}
           setCardList={setCardList}
           closeModal={() => {
