@@ -20,11 +20,11 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
 
     const handleSubmit = e =>{
         e.preventDefault();
-        let newKeyword = capitalize(searchValue.trim());
+        const newKeyword = capitalize(searchValue.trim());
         setSearchValue(newKeyword);
-        let repeated = cardList.find(card=>card.keyword === newKeyword)||false;
+        const repeated = cardList.find(card=>card.keyword === newKeyword)||false;
         if(repeated){
-            let message = `${newKeyword} already exists, please try something else`;
+            const message = `${newKeyword} already exists, please try something else`;
             setMessage(message);
             return
         }
@@ -32,7 +32,7 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
             .then(toJson)
             .then(Json=>{
                 if (Json.errors){
-                    let message = `We couldn't find any pictures for "${newKeyword}", please try something else`;
+                    const message = `We couldn't find any pictures for "${newKeyword}", please try something else`;
                     setMessage(message);
                     return;
                 }
@@ -49,9 +49,10 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
     return (
         <ModalContainer>
             {message&&<div>{message}</div>}
-            {!message&&card&&<Photo 
-                                src={card.photoList[0].urls.regular} 
-                                alt="placeholder"/>}
+            {!message&&card&&
+                <Photo 
+                    src={card.photoList[0].urls.regular} 
+                    alt="placeholder"/>}
             <form onSubmit={handleSubmit}>
                 <SearchInput 
                     onChange={onChange}

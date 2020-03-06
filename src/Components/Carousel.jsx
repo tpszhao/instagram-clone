@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { Container, Item } from "Styles/Carousel";
 
 var defaultSetting = {
-  autoplaySpeed: 4000,
+  autoplaySpeed: 1000,
   arrows: false,
   vertical: false,
   dots: false,
@@ -15,9 +15,11 @@ var defaultSetting = {
 
 export default function Carousel({
   containerCSS,
+  onClick=()=>{},
   reference=null,
+  vertical = false,
   autoplay = false,
-  isPlaying = false,
+  counter,
   children
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
@@ -30,21 +32,25 @@ export default function Carousel({
     };
     window.addEventListener("resize", changeItemSize);
     changeItemSize();
-    if(reference) reference.current=slider;
+    if(reference) {
+      reference.current=slider.current;
+    };
     return () => window.removeEventListener("resize", changeItemSize);
   }, []);
 
   useEffect(() => {
-    if (isPlaying) {
-      slider.current.slickPlay();
-    } else {
-      slider.current.slickPause();
-    }
-  }, [isPlaying]);
+    slider.current.slickNext();
+  }, [counter])
 
   return (
-    <Container ref={container} containerCSS={containerCSS}>
-      <Slider {...defaultSetting} ref={slider} autoplay={autoplay}>
+    <Container 
+      ref={container} 
+      containerCSS={containerCSS}
+      onClick={onClick}>
+      <Slider {...defaultSetting} 
+        ref={slider} 
+        autoplay={autoplay}
+        vertical={vertical}>
         {children.map((child,i)=>{
           return <Item key={i} {...itemSize}>{child}</Item>})}
       </Slider>

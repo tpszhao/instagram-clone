@@ -2,24 +2,29 @@ import React from "react";
 import { ButtonIcon, Carousel, ImageLazyLoader } from "Components";
 import { Card, cardCSS, ButtonBackground, CardHeaderLink} from 'Styles/Highlights'
 
-export default function HighlightCard({ card, deleteCard, isPlaying }) {
+export default function HighlightCard({ 
+  card, 
+  deleteCard, 
+  counter,
+  showcase
+}) {
   const url = `/search/collections/${card.keyword}`;
+  const {photoList} = card;
   return (
     <Card>
       <CardHeaderLink to={url}>
         {card.keyword}
       </CardHeaderLink>
       <Carousel
-        autoplay
-        isPlaying={isPlaying}
+        onClick={()=>showcase(photoList)}
+        counter={counter}
         containerCSS={cardCSS}>
-        {card.photoList.map(photo=>{
-          return (
+        {photoList.map(photo=>(
             <ImageLazyLoader 
               key={photo.id}
               src={photo.urls.regular}
-              placeholderColor={photo.color}/>)})}
-        </Carousel>
+              placeholderColor={photo.color}/>))}
+      </Carousel>
       <ButtonBackground>
         <ButtonIcon
           rotate={45}

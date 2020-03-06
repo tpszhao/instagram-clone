@@ -70,7 +70,6 @@ export const Card = styled.div`
 
 export const CardHeaderLink = styled(Link)`
     position:relative;
-    z-index:2;
     padding-left:20px;
     align-self:flex-start;
     text-decoration:none!important;
@@ -79,8 +78,8 @@ export const CardHeaderLink = styled(Link)`
 `;
 
 export const cardCSS = css`
+    cursor:pointer;
     position:relative;
-    z-index:2;
     width: 90%;
     height: 80%;
 `;

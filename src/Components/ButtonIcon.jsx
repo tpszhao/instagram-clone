@@ -11,7 +11,6 @@ const Button = styled.div`
   background-size:cover;
   background-position:center center;
   position: absolute;
-  z-index: 10;
 `;
 
 export default function ButtonIcon({style={},rotate=0, onClick}) {

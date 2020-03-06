@@ -1,5 +1,5 @@
 const localGet = (key,alternative=[])=>{
-    let result = JSON.parse(localStorage.getItem(key))||alternative;
+    const result = JSON.parse(localStorage.getItem(key))||alternative;
     return result;
 }
 
