@@ -2,19 +2,27 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { localGet, localSet } from "API/local";
+import home from "SVG/home.svg"
 
 const SearchBar = styled.div`
   background-color: white;
-  top: 0px;
   position: sticky;
-  width: 100vw;
-  max-width: 100%;
+  top: 0px;
+  z-index: 20;
+  width: 100%;
+  max-width: 100vw;
   height: 52px;
   border-bottom: 1px solid rgb(219, 219, 219);
-  display: flex;
-  justify-content: space-around;
+  display:flex;
+  justify-content:center;
   align-items: center;
-  z-index: 20;
+`;
+
+const Form = styled.form`
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 `;
 
 const SearchInput = styled.input`
@@ -22,9 +30,12 @@ const SearchInput = styled.input`
   z-index: 2;
   width: 171px;
   line-height: 20px;
-  text-align: left;
   outline: none;
+  text-align:center;
   border: 1px solid rgb(219, 219, 219);
+  &:focus{
+    text-align:left;
+  }
 `;
 
 const SearchSuggestions = styled.div`
@@ -52,7 +63,29 @@ const SearchItem = styled.div`
   }
 `;
 
-function NavBar({ history }) {
+const IconBar = styled.div`
+  width:944px;
+  max-width:100vw;
+  margin:auto;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  @media only screen and (max-width: 976px) {
+    ${props=>(props.pathname === "/")&&'width:616px'};
+  }
+`;
+
+const Icon = styled.div`
+  width:40px;
+  height:40px;
+  background-size:cover;
+  background-image:${props=>`url("${props.src}")`};
+  cursor:pointer;
+`;
+
+
+
+function NavBar({ history, location }) {
   const [inputValue, setInputValue] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -80,7 +113,7 @@ function NavBar({ history }) {
   const redirect = (value = "search") => {
     console.log("redirect");
     const removeRepeat = searchHistory.filter(item => item !== value);
-    history.push(`/search/${value}`);
+    history.push(`/search/photos/${value}`);
 
     setSearchHistory([value, ...removeRepeat]);
     setIsSearching(false);
@@ -97,7 +130,7 @@ function NavBar({ history }) {
 
   return (
     <SearchBar>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <SearchInput
           type="text"
           placeholder="search for photos..."
@@ -105,7 +138,7 @@ function NavBar({ history }) {
           onBlur={onBlur}
           value={inputValue}
           onChange={changeSuggestions}/>
-      </form>
+      </Form>
       <SearchSuggestions active={isSearching}>
         {searchSuggestions.map(item => {
           return (
@@ -119,12 +152,14 @@ function NavBar({ history }) {
             onClick={() => {
               setSearchHistory([]);
               setSearchSuggestion([]);
-            }}
-          >
+            }}>
             Clear History
           </SearchItem>
         )}
       </SearchSuggestions>
+      <IconBar pathname={location.pathname}>
+        <Icon src={home} onClick={()=>history.push('/')}/>
+      </IconBar>
     </SearchBar>
   );
 }

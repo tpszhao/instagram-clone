@@ -1,6 +1,7 @@
-import React,{useState,useRef} from 'react'
+import React,{useState} from 'react'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
+import capitalize from 'Utilities/capitalize'
 import {
     ModalContainer, 
     SearchInput, 
@@ -11,11 +12,16 @@ import {
 export default function HighlightModal({cardList,setCardList,closeModal}) {
     const [message, setMessage] = useState(null);
     const [card, setCard] = useState(null);
-    const searchBar = useRef('');
+    const [searchValue, setSearchValue] = useState();
+
+    const onChange = e=>{
+        setSearchValue(e.target.value);
+    }
 
     const handleSubmit = e =>{
         e.preventDefault();
-        let newKeyword = searchBar.current.value;
+        let newKeyword = capitalize(searchValue.trim());
+        setSearchValue(newKeyword);
         let repeated = cardList.find(card=>card.keyword === newKeyword)||false;
         if(repeated){
             let message = `${newKeyword} already exists, please try something else`;
@@ -47,7 +53,11 @@ export default function HighlightModal({cardList,setCardList,closeModal}) {
                                 src={card.photoList[0].urls.regular} 
                                 alt="placeholder"/>}
             <form onSubmit={handleSubmit}>
-                <SearchInput ref={searchBar} type="text" placeholder="Search..."/>
+                <SearchInput 
+                    onChange={onChange}
+                    value={searchValue} 
+                    type="text" 
+                    placeholder="Search for photos"/>
             </form>
             {card&&<AddToCollection onClick={addToCollection}>Add to Collection</AddToCollection>}
         </ModalContainer>

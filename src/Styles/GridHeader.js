@@ -7,6 +7,7 @@ export const Container = styled.div`
     grid-template-rows: 60px 50px 40px auto;
     @media only screen and (max-width: 720px){
         width:100%;
+        max-width:100vw;
         display: flex;
         flex-direction: column;
         justify-content: space-around;

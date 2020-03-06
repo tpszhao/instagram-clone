@@ -1,10 +1,15 @@
-export const start = {
-    type:'start'
-}
-
 export const reset = {
     type:'reset'
 }
+
+export const allowFetching = {
+    type:'allowFetching'
+}
+
+export const pauseFetching = {
+    type:'pauseFetching'
+}
+
 
 export const startLoading = {
     type:'startLoading'
@@ -24,8 +29,8 @@ export const updateTotal = total =>{
     }
 }
 
-export const noMorePhotos = {
-    type:'noMorePhotos'
+export const noMoreResults = {
+    type:'noMoreResults'
 }
 
 export const requestError = {

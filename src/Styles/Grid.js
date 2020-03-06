@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const GridCell = styled.div`
-    width: calc((100vw - 16px)/3);
+    width:100%;
     max-width: calc((936px - 16px)/3);
     height: calc((100vw - 16px)/3);
     max-height: calc((936px - 16px)/3);
@@ -20,7 +20,7 @@ export const GridCellOverlay = styled.div`
     opacity: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     text-align: center;
     transition: 0.5s;
@@ -31,9 +31,9 @@ export const GridCellOverlay = styled.div`
 `;
 
 export const GridContainer = styled.div`
-    margin: auto;
     margin-bottom: 20px;
     display: grid;
     gap: 8px;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, calc((100% - 16px)/3));
+    width: 100%;
 `;

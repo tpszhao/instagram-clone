@@ -3,7 +3,7 @@ export const initialState={
     hasMore:true,
     allowFetching:false,  
     isLoading:false,
-    photos:[],
+    dataList:[],
     total:null
 }
 
@@ -11,21 +11,21 @@ const GridReducer = (state = initialState,action) =>{
     switch(action.type){
         case "reset":
             return initialState;
-        case "start":
+        case "allowFetching":
             return {...state,allowFetching:true}
+        case "pauseFetching":
+            return {...state,allowFetching:false}
         case "startLoading":
             return {...state,isLoading:true};
         case "nextPage":
-            console.log(`finished fetching page ${state.page}`);
             const page = state.page + 1;
-            const photos = [...state.photos,...action.payload];
-            return {...state,page,photos,isLoading:false}
+            const dataList = [...state.dataList,...action.payload];
+            return {...state,page,dataList,isLoading:false}
         case "updateTotal":
             const total = action.payload;
             return {...state,total}
-        case "noMorePhotos":
+        case "noMoreResults":
         case "requestError":
-            console.log("set isLoading to false")
             return {...state,hasMore:false,isLoading:false};
         default:
             return state;
