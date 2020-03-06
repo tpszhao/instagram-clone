@@ -22,7 +22,6 @@ const imageContainerCSS=css`
 
 export default function PhotoCarousel({
   containerCSS,
-  objectFit = 'cover',
   autoplay = false,
   isPlaying = false,
   photoList
