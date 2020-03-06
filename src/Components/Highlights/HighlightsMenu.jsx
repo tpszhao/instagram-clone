@@ -35,7 +35,7 @@ export default function HighlightsMenu({ setStickyPos }) {
   useEffect(() => {
     const autoPlay = setInterval(() => {
       setCounter(idx=>idx + 1);
-    }, 1000);
+    }, 3000);
     const keywordList = localGet("Highlights", []);
     Promise.all(keywordList.map(fetchPhotos)).then(photoLists =>
       updateCardList(photoLists, keywordList)
