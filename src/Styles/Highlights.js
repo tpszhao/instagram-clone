@@ -79,18 +79,21 @@ export const CardHeaderLink = styled(Link)`
 `;
 
 export const cardCSS = css`
+    position:relative;
+    z-index:2;
     width: 90%;
     height: 80%;
 `;
 
 
-export const CardBackground = styled.div`
+export const ButtonBackground = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 30px;
     opacity: 0;
+    transition:0.2s;
     &:hover {
     opacity: 1;
     }

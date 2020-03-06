@@ -1,12 +1,6 @@
 import React from "react";
-import {css} from 'styled-components';
 import { ButtonIcon, Carousel, ImageLazyLoader } from "Components";
-import { Card, cardCSS, CardBackground, CardHeaderLink} from 'Styles/Highlights'
-
-const imageContainerCSS=css`
-  width: 100%;
-  height: 100%;
-`;
+import { Card, cardCSS, ButtonBackground, CardHeaderLink} from 'Styles/Highlights'
 
 export default function HighlightCard({ card, deleteCard, isPlaying }) {
   const url = `/search/collections/${card.keyword}`;
@@ -24,16 +18,13 @@ export default function HighlightCard({ card, deleteCard, isPlaying }) {
             <ImageLazyLoader 
               key={photo.id}
               src={photo.urls.regular}
-              placeholderColor={photo.color}
-              imageContainerCSS={imageContainerCSS}/>)})}
+              placeholderColor={photo.color}/>)})}
         </Carousel>
-      <CardBackground>
+      <ButtonBackground>
         <ButtonIcon
           rotate={45}
-          style={{ top: "2px", right: "12px" }}
-          onClick={() => deleteCard(card)}
-        />
-      </CardBackground>
+          onClick={() => deleteCard(card)}/>
+      </ButtonBackground>
     </Card>
   );
 }

@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
 
 const Container = styled.div`
     position:relative;
@@ -21,14 +21,23 @@ const Image = styled.img`
     object-fit:${props=>`${props.objectFit||'cover'}`};
 `;
 
+const defaultImageContainerCSS=css`
+    width: 100%;
+    height: 100%;
+`;
+
 export default function ImageLazyLoader({
     src, 
     objectFit='cover',
     placeholderColor,
-    imageContainerCSS}) {
+    imageContainerCSS=defaultImageContainerCSS,
+    onClick=()=>{}
+}) {
     const [isLoading, setIsLoading] = useState(true);
     return (
-        <Container imageContainerCSS={imageContainerCSS}>
+        <Container 
+            imageContainerCSS={imageContainerCSS}
+            onClick={onClick}>
             <Overlay 
                 isLoading={isLoading}
                 placeholderColor={placeholderColor}/>
