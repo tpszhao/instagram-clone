@@ -1,27 +1,35 @@
 import React from "react";
-import { ButtonIcon, PhotoCarousel } from "Components";
-import { Card, cardCSS, CardBackground, CardHeaderLink} from 'Styles/Highlights'
+import { ButtonIcon, Carousel, ImageLazyLoader } from "Components";
+import { Card, cardCSS, ButtonBackground, CardHeaderLink} from 'Styles/Highlights'
 
-export default function HighlightCard({ card, deleteCard, isPlaying }) {
+export default function HighlightCard({ 
+  card, 
+  deleteCard, 
+  counter,
+  showcase
+}) {
   const url = `/search/collections/${card.keyword}`;
+  const {photoList} = card;
   return (
     <Card>
       <CardHeaderLink to={url}>
         {card.keyword}
       </CardHeaderLink>
-      <PhotoCarousel
-        autoplay
-        isPlaying={isPlaying}
-        containerCSS={cardCSS}
-        photoList={card.photoList}
-      />
-      <CardBackground>
+      <Carousel
+        onClick={()=>showcase(photoList)}
+        counter={counter}
+        containerCSS={cardCSS}>
+        {photoList.map(photo=>(
+            <ImageLazyLoader 
+              key={photo.id}
+              src={photo.urls.regular}
+              placeholderColor={photo.color}/>))}
+      </Carousel>
+      <ButtonBackground>
         <ButtonIcon
           rotate={45}
-          style={{ top: "2px", right: "12px" }}
-          onClick={() => deleteCard(card)}
-        />
-      </CardBackground>
+          onClick={() => deleteCard(card)}/>
+      </ButtonBackground>
     </Card>
   );
 }
