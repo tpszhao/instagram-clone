@@ -1,5 +1,6 @@
 import React,{useRef} from 'react';
 import styled,{css} from 'styled-components';
+import { Link } from "react-router-dom";
 import {Carousel, ImageLazyLoader, ButtonIcon} from 'Components';
 import nextIcon from 'SVG/next.svg';
 
@@ -7,33 +8,49 @@ import nextIcon from 'SVG/next.svg';
 const Container = styled.div`
     position:relative;
     display:flex;
+    flex-direction:column;
     overflow:hidden;
-    width:90vw;
+    width:70vw;
     height:500px;
     max-height:80vh;
     max-width:100%;
 `;
 
 const pictureCarouselStyle = css`
-    width:60%;
-    height:100%;
+    width:100%;
+    height:calc(100% - 60px);
 `;
 
 const infoCarouselStyle = css`
-    width:25%;
-    height:100%;
+    width:100%;
+    height: 60px;
 `;
 
-const UserInfoCard = styled.div`
-    display:flex;
-    align-items:center;
-    flex-direction:column;
+const UserInfo = styled(Link)`
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    text-decoration: none;
 `;
 
+const ProfileImage = styled.img`
+    margin: 5px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+`;
+
+const UserName = styled.span`
+    text-decoration: none;
+    color: black;
+`;
 
 const ButtonContainer = styled.div`
     display:flex;
-    flex-direction:column;
+    position:absolute;
+    right:0;
+    bottom:0;
 `;
 
 const buttonStyle={
@@ -72,18 +89,14 @@ export default function HightLightsShowcase({photoList,closeModal}) {
                 reference={infoCarousel}
                 containerCSS={infoCarouselStyle}>
                 {photoList.map(photo=>(
-                    <UserInfoCard key={photo.id}>
-                        <ImageLazyLoader 
-                            objectFit="scale-down"
-                            src={photo.user.profile_image.large}/>
-                        <span>Photo By {photo.user.name}</span>
-                    </UserInfoCard>))}
+                    <UserInfo key={photo.id} to={`/user/${photo.user.username}`}>
+                        <ProfileImage 
+                            src={photo.user.profile_image.medium}
+                            alt="avatar"/>
+                        <UserName>{photo.user.name}</UserName>
+                    </UserInfo>))}
             </Carousel>
             <ButtonContainer>
-                <ButtonIcon 
-                    {...buttonStyle}
-                    rotate={45}
-                    onClick={()=>closeModal()}/>
                 <ButtonIcon 
                     {...buttonStyle}
                     src={nextIcon} 
@@ -93,6 +106,10 @@ export default function HightLightsShowcase({photoList,closeModal}) {
                     {...buttonStyle}
                     src={nextIcon} 
                     onClick={next}/>
+                <ButtonIcon 
+                    {...buttonStyle}
+                    rotate={45}
+                    onClick={()=>closeModal()}/>
             </ButtonContainer>
         </Container>
     )
