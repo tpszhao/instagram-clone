@@ -27,6 +27,7 @@ const infoCarouselStyle = css`
 `;
 
 const UserInfo = styled(Link)`
+    position:relative;
     display: flex;
     align-items: center;
     height: 60px;
@@ -46,10 +47,17 @@ const UserName = styled.span`
     color: black;
 `;
 
+const PhotoInfo = styled.span`
+    text-decoration: none;
+    color: black;
+    position:absolute;
+    right:200px;
+`;
+
 const ButtonContainer = styled.div`
     display:flex;
     position:absolute;
-    right:0;
+    right:10px;
     bottom:0;
 `;
 
@@ -94,6 +102,7 @@ export default function HightLightsShowcase({photoList,closeModal}) {
                             src={photo.user.profile_image.medium}
                             alt="avatar"/>
                         <UserName>{photo.user.name}</UserName>
+                        <PhotoInfo>{photo.likes} likes </PhotoInfo>
                     </UserInfo>))}
             </Carousel>
             <ButtonContainer>
