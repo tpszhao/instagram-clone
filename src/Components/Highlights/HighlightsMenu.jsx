@@ -88,7 +88,7 @@ export default function HighlightsMenu({ setStickyPos }) {
           <span>Highlights</span>
           {(cardList.length < 3) &&
             <ButtonIcon
-              style={{ top: "2px", right: "12px" }}
+              style={{ position:'absolute',top: "2px", right: "12px" }}
               onClick={() => setModalIsOpen(true)}/>}
         </HighlightHeader>
         <HighlightPhotoContainer>
@@ -111,7 +111,9 @@ export default function HighlightsMenu({ setStickyPos }) {
             setCardList={setCardList}
             closeModal={closeModal}/>}
         {(showcasePhotos.length > 0)&&
-          <HightLightsShowcase photoList={showcasePhotos}/>}
+          <HightLightsShowcase 
+            closeModal={closeModal}
+            photoList={showcasePhotos}/>}
       </Modal>
     </>
   );

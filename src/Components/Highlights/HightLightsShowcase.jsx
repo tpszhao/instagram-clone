@@ -1,6 +1,7 @@
 import React,{useRef} from 'react';
 import styled,{css} from 'styled-components';
-import {Carousel, ImageLazyLoader} from 'Components';
+import {Carousel, ImageLazyLoader, ButtonIcon} from 'Components';
+import nextIcon from 'SVG/next.svg';
 
 
 const Container = styled.div`
@@ -14,24 +15,34 @@ const Container = styled.div`
 `;
 
 const pictureCarouselStyle = css`
-    width:70%;
+    width:60%;
     height:100%;
 `;
 
 const infoCarouselStyle = css`
-    width:30%;
+    width:25%;
     height:100%;
 `;
 
-const ButtonContainer = styled.div`
-    position:absolute;
-    bottom:0;
-    left:0;
+const UserInfoCard = styled.div`
+    display:flex;
+    align-items:center;
+    flex-direction:column;
 `;
 
 
+const ButtonContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+`;
 
-export default function HightLightsShowcase({photoList}) {
+const buttonStyle={
+    width:'40px',
+    height:'40px'
+}
+
+
+export default function HightLightsShowcase({photoList,closeModal}) {
     const pictureCarousel = useRef(null);
     const infoCarousel = useRef(null);
 
@@ -61,15 +72,27 @@ export default function HightLightsShowcase({photoList}) {
                 reference={infoCarousel}
                 containerCSS={infoCarouselStyle}>
                 {photoList.map(photo=>(
-                    <ImageLazyLoader 
-                        key={photo.id}
-                        objectFit="scale-down"
-                        src={photo.urls.regular}
-                        placeholderColor={photo.color}/>))}
+                    <UserInfoCard key={photo.id}>
+                        <ImageLazyLoader 
+                            objectFit="scale-down"
+                            src={photo.user.profile_image.large}/>
+                        <span>Photo By {photo.user.name}</span>
+                    </UserInfoCard>))}
             </Carousel>
             <ButtonContainer>
-                <button onClick={previous}>previous</button>
-                <button onClick={next}>next</button>
+                <ButtonIcon 
+                    {...buttonStyle}
+                    rotate={45}
+                    onClick={()=>closeModal()}/>
+                <ButtonIcon 
+                    {...buttonStyle}
+                    src={nextIcon} 
+                    onClick={previous} 
+                    rotate={180}/>
+                <ButtonIcon 
+                    {...buttonStyle}
+                    src={nextIcon} 
+                    onClick={next}/>
             </ButtonContainer>
         </Container>
     )

@@ -4,18 +4,18 @@ import cross from 'SVG/cross.svg'
 
 const Button = styled.div`
   cursor: pointer;
-  width:20px;
-  height:20px;
+  width:${props=>`${props.width || '20px'}`};
+  height:${props=>`${props.height || '20px'}`};
   transform: ${props => `rotate(${props.rotate}deg)`};
   background-image:url("${props=>props.src}");
   background-size:cover;
   background-position:center center;
-  position: absolute;
 `;
 
-export default function ButtonIcon({style={},rotate=0, onClick}) {
+export default function ButtonIcon({style={},rotate=0, src=cross,onClick,...rest}) {
   return <Button 
-            src={cross}
+            {...rest}
+            src={src}
             style={style} 
             rotate={rotate} 
             onClick={onClick} />
