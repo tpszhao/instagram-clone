@@ -26,12 +26,20 @@ const infoCarouselStyle = css`
     height: 60px;
 `;
 
-const UserInfo = styled(Link)`
+const PhotoInfo = styled.div`
     position:relative;
+    width:75%;
+    height:60px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+`;
+
+
+const UserLink = styled(Link)`
     display: flex;
     align-items: center;
     height: 60px;
-    width: 100%;
     text-decoration: none;
 `;
 
@@ -40,6 +48,7 @@ const ProfileImage = styled.img`
     width: 36px;
     height: 36px;
     border-radius: 50%;
+    object-fit:cover;
 `;
 
 const UserName = styled.span`
@@ -47,11 +56,9 @@ const UserName = styled.span`
     color: black;
 `;
 
-const PhotoInfo = styled.span`
+const PhotoStat = styled.span`
     text-decoration: none;
     color: black;
-    position:absolute;
-    right:200px;
 `;
 
 const ButtonContainer = styled.div`
@@ -97,13 +104,15 @@ export default function HightLightsShowcase({photoList,closeModal}) {
                 reference={infoCarousel}
                 containerCSS={infoCarouselStyle}>
                 {photoList.map(photo=>(
-                    <UserInfo key={photo.id} to={`/user/${photo.user.username}`}>
-                        <ProfileImage 
-                            src={photo.user.profile_image.medium}
-                            alt="avatar"/>
-                        <UserName>{photo.user.name}</UserName>
-                        <PhotoInfo>{photo.likes} likes </PhotoInfo>
-                    </UserInfo>))}
+                    <PhotoInfo key={photo.id}>
+                        <UserLink to={`/user/${photo.user.username}`}>
+                            <ProfileImage 
+                                src={photo.user.profile_image.medium}
+                                alt="avatar"/>
+                            <UserName>{photo.user.name}</UserName>
+                        </UserLink>
+                        <PhotoStat>{photo.likes} likes </PhotoStat>
+                    </PhotoInfo>))}
             </Carousel>
             <ButtonContainer>
                 <ButtonIcon 
