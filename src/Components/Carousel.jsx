@@ -15,12 +15,13 @@ var defaultSetting = {
 
 export default function Carousel({
   containerCSS,
-  onClick=()=>{},
-  reference=null,
+  onClick = () => {},
+  reference = null,
   vertical = false,
   autoplay = false,
   counter,
-  children
+  children,
+  afterChange
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
   const container = useRef(null);
@@ -32,27 +33,32 @@ export default function Carousel({
     };
     window.addEventListener("resize", changeItemSize);
     changeItemSize();
-    if(reference) {
-      reference.current=slider.current;
-    };
+    if (reference) {
+      reference.current = slider.current;
+    }
     return () => window.removeEventListener("resize", changeItemSize);
   }, []);
 
   useEffect(() => {
     slider.current.slickNext();
-  }, [counter])
+  }, [counter]);
 
   return (
-    <Container 
-      ref={container} 
-      containerCSS={containerCSS}
-      onClick={onClick}>
-      <Slider {...defaultSetting} 
-        ref={slider} 
+    <Container ref={container} containerCSS={containerCSS} onClick={onClick}>
+      <Slider
+        {...defaultSetting}
+        ref={slider}
         autoplay={autoplay}
-        vertical={vertical}>
-        {children.map((child,i)=>{
-          return <Item key={i} {...itemSize}>{child}</Item>})}
+        vertical={vertical}
+        afterChange={index => afterChange && afterChange(index)}
+      >
+        {children.map((child, i) => {
+          return (
+            <Item key={i} {...itemSize}>
+              {child}
+            </Item>
+          );
+        })}
       </Slider>
     </Container>
   );

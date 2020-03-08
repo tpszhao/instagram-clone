@@ -5,12 +5,12 @@ import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
 import { HighlightAddCollection, HighlightCard, ButtonIcon } from "Components";
 import {
-  HighlightMenuCard, 
-  HighlightHeader, 
-  HighlightPhotoContainer} from 'Styles/Highlights'
+  HighlightMenuCard,
+  HighlightHeader,
+  HighlightPhotoContainer
+} from "Styles/Highlights";
 
-import HightLightsShowcase from './HightLightsShowcase'
-
+import HightLightsShowcase from "./HightLightsShowcase";
 
 const modalStyle = {
   content: {
@@ -34,13 +34,13 @@ export default function HighlightsMenu({ setStickyPos }) {
 
   useEffect(() => {
     const autoPlay = setInterval(() => {
-      setCounter(idx=>idx + 1);
+      setCounter(idx => idx + 1);
     }, 3000);
     const keywordList = localGet("Highlights", []);
     Promise.all(keywordList.map(fetchPhotos)).then(photoLists =>
       updateCardList(photoLists, keywordList)
     );
-    return ()=>clearInterval(autoPlay);
+    return () => clearInterval(autoPlay);
   }, []);
 
   useEffect(() => {
@@ -71,25 +71,27 @@ export default function HighlightsMenu({ setStickyPos }) {
     setCardList(newCardList);
   };
 
-  const closeModal = ()=>{
+  const closeModal = () => {
     setModalIsOpen(false);
     setShowcasePhotos([]);
-  }
+  };
 
-  const showcase = photoList=>{
+  const showcase = photoList => {
     setShowcasePhotos(photoList);
     setModalIsOpen(true);
-  }
+  };
 
   return (
     <>
       <HighlightMenuCard length={cardList.length}>
         <HighlightHeader>
           <span>Highlights</span>
-          {(cardList.length < 3) &&
+          {cardList.length < 3 && (
             <ButtonIcon
-              style={{ position:'absolute',top: "2px", right: "12px" }}
-              onClick={() => setModalIsOpen(true)}/>}
+              style={{ position: "absolute", top: "2px", right: "12px" }}
+              onClick={() => setModalIsOpen(true)}
+            />
+          )}
         </HighlightHeader>
         <HighlightPhotoContainer>
           {cardList.map(card => (
@@ -98,22 +100,29 @@ export default function HighlightsMenu({ setStickyPos }) {
               card={card}
               deleteCard={deleteCard}
               counter={counter}
-              showcase={showcase}/>))}
+              showcase={showcase}
+            />
+          ))}
         </HighlightPhotoContainer>
       </HighlightMenuCard>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={modalStyle}>
-        {(showcasePhotos.length === 0)&& 
+        style={modalStyle}
+      >
+        {showcasePhotos.length === 0 && (
           <HighlightAddCollection
             cardList={cardList}
             setCardList={setCardList}
-            closeModal={closeModal}/>}
-        {(showcasePhotos.length > 0)&&
-          <HightLightsShowcase 
             closeModal={closeModal}
-            photoList={showcasePhotos}/>}
+          />
+        )}
+        {showcasePhotos.length > 0 && (
+          <HightLightsShowcase
+            closeModal={closeModal}
+            photoList={showcasePhotos}
+          />
+        )}
       </Modal>
     </>
   );
