@@ -27,6 +27,8 @@ export default function HighlightCard({
       </Carousel>
       <ButtonBackground>
         <ButtonIcon
+          width='24px'
+          height='24px'
           rotate={45}
           onClick={() => deleteCard(card)}/>
       </ButtonBackground>

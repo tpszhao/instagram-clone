@@ -88,6 +88,8 @@ export default function HighlightsMenu({ setStickyPos }) {
           <span>Highlights</span>
           {cardList.length < 3 && (
             <ButtonIcon
+              width='24px'
+              height='24px'
               style={{ position: "absolute", top: "2px", right: "12px" }}
               onClick={() => setModalIsOpen(true)}
             />
