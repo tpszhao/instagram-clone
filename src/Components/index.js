@@ -1,7 +1,8 @@
-export { default as NavBar } from "./NavBar";
+export { NavBar } from './NavBar/'
 export { default as ButtonIcon } from "./ButtonIcon";
 export { default as ImageLazyLoader} from './ImageLazyLoader'
 export { default as Carousel } from "./Carousel";
+
 
 export { InfinitePhotoLoader, Card, CardLoader} from "./InfiniteLoader";
 
