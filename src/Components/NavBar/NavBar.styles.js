@@ -58,6 +58,9 @@ export const SearchSuggestions = styled.div`
     border: 1px solid rgb(219, 219, 219);
     cursor: text;
     z-index: 1;   
+    &:empty{
+        border:none;
+    }
 `;
 
 export const SuggestionItem = styled.div`
