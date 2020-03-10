@@ -5,6 +5,7 @@ import { localGet, localSet } from "API/local";
 import { 
   HighlightAddCollection, 
   HighlightCard, 
+  HighlightModal,
   ButtonIcon,
   Showcase,
   CustomModal
@@ -110,20 +111,12 @@ export default function HighlightsMenu({ setStickyPos }) {
       <CustomModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}>
-        {showcasePhotos.length === 0 && (
-          <HighlightAddCollection
+          <HighlightModal
+            showcasePhotos={showcasePhotos}
+            initialSlide={initialSlide}
             cardList={cardList}
             setCardList={setCardList}
-            closeModal={closeModal}
-          />
-        )}
-        {showcasePhotos.length > 0 && (
-          <Showcase
-            closeModal={closeModal}
-            photoList={showcasePhotos}
-            initialSlide={initialSlide}
-          />
-        )}
+            closeModal={closeModal}/>
       </CustomModal>
     </>
   );
