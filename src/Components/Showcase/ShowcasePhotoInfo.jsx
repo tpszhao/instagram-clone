@@ -14,8 +14,6 @@ const Container = styled.div`
     justify-content: space-between;
     flex-grow:1;
 
-    background-color:rgb(219, 219, 219);
-
     transition:0.2s;
 `;
 

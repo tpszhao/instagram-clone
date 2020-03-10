@@ -24,7 +24,7 @@ const BottomContainer = styled.div`
   flex-direction:column;
   width:100%;
 
-  background-color:rgb(219, 219, 219);
+  background-color:white;
 `;
 
 
