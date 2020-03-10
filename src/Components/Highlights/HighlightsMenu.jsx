@@ -3,11 +3,9 @@ import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
 import { 
-  HighlightAddCollection, 
   HighlightCard, 
   HighlightModal,
   ButtonIcon,
-  Showcase,
   CustomModal
 } from "Components";
 import {
