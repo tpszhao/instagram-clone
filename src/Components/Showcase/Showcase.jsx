@@ -38,7 +38,7 @@ const buttonStyle = {
   height: "40px"
 };
 
-export default function HightLightsShowcase({ photoList, closeModal }) {
+export default function HightLightsShowcase({ photoList, closeModal, showUserAvatar=true }) {
   const pictureCarousel = useRef(null);
   const [slickIndex, setNextIndex] = useState(0);
 
@@ -49,12 +49,17 @@ export default function HightLightsShowcase({ photoList, closeModal }) {
   const previous = () => {
     pictureCarousel.current.slickPrev();
   };
+
+  const beforeChange = (oldIndex,newIndex)=>{
+    console.log(newIndex);
+    setNextIndex(newIndex);
+  }
   return (
     <Container>
       <Carousel
         reference={pictureCarousel}
         containerCSS={carouselStyle}
-        afterChange={setNextIndex}>
+        beforeChange={beforeChange}>
         {photoList.map(photo => (
           <ImageLazyLoader
             key={photo.id}
@@ -65,7 +70,9 @@ export default function HightLightsShowcase({ photoList, closeModal }) {
         ))}
       </Carousel>
       <ToolBar>
-        <ShowcasePhotoInfo photo={photoList[slickIndex]}/>
+        <ShowcasePhotoInfo 
+          showUserAvatar={showUserAvatar}
+          photo={photoList[slickIndex]}/>
         <ButtonContainer>
           <ButtonIcon
             {...buttonStyle}

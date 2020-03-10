@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -37,10 +37,10 @@ const PhotoStat = styled.span`
 `;
 
 
-export default function ShowcasePhotoInfo({photo,showUser=true}) {
+export default function ShowcasePhotoInfo({photo,showUserAvatar=true}) {
     return (
-        <Container key={photo.id}>
-            {showUser&&
+        <Container>
+            {showUserAvatar&&
             <UserLink to={`/user/${photo.user.username}`}>
                 <ProfileImage
                     src={photo.user.profile_image.medium}
