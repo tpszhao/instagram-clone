@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
-import { Container, Item } from "Styles/Carousel";
+import { Container, Item } from "./Carousel.styles";
 
 var defaultSetting = {
   autoplaySpeed: 1000,
@@ -21,7 +21,8 @@ export default function Carousel({
   autoplay = false,
   counter,
   children,
-  afterChange
+  afterChange,
+  beforeChange
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
   const container = useRef(null);
@@ -51,7 +52,9 @@ export default function Carousel({
         autoplay={autoplay}
         vertical={vertical}
         afterChange={index => afterChange && afterChange(index)}
-      >
+        beforeChange={(oldIndex,newIndex)=>{
+          beforeChange && beforeChange(oldIndex,newIndex)
+        }}>
         {children.map((child, i) => {
           return (
             <Item key={i} {...itemSize}>
