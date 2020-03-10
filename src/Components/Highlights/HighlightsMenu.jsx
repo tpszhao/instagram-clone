@@ -1,52 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
-import { HighlightAddCollection, HighlightCard, ButtonIcon } from "Components";
+import { ButtonIcon,CustomModal} from 'Components';
+import {HighlightCard,HighlightModal} from './';
 import {
   HighlightMenuCard,
   HighlightHeader,
   HighlightPhotoContainer
 } from "./Highlights.styles";
 
-import {Showcase} from "Components/Showcase";
-
-const modalStyle = {
-  overlay: {
-    zIndex:50,
-    backgroundColor: 'rgb(219, 219, 219,0.5)'
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    border: "none",
-    padding: "none",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: 'rgb(219, 219, 219,0.8)'
-  }
-};
-Modal.setAppElement("#root");
 
 export default function HighlightsMenu({ setStickyPos }) {
   const [cardList, setCardList] = useState([]);
   const [showcasePhotos, setShowcasePhotos] = useState([]);
+  const [initialSlide, setInitialSlide] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    const autoPlay = setInterval(() => {
-      setCounter(idx => idx + 1);
-    }, 3000);
     const keywordList = localGet("Highlights", []);
     Promise.all(keywordList.map(fetchPhotos)).then(photoLists =>
       updateCardList(photoLists, keywordList)
     );
-    return () => clearInterval(autoPlay);
   }, []);
+
+  useEffect(() => {
+    let autoPlay;
+    if(!modalIsOpen){
+      autoPlay = setInterval(() => {
+        setCounter(idx => idx + 1);
+      }, 3000);
+    }
+    return () => {
+      clearInterval(autoPlay);
+    };
+  }, [modalIsOpen])
 
   useEffect(() => {
     const keywordList = cardList.map(card => card.keyword);
@@ -81,8 +70,9 @@ export default function HighlightsMenu({ setStickyPos }) {
     setShowcasePhotos([]);
   };
 
-  const showcase = photoList => {
+  const showcase = (photoList,initialSlide) => {
     setShowcasePhotos(photoList);
+    setInitialSlide(initialSlide);
     setModalIsOpen(true);
   };
 
@@ -112,25 +102,16 @@ export default function HighlightsMenu({ setStickyPos }) {
           ))}
         </HighlightPhotoContainer>
       </HighlightMenuCard>
-      <Modal
+      <CustomModal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={modalStyle}
-      >
-        {showcasePhotos.length === 0 && (
-          <HighlightAddCollection
+        onRequestClose={closeModal}>
+          <HighlightModal
+            showcasePhotos={showcasePhotos}
+            initialSlide={initialSlide}
             cardList={cardList}
             setCardList={setCardList}
-            closeModal={closeModal}
-          />
-        )}
-        {showcasePhotos.length > 0 && (
-          <Showcase
-            closeModal={closeModal}
-            photoList={showcasePhotos}
-          />
-        )}
-      </Modal>
+            closeModal={closeModal}/>
+      </CustomModal>
     </>
   );
 }
