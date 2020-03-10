@@ -2,8 +2,11 @@ import React,{useState} from 'react'
 import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
 import capitalize from 'Utilities/capitalize'
+import { ButtonIcon } from 'Components';
+import searchIcon from "SVG/searchIcon.svg"
 import {
     ModalContainer, 
+    Form,
     SearchInput, 
     Photo, 
     AddToCollection
@@ -13,9 +16,11 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
     const [message, setMessage] = useState(null);
     const [card, setCard] = useState(null);
     const [searchValue, setSearchValue] = useState();
+    const [isSearching, setIsSearching] = useState(false);
 
     const onChange = e=>{
         setSearchValue(e.target.value);
+        setIsSearching(true);
     }
 
     const handleSubmit = e =>{
@@ -53,14 +58,31 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
                 <Photo 
                     src={card.photoList[0].urls.regular} 
                     alt="placeholder"/>}
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <ButtonIcon 
+                    width='28px' 
+                    height='28px'
+                    onClick={handleSubmit}
+                    src={searchIcon} />
                 <SearchInput 
                     onChange={onChange}
                     value={searchValue} 
+                    onFocus={()=>setIsSearching(true)}
+                    onBlur={()=>setIsSearching(false)}
                     type="text" 
                     placeholder="Search for photos"/>
-            </form>
-            {card&&<AddToCollection onClick={addToCollection}>Add to Collection</AddToCollection>}
+                <ButtonIcon 
+                    opacity={isSearching?1:0}
+                    width='14px' 
+                    height='14px'
+                    rotate={45}
+                    onClick={()=>setSearchValue("")}/>
+            </Form>
+            {card&&
+            <AddToCollection 
+                onClick={addToCollection}>
+                Add to Collection
+            </AddToCollection>}
         </ModalContainer>
     )
 }

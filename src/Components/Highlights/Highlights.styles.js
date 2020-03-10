@@ -17,12 +17,36 @@ export const ModalContainer = styled.div`
     padding:30px;
 `;
 
-export const SearchInput = styled.input`
-    line-height: 20px;
-    text-align: center;
-    outline: none;
-    border: 1px solid rgb(219,219,219);
+export const Form = styled.form`
+    position:relative;
+    width:300px;
+    max-width:calc(100% - 96px);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0px 10px;
+    border-radius:14px;
+    border: 1px solid rgb(219, 219, 219);
 `;
+
+export const SearchInput = styled.input`
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    line-height: 28px;
+    outline: none;
+    border:none;
+    text-align:center;
+    padding: 0px 20px;
+    &:focus{
+        text-align:left;
+    } 
+`;
+
+
+
 
 export const Photo = styled.img`
     margin:10px;

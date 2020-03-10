@@ -10,7 +10,7 @@ import {
   HighlightPhotoContainer
 } from "./Highlights.styles";
 
-import HightLightsShowcase from "./HightLightsShowcase";
+import {Showcase} from "Components/Showcase";
 
 const modalStyle = {
   content: {
@@ -120,7 +120,7 @@ export default function HighlightsMenu({ setStickyPos }) {
           />
         )}
         {showcasePhotos.length > 0 && (
-          <HightLightsShowcase
+          <Showcase
             closeModal={closeModal}
             photoList={showcasePhotos}
           />
