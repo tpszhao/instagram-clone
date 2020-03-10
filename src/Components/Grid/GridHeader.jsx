@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Image,Title,Stats} from 'Styles/GridHeader'
+import {Container,Image,Title,Stats} from './GridHeader.styles'
 
 export default function GridHeader({src,title,statList=[]}) {    
     return (

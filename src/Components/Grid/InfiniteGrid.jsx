@@ -3,7 +3,7 @@ import { GridItem, GridLoader } from "Components";
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
-import {GridContainer} from 'Styles/Grid';
+import {GridContainer} from './Grid.styles';
 import {
   startLoading,
   nextPage,
