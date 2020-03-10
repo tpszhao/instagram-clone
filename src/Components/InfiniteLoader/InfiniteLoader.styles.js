@@ -28,7 +28,7 @@ export const UserInfo = styled(Link)`
 `;
 
 export const ProfileImage = styled.img`
-    margin: 5px;
+    margin: 8px;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -43,7 +43,7 @@ export const PhotoStat = styled.div`
     display: flex;
     width: 100%;
     padding: 10px;
-    padding-left: 30px;
+    padding-left: 8px;
 `;
 
 export const InfiniteContainer = styled.div`

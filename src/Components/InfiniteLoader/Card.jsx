@@ -11,7 +11,7 @@ import {
 const imageContainerCSS=css`
   overflow:hidden;
   width: 100%;
-  min-height:300px;
+  min-height:30vmin;
   max-height: 700px;
 `;
 
