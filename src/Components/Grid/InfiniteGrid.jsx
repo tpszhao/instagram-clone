@@ -1,15 +1,7 @@
 import React from "react";
 import { GridItem, GridLoader } from "Components";
-import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
-import unsplash from "API/unsplash";
 import {GridContainer} from './Grid.styles';
-import {
-  startLoading,
-  nextPage,
-  updateTotal,
-  noMoreResults,
-  requestError} from 'Actions/InfiniteGridActions'
 
 const mapPhotos = photo =>{
   const src = photo.urls.regular;
@@ -36,8 +28,8 @@ const mapData = {
 
 export default function InfiniteGrid({ 
   query, 
-  searchValue, 
   searchType,
+  searchValue, 
   state:{dataList,page,hasMore,isLoading,allowFetching},
   dispatch
 }) {

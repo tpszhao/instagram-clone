@@ -2,7 +2,7 @@ import React,{ useEffect, useReducer } from 'react'
 import styled from 'styled-components';
 import { InfiniteGrid,GridHeader } from 'Components'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteGridActions'
+import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
 import searchIcon from 'SVG/searchIcon.svg'
 
 const PageContainer = styled.div`

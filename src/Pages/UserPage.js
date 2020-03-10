@@ -4,7 +4,7 @@ import {toJson} from 'unsplash-js'
 import {InfiniteGrid, GridHeader} from 'Components'
 import unsplash from 'API/unsplash'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, allowFetching } from 'Actions/InfiniteGridActions'
+import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
 
 const PageContainer = styled.div`
     margin: auto;
