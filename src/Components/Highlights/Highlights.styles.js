@@ -96,10 +96,10 @@ export const Card = styled.div`
 
 export const CardHeaderLink = styled(Link)`
     position:relative;
-    padding-left:20px;
     align-self:flex-start;
-    text-decoration:none!important;
+    text-decoration:none;
     color:black;
+    line-height:24px;
     cursor:pointer;
 `;
 
@@ -111,17 +111,12 @@ export const cardCSS = css`
 `;
 
 
-export const ButtonBackground = styled.div`
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 30px;
-    opacity: 0;
-    transition:0.2s;
-    &:hover {
-    opacity: 1;
-    }
+export const ToolBar = styled.div`
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0px 5%;
 `;
 
 export const HighlightMenuCard = styled.div`

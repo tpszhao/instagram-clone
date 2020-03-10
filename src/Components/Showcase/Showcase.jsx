@@ -42,7 +42,12 @@ const buttonStyle = {
   height: "24px"
 };
 
-export default function HightLightsShowcase({ photoList, closeModal, showUserAvatar=true }) {
+export default function HightLightsShowcase({ 
+  initialSlide=0,
+  photoList, 
+  closeModal, 
+  showUserAvatar=true 
+}) {
   const pictureCarousel = useRef(null);
   const [slickIndex, setNextIndex] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -70,6 +75,7 @@ export default function HightLightsShowcase({ photoList, closeModal, showUserAva
         reference={pictureCarousel}
         containerCSS={carouselStyle}
         beforeChange={beforeChange}
+        initialSlide={initialSlide}
         >
         {photoList.map(photo => (
           <ImageLazyLoader
