@@ -8,7 +8,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  flex-wrap:wrap;
   overflow: hidden;
   width: 70vw;
   height: 80vh;
@@ -20,16 +19,22 @@ const carouselStyle = css`
   height: calc(100% - 100px);
 `;
 
+const BottomContainer = styled.div`
+  display:flex;
+  flex-direction:column;
+  width:100%;
+
+  background-color:rgb(219, 219, 219);
+`;
+
+
 const ToolBar = styled.div`
+  padding:8px 16px;
   display:flex;
   flex-wrap:wrap;
   justify-content:flex-end;
   align-items:center;
   width:100%;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
 `;
 
 const buttonStyle = {
@@ -75,22 +80,21 @@ export default function HightLightsShowcase({ photoList, closeModal, showUserAva
           />
         ))}
       </Carousel>
-      <ToolBar>
+      <BottomContainer>
         <ShowcasePhotoInfo 
           opacity={opacity}
           showUserAvatar={showUserAvatar}
           photo={photoList[slickIndex]}/>
-        <ButtonContainer>
+        <ToolBar>
           <ButtonIcon
             {...buttonStyle}
             src={nextIcon}
             onClick={previous}
-            rotate={180}
-          />
+            rotate={180}/>
           <ButtonIcon {...buttonStyle} src={nextIcon} onClick={next} />
           <ButtonIcon {...buttonStyle} rotate={45} onClick={() => closeModal()} />
-        </ButtonContainer>
-      </ToolBar>
+        </ToolBar>
+      </BottomContainer>
     </Container>
   );
 }

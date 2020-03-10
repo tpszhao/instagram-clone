@@ -4,7 +4,7 @@ export const SearchBar = styled.div`
     background-color: white;
     position: sticky;
     top: 0px;
-    z-index: 20;
+    z-index:1;
     width: 100%;
     max-width: 100vw;
     height: 52px;

@@ -29,6 +29,8 @@ export const Form = styled.form`
     padding:0px 10px;
     border-radius:14px;
     border: 1px solid rgb(219, 219, 219);
+
+    background-color:${props => props.backgroundColor||'white'};
 `;
 
 export const SearchInput = styled.input`

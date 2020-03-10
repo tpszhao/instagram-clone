@@ -13,6 +13,10 @@ import {
 import {Showcase} from "Components/Showcase";
 
 const modalStyle = {
+  overlay: {
+    zIndex:50,
+    backgroundColor: 'rgb(219, 219, 219,0.5)'
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -21,7 +25,8 @@ const modalStyle = {
     border: "none",
     padding: "none",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    backgroundColor: 'rgb(219, 219, 219,0.8)'
   }
 };
 Modal.setAppElement("#root");
