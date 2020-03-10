@@ -1,9 +1,17 @@
 import React,{ useEffect, useReducer } from 'react'
 import styled from 'styled-components';
-import { InfiniteGrid,GridHeader } from 'Components'
+import { 
+    GridHeader,
+    GridContainer,
+    GridItem,
+    GridLoader,
+    InfiniteLoader
+} from 'Components'
 import GridReducer, { initialState } from 'Reducers/GridReducer'
 import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
+import extractProps from 'Utilities/infiniteLoaderExtractProps'
 import searchIcon from 'SVG/searchIcon.svg'
+
 
 const PageContainer = styled.div`
     margin: auto;
@@ -37,8 +45,6 @@ const SearchTypeLink = styled.div`
     }
 `;
 
-
-
 const SearchHeader = ({searchValue,searchType, total})=>{
     const title = `Search results for "${searchValue}"`;
     const statList = (total !== null)?[`${total} ${searchType} found`]:[];
@@ -55,6 +61,8 @@ export default function SearchPage({history,match}) {
         photos:photosDispatch,
         collections:collectionsDispatch
     };
+    const dataList = state[searchType].dataList;
+    const getProps = extractProps[searchType];
 
     useEffect(() => {
         dispatch[searchType](allowFetching);
@@ -94,12 +102,20 @@ export default function SearchPage({history,match}) {
                     Collections
                 </SearchTypeLink>
             </SearchTypeList>
-            <InfiniteGrid
+            <InfiniteLoader
+                query="search"
+                searchType={searchType}
+                searchValue={searchValue}
                 state={state[searchType]}
                 dispatch={dispatch[searchType]}
-                query='search'
-                searchType={searchType}
-                searchValue={searchValue}/>
+                loader={<GridLoader key='loading'/>}>
+                <GridContainer>
+                    {dataList.map((item,i)=>{
+                        const props = getProps(item);
+                        return <GridItem {...props} onClick={()=>console.log(i)}/>
+                    })}
+                </GridContainer>
+            </InfiniteLoader>
         </PageContainer>
     )
 }

@@ -19,6 +19,7 @@ export default function InfiniteLoader({
     state:{page,hasMore,isLoading,allowFetching},
     dispatch,
     ordered_by="latest",
+    loader = <div key={0}>loading</div>,
     children
 }) {
     const params = (searchType === 'listPhotos')?
@@ -57,7 +58,7 @@ export default function InfiniteLoader({
         pageStart={1}
         loadMore={loadMore}
         hasMore={hasMore&&allowFetching}
-        loader={<div key={0}>loading</div>}
+        loader={loader}
         useWindow={true}>
             {children}
         </InfiniteScroll>
