@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
-import { 
-  HighlightCard, 
-  HighlightModal,
-  ButtonIcon,
-  CustomModal
-} from "Components";
+import { ButtonIcon,CustomModal} from 'Components';
+import {HighlightCard,HighlightModal} from './';
 import {
   HighlightMenuCard,
   HighlightHeader,

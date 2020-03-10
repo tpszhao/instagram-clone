@@ -1,5 +1,6 @@
 import React from 'react';
-import {HighlightAddCollection,Showcase} from 'Components';
+import {Showcase} from 'Components';
+import {HighlightAddCollection} from './'
 
 export default function HighlightModal({
     showcasePhotos=[],
