@@ -1,14 +1,20 @@
-import React,{useEffect,useState} from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Container = styled.div`
+    opacity:${props=>props.opacity};
+
     position: relative;
     height: 60px;
-    width:calc(100% - 120px);
+    padding:0px 16px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-grow:1;
+
+    transition:0.2s;
 `;
 
 const UserLink = styled(Link)`
@@ -37,9 +43,13 @@ const PhotoStat = styled.span`
 `;
 
 
-export default function ShowcasePhotoInfo({photo,showUserAvatar=true}) {
+export default function ShowcasePhotoInfo({
+    photo,
+    showUserAvatar=true,
+    opacity=1
+}) {
     return (
-        <Container>
+        <Container opacity={opacity}>
             {showUserAvatar&&
             <UserLink to={`/user/${photo.user.username}`}>
                 <ProfileImage

@@ -21,8 +21,7 @@ export default function Carousel({
   autoplay = false,
   counter,
   children,
-  afterChange,
-  beforeChange
+  ...rest
 }) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
   const container = useRef(null);
@@ -51,10 +50,7 @@ export default function Carousel({
         ref={slider}
         autoplay={autoplay}
         vertical={vertical}
-        afterChange={index => afterChange && afterChange(index)}
-        beforeChange={(oldIndex,newIndex)=>{
-          beforeChange && beforeChange(oldIndex,newIndex)
-        }}>
+        {...rest}>
         {children.map((child, i) => {
           return (
             <Item key={i} {...itemSize}>

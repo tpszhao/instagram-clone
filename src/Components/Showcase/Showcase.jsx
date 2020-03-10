@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const carouselStyle = css`
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 100px);
 `;
 
 const ToolBar = styled.div`
@@ -26,7 +26,6 @@ const ToolBar = styled.div`
   justify-content:flex-end;
   align-items:center;
   width:100%;
-  height:60px;
 `;
 
 const ButtonContainer = styled.div`
@@ -34,13 +33,15 @@ const ButtonContainer = styled.div`
 `;
 
 const buttonStyle = {
-  width: "40px",
-  height: "40px"
+  width: "24px",
+  height: "24px"
 };
 
 export default function HightLightsShowcase({ photoList, closeModal, showUserAvatar=true }) {
   const pictureCarousel = useRef(null);
   const [slickIndex, setNextIndex] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+
 
   const next = () => {
     pictureCarousel.current.slickNext();
@@ -51,15 +52,20 @@ export default function HightLightsShowcase({ photoList, closeModal, showUserAva
   };
 
   const beforeChange = (oldIndex,newIndex)=>{
-    console.log(newIndex);
-    setNextIndex(newIndex);
+    setOpacity(0);
+    setTimeout(() => {
+      setOpacity(1);
+      setNextIndex(newIndex);
+    }, 200);
   }
+
   return (
     <Container>
       <Carousel
         reference={pictureCarousel}
         containerCSS={carouselStyle}
-        beforeChange={beforeChange}>
+        beforeChange={beforeChange}
+        >
         {photoList.map(photo => (
           <ImageLazyLoader
             key={photo.id}
@@ -71,6 +77,7 @@ export default function HightLightsShowcase({ photoList, closeModal, showUserAva
       </Carousel>
       <ToolBar>
         <ShowcasePhotoInfo 
+          opacity={opacity}
           showUserAvatar={showUserAvatar}
           photo={photoList[slickIndex]}/>
         <ButtonContainer>
