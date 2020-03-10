@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
-import { Container, Item } from "Styles/Carousel";
+import { Container, Item } from "./Carousel.styles";
 
 var defaultSetting = {
   autoplaySpeed: 1000,

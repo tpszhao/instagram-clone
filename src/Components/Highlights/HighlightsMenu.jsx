@@ -8,7 +8,7 @@ import {
   HighlightMenuCard,
   HighlightHeader,
   HighlightPhotoContainer
-} from "Styles/Highlights";
+} from "./Highlights.styles";
 
 import HightLightsShowcase from "./HightLightsShowcase";
 

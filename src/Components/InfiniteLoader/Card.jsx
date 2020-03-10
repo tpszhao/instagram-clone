@@ -6,7 +6,7 @@ import {
   UserInfo,
   ProfileImage,
   UserName,
-  PhotoStat} from 'Styles/InfiniteLoader'
+  PhotoStat} from './InfiniteLoader.styles'
 
 const imageContainerCSS=css`
   overflow:hidden;

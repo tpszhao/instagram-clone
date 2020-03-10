@@ -7,7 +7,7 @@ import {
     SearchInput, 
     Photo, 
     AddToCollection
-} from 'Styles/Highlights'
+} from './Highlights.styles'
 
 export default function HighlightAddCollection({cardList,setCardList,closeModal}) {
     const [message, setMessage] = useState(null);

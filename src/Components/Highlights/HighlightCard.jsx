@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonIcon, Carousel, ImageLazyLoader } from "Components";
-import { Card, cardCSS, ButtonBackground, CardHeaderLink} from 'Styles/Highlights'
+import { Card, cardCSS, ButtonBackground, CardHeaderLink} from './Highlights.styles'
 
 export default function HighlightCard({ 
   card, 

@@ -12,7 +12,6 @@ const Container = styled.div`
   width: 70vw;
   height: 80vh;
   max-width: 100%;
-  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.8);
 `;
 
 const pictureCarouselStyle = css`
