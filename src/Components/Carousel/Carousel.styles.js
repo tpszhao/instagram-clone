@@ -12,5 +12,6 @@ export const Item = styled.div`
   display:flex !important;
   justify-content: center;
   align-items: center;
+  background-color:"rgb(219, 219, 219)"
 `;
 

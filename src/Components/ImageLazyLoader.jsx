@@ -8,11 +8,12 @@ const Container = styled.div`
 
 const Overlay = styled.div`
     position:absolute;
+    z-index:2;
     width:100%;
     height:100%;
+    opacity:${props=>props.opacity};
     background-color:${props=>`${props.placeholderColor||'grey'}`};
-    opacity:${props=>props.isLoading? 1 : 0};
-    transition:0.5s;
+    transition: 0.5s;
 `;
 
 const Image = styled.img`
@@ -33,18 +34,19 @@ export default function ImageLazyLoader({
     imageContainerCSS=defaultImageContainerCSS,
     onClick=()=>{}
 }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [opacity, setOpacity] = useState(1);
+
     return (
         <Container 
             imageContainerCSS={imageContainerCSS}
             onClick={onClick}>
             <Overlay 
-                isLoading={isLoading}
-                placeholderColor={placeholderColor}/>
+                opacity={opacity}
+                placeholderColor={'blue'}/>
             <Image 
                 src={src}
                 objectFit={objectFit}
-                onLoad={()=>setIsLoading(false)}
+                onLoad={()=>setOpacity(0)}
                 alt="placeholder"/>
         </Container>
     )

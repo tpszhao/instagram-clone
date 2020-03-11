@@ -27,7 +27,7 @@ export default function HighlightCard({
         counter={counter}
         containerCSS={cardCSS}
         onClick={()=>showcase(photoList,currentSlide.current)}
-        beforeChange={(oldIndex,newIndex)=>currentSlide.current = oldIndex}
+        beforeChange={(oldIndex,newIndex)=>currentSlide.current = newIndex}
         >
         {photoList.map(photo=>(
             <ImageLazyLoader 

@@ -43,7 +43,7 @@ export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
             <Card 
               key={photo.id} 
               photo={photo}
-              onClick={()=>startShowcase(i-1)}/>)
+              onClick={()=>startShowcase(i)}/>)
         })}
       </InfiniteContainer>
     </InfiniteLoader>
