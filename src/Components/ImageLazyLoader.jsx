@@ -42,7 +42,7 @@ export default function ImageLazyLoader({
             onClick={onClick}>
             <Overlay 
                 opacity={opacity}
-                placeholderColor={'blue'}/>
+                placeholderColor={placeholderColor}/>
             <Image 
                 src={src}
                 objectFit={objectFit}
