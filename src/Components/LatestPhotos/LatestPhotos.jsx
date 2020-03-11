@@ -1,17 +1,34 @@
-import React, { useEffect,useReducer } from "react";
-import { Card, CardLoader, InfiniteLoader } from "Components";
+import React, { useState,useEffect,useReducer } from "react";
+import { 
+  Card, 
+  CardLoader, 
+  InfiniteLoader,
+  CustomModal,
+  Showcase
+} from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
-import { allowFetching } from 'Actions/InfiniteLoaderActions'
+import { allowFetching } from 'Actions/InfiniteLoaderActions';
 
 
-export default function LatestPhotos() {
+export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
   const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
   const {dataList:photoList} = state;
 
   useEffect(() => {
     dispatch(allowFetching);
   }, [])
+
+  const closeModal = ()=>setModalIsOpen(false);
+  const startShowcase = (startIndex=0)=>{
+    const modalScreen = (
+      <Showcase 
+        photoList={photoList} 
+        initialSlide={startIndex}
+        closeModal={closeModal}/>)
+    setModalScreen(modalScreen);
+    setModalIsOpen(true);
+  }
 
   return (
     <InfiniteLoader
@@ -26,7 +43,7 @@ export default function LatestPhotos() {
             <Card 
               key={photo.id} 
               photo={photo}
-              onClick={()=>console.log(i)}/>)
+              onClick={()=>startShowcase(i-1)}/>)
         })}
       </InfiniteContainer>
     </InfiniteLoader>

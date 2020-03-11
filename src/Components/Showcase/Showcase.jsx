@@ -9,14 +9,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 70vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
   max-width: 100%;
 `;
 
 const carouselStyle = css`
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 90px);
 `;
 
 const BottomContainer = styled.div`
@@ -42,7 +42,7 @@ const buttonStyle = {
   height: "24px"
 };
 
-export default function HightLightsShowcase({ 
+export default function Showcase({ 
   initialSlide=0,
   photoList, 
   closeModal, 
@@ -82,8 +82,7 @@ export default function HightLightsShowcase({
             key={photo.id}
             objectFit="scale-down"
             src={photo.urls.regular}
-            placeholderColor={photo.color}
-          />
+            placeholderColor={photo.color}/>
         ))}
       </Carousel>
       <BottomContainer>

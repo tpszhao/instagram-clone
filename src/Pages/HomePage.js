@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import {LatestPhotos,HighlightsMenu} from 'Components'
+import {LatestPhotos,HighlightsMenu, CustomModal} from 'Components'
 
 const Container = styled.div`
     max-width:100vw;
@@ -34,12 +34,28 @@ const SideBar = styled.div`
 
 export default function HomePage() {
     const [stickyPos, setStickyPos] = useState(0);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalScreen, setModalScreen] = useState(null);
+
     return (
-        <Container>
-            <LatestPhotos/>
-            <SideBar stickyPos={stickyPos}>
-                <HighlightsMenu setStickyPos={setStickyPos}/>
-            </SideBar>
-        </Container>
+        <>
+            <Container>
+                <LatestPhotos
+                    setModalIsOpen={setModalIsOpen}
+                    setModalScreen={setModalScreen}/>
+                <SideBar stickyPos={stickyPos}>
+                    <HighlightsMenu 
+                        setStickyPos={setStickyPos}
+                        modalIsOpen={modalIsOpen}
+                        setModalIsOpen={setModalIsOpen}
+                        setModalScreen={setModalScreen}/>
+                </SideBar>
+            </Container>
+            <CustomModal
+                isOpen={modalIsOpen}
+                onRequestClose={()=>setModalIsOpen(false)}>
+                {modalScreen}
+            </CustomModal>
+        </>
     )
 }
