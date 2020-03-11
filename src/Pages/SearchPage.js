@@ -5,7 +5,9 @@ import {
     GridContainer,
     GridItem,
     GridLoader,
-    InfiniteLoader
+    InfiniteLoader,
+    CustomModal,
+    Showcase
 } from 'Components'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
@@ -84,37 +86,40 @@ export default function SearchPage({history,match}) {
     }
 
     return (
-        <PageContainer>
-            <SearchHeader 
-                searchValue={searchValue} 
-                searchType={searchType}
-                total={state[searchType].total}/>
-            <SearchTypeList>
-                <SearchTypeLink 
-                    onClick={()=>changeSearchType('photos')}
-                    isSelected={searchType === 'photos'}>
-                    Photos
-                </SearchTypeLink>
-                <SearchTypeLink 
-                    onClick={()=>changeSearchType('collections')}
-                    isSelected={searchType === 'collections'}>
-                    Collections
-                </SearchTypeLink>
-            </SearchTypeList>
-            <InfiniteLoader
-                query="search"
-                searchType={searchType}
-                searchValue={searchValue}
-                state={state[searchType]}
-                dispatch={dispatch[searchType]}
-                loader={<GridLoader key='loading'/>}>
-                <GridContainer>
-                    {dataList.map((item,i)=>{
-                        const props = getProps[searchType](item);
-                        return <GridItem {...props} onClick={()=>console.log(i)}/>
-                    })}
-                </GridContainer>
-            </InfiniteLoader>
-        </PageContainer>
+        <>
+            <PageContainer>
+                <SearchHeader 
+                    searchValue={searchValue} 
+                    searchType={searchType}
+                    total={state[searchType].total}/>
+                <SearchTypeList>
+                    <SearchTypeLink 
+                        onClick={()=>changeSearchType('photos')}
+                        isSelected={searchType === 'photos'}>
+                        Photos
+                    </SearchTypeLink>
+                    <SearchTypeLink 
+                        onClick={()=>changeSearchType('collections')}
+                        isSelected={searchType === 'collections'}>
+                        Collections
+                    </SearchTypeLink>
+                </SearchTypeList>
+                <InfiniteLoader
+                    query="search"
+                    searchType={searchType}
+                    searchValue={searchValue}
+                    state={state[searchType]}
+                    dispatch={dispatch[searchType]}
+                    loader={<GridLoader key='loading'/>}>
+                    <GridContainer>
+                        {dataList.map((item,i)=>{
+                            const props = getProps[searchType](item);
+                            return <GridItem {...props} onClick={()=>console.log(i)}/>
+                        })}
+                    </GridContainer>
+                </InfiniteLoader>
+            </PageContainer>
+
+        </>
     )
 }
