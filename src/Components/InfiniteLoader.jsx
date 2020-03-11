@@ -15,7 +15,7 @@ import {
 export default function InfiniteLoader({
     query, 
     searchType,
-    searchValue, 
+    searchValue='', 
     state:{page,hasMore,isLoading,allowFetching},
     dispatch,
     ordered_by="latest",
@@ -34,14 +34,15 @@ export default function InfiniteLoader({
             const json = await toJson(response);
             let results;
             switch (query) {
-            case "users":
-                results = json;
-                break;
-            case "search":
-                dispatch(updateTotal(json.total));
-                results = json.results;
-                break;
-            default:
+                case "users":
+                case "photos":
+                    results = json;
+                    break;
+                case "search":
+                    dispatch(updateTotal(json.total));
+                    results = json.results;
+                    break;
+                default:
             }
             dispatch(nextPage(results));
             if (!results.length) {

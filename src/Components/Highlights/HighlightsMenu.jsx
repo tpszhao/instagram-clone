@@ -7,7 +7,7 @@ import {HighlightCard,HighlightModal} from './';
 import {
   HighlightMenuCard,
   HighlightHeader,
-  HighlightPhotoContainer
+  HighlightCardsContainer
 } from "./Highlights.styles";
 
 
@@ -90,7 +90,7 @@ export default function HighlightsMenu({ setStickyPos }) {
             />
           )}
         </HighlightHeader>
-        <HighlightPhotoContainer>
+        <HighlightCardsContainer>
           {cardList.map(card => (
             <HighlightCard
               key={card.keyword}
@@ -100,7 +100,7 @@ export default function HighlightsMenu({ setStickyPos }) {
               showcase={showcase}
             />
           ))}
-        </HighlightPhotoContainer>
+        </HighlightCardsContainer>
       </HighlightMenuCard>
       <CustomModal
         isOpen={modalIsOpen}

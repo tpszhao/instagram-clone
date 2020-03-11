@@ -7,7 +7,7 @@ export { default as CustomModal} from './CustomModal';
 
 export { default as InfiniteLoader } from './InfiniteLoader'
 
-export { InfinitePhotoLoader, Card, CardLoader} from "./LatestPhotos";
+export { LatestPhotos, Card, CardLoader} from "./LatestPhotos";
 
 export {GridItem, GridLoader, GridHeader, GridContainer } from "./Grid";
 

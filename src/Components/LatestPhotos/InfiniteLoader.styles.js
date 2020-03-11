@@ -22,8 +22,8 @@ export const CardContainer = styled.div`
 export const UserInfo = styled(Link)`
     display: flex;
     align-items: center;
+    align-self:flex-start;
     height: 60px;
-    width: 100%;
     text-decoration: none;
 `;
 
@@ -42,8 +42,7 @@ export const UserName = styled.span`
 export const PhotoStat = styled.div`
     display: flex;
     width: 100%;
-    padding: 10px;
-    padding-left: 8px;
+    padding: 8px;
 `;
 
 export const InfiniteContainer = styled.div`
