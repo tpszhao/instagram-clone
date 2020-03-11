@@ -49,7 +49,7 @@ export default function Showcase({
   showUserAvatar=true 
 }) {
   const pictureCarousel = useRef(null);
-  const [slickIndex, setNextIndex] = useState(0);
+  const [slickIndex, setNextIndex] = useState(initialSlide);
   const [opacity, setOpacity] = useState(1);
 
 
