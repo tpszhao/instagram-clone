@@ -7,7 +7,7 @@ export const initialState={
     total:null
 }
 
-const GridReducer = (state = initialState,action) =>{
+const InfiniteLoaderReducer = (state = initialState,action) =>{
     switch(action.type){
         case "reset":
             return initialState;
@@ -32,4 +32,4 @@ const GridReducer = (state = initialState,action) =>{
     }
 }
 
-export default GridReducer;
+export default InfiniteLoaderReducer;

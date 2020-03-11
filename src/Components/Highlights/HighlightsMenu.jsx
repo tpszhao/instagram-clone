@@ -2,20 +2,22 @@ import React, { useState, useEffect } from "react";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
 import { localGet, localSet } from "API/local";
-import { ButtonIcon,CustomModal} from 'Components';
-import {HighlightCard,HighlightModal} from './';
+import { ButtonIcon, Showcase } from 'Components';
+import {HighlightCard,HighlightAddCollection} from './';
 import {
   HighlightMenuCard,
   HighlightHeader,
-  HighlightPhotoContainer
+  HighlightCardsContainer
 } from "./Highlights.styles";
 
 
-export default function HighlightsMenu({ setStickyPos }) {
+export default function HighlightsMenu({ 
+  setStickyPos,
+  modalIsOpen,
+  setModalIsOpen,
+  setModalScreen
+}) {
   const [cardList, setCardList] = useState([]);
-  const [showcasePhotos, setShowcasePhotos] = useState([]);
-  const [initialSlide, setInitialSlide] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
@@ -65,53 +67,51 @@ export default function HighlightsMenu({ setStickyPos }) {
     setCardList(newCardList);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setShowcasePhotos([]);
-  };
+  const addCollection = ()=>{
+    const modalScreen = (
+      <HighlightAddCollection
+        cardList={cardList}
+        setCardList={setCardList}
+        closeModal={()=>setModalIsOpen(false)}/>)
+    setModalIsOpen(true);
+    setModalScreen(modalScreen)
+  }
 
   const showcase = (photoList,initialSlide) => {
-    setShowcasePhotos(photoList);
-    setInitialSlide(initialSlide);
+    const modalScreen = (
+      <Showcase
+        closeModal={()=>setModalIsOpen(false)}
+        photoList={photoList}
+        initialSlide={initialSlide}/>
+    )
+    setModalScreen(modalScreen);
     setModalIsOpen(true);
   };
 
   return (
-    <>
-      <HighlightMenuCard length={cardList.length}>
-        <HighlightHeader>
-          <span>Highlights</span>
-          {cardList.length < 3 && (
-            <ButtonIcon
-              width='24px'
-              height='24px'
-              style={{ position: "absolute", top: "2px", right: "12px" }}
-              onClick={() => setModalIsOpen(true)}
-            />
-          )}
-        </HighlightHeader>
-        <HighlightPhotoContainer>
-          {cardList.map(card => (
-            <HighlightCard
-              key={card.keyword}
-              card={card}
-              deleteCard={deleteCard}
-              counter={counter}
-              showcase={showcase}
-            />
-          ))}
-        </HighlightPhotoContainer>
-      </HighlightMenuCard>
-      <CustomModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}>
-          <HighlightModal
-            showcasePhotos={showcasePhotos}
-            initialSlide={initialSlide}
-            cardList={cardList}
-            setCardList={setCardList}
-            closeModal={closeModal}/>
-      </CustomModal>
-    </>
+    <HighlightMenuCard length={cardList.length}>
+      <HighlightHeader>
+        <span>Highlights</span>
+        {cardList.length < 3 && (
+          <ButtonIcon
+            width='24px'
+            height='24px'
+            style={{ position: "absolute", top: "2px", right: "12px" }}
+            onClick={addCollection}
+          />
+        )}
+      </HighlightHeader>
+      <HighlightCardsContainer>
+        {cardList.map(card => (
+          <HighlightCard
+            key={card.keyword}
+            card={card}
+            deleteCard={deleteCard}
+            counter={counter}
+            showcase={showcase}
+          />
+        ))}
+      </HighlightCardsContainer>
+    </HighlightMenuCard>
   );
 }

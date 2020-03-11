@@ -5,10 +5,11 @@ export { default as ButtonIcon } from "./ButtonIcon";
 export { default as ImageLazyLoader} from './ImageLazyLoader';
 export { default as CustomModal} from './CustomModal';
 
+export { default as InfiniteLoader } from './InfiniteLoader'
 
-export { InfinitePhotoLoader, Card, CardLoader} from "./InfiniteLoader";
+export { LatestPhotos, Card, CardLoader} from "./LatestPhotos";
 
-export { InfiniteGrid, GridItem, GridLoader, GridHeader } from "./Grid";
+export {GridItem, GridLoader, GridHeader, GridContainer } from "./Grid";
 
 export { HighlightsMenu } from './Highlights'
 

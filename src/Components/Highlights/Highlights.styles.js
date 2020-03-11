@@ -146,7 +146,7 @@ export const HighlightHeader = styled.div`
     border-bottom: 1px solid rgb(219, 219, 219);
 `;
 
-export const HighlightPhotoContainer = styled.div`
+export const HighlightCardsContainer = styled.div`
     display: flex;
     flex-direction: column;
     @media only screen and (max-width: 976px) {

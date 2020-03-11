@@ -1,10 +1,18 @@
 import React,{useState,useEffect,useReducer} from 'react'
 import styled from 'styled-components';
 import {toJson} from 'unsplash-js'
-import {InfiniteGrid, GridHeader} from 'Components'
+import {
+    GridHeader,
+    GridContainer,
+    GridItem,
+    GridLoader,
+    InfiniteLoader
+} from 'Components'
 import unsplash from 'API/unsplash'
-import GridReducer, { initialState } from 'Reducers/GridReducer'
-import { reset, allowFetching } from 'Actions/InfiniteGridActions'
+import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
+import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
+import extractProps from 'Utilities/infiniteLoaderExtractProps'
+
 
 const PageContainer = styled.div`
     margin: auto;
@@ -32,7 +40,8 @@ const UserHeader = ({user}) => {
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
-    const [state, dispatch] = useReducer(GridReducer, initialState);
+    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const getProps = extractProps.photos;
 
     useEffect(() => {
         dispatch(reset);
@@ -51,12 +60,20 @@ export default function UserPage(props) {
     return (
         <PageContainer>
             <UserHeader user={user}/>
-            <InfiniteGrid
-                state={state}
-                dispatch={dispatch}
+            <InfiniteLoader
                 query='users'
                 searchType='photos'
-                searchValue={user.username} />
+                searchValue={user.username}
+                state={state}
+                dispatch={dispatch}
+                loader={<GridLoader key='loading'/>}>
+                <GridContainer>
+                    {state.dataList.map((item,i)=>{
+                        const props = getProps(item);
+                        return <GridItem {...props} onClick={()=>console.log(i)}/>
+                    })}
+                </GridContainer>
+            </InfiniteLoader>
         </PageContainer>
     )
 }
