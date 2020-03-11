@@ -94,9 +94,9 @@ export default function HighlightsMenu({
         <span>Highlights</span>
         {cardList.length < 3 && (
           <ButtonIcon
-            width='24px'
-            height='24px'
-            style={{ position: "absolute", top: "2px", right: "12px" }}
+            width='16px'
+            height='16px'
+            style={{position:'absolute', right:'8px'}}
             onClick={addCollection}
           />
         )}

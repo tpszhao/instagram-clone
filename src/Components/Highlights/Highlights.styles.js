@@ -139,10 +139,11 @@ export const HighlightMenuCard = styled.div`
 export const HighlightHeader = styled.div`
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 60px;
     width: 100%;
+    padding:0px 8px;
     border-bottom: 1px solid rgb(219, 219, 219);
 `;
 
