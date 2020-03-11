@@ -17,9 +17,9 @@ const collectionProps = collection=>{
     return props;
 }
 
-const extractProps = {
+const getProps = {
     photos:photoProps,
     collections:collectionProps
 }
 
-export default extractProps
+export default getProps

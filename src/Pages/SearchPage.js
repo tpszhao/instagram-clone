@@ -9,7 +9,7 @@ import {
 } from 'Components'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
-import extractProps from 'Utilities/infiniteLoaderExtractProps'
+import getProps from 'Utilities/getProps'
 import searchIcon from 'SVG/searchIcon.svg'
 
 
@@ -62,7 +62,6 @@ export default function SearchPage({history,match}) {
         collections:collectionsDispatch
     };
     const dataList = state[searchType].dataList;
-    const getProps = extractProps[searchType];
 
     useEffect(() => {
         dispatch[searchType](allowFetching);
@@ -111,7 +110,7 @@ export default function SearchPage({history,match}) {
                 loader={<GridLoader key='loading'/>}>
                 <GridContainer>
                     {dataList.map((item,i)=>{
-                        const props = getProps(item);
+                        const props = getProps[searchType](item);
                         return <GridItem {...props} onClick={()=>console.log(i)}/>
                     })}
                 </GridContainer>

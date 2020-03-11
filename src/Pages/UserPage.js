@@ -11,7 +11,7 @@ import {
 import unsplash from 'API/unsplash'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
-import extractProps from 'Utilities/infiniteLoaderExtractProps'
+import getProps from 'Utilities/getProps'
 
 
 const PageContainer = styled.div`
@@ -41,7 +41,6 @@ const UserHeader = ({user}) => {
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
     const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
-    const getProps = extractProps.photos;
 
     useEffect(() => {
         dispatch(reset);
@@ -69,7 +68,7 @@ export default function UserPage(props) {
                 loader={<GridLoader key='loading'/>}>
                 <GridContainer>
                     {state.dataList.map((item,i)=>{
-                        const props = getProps(item);
+                        const props = getProps.photos(item);
                         return <GridItem {...props} onClick={()=>console.log(i)}/>
                     })}
                 </GridContainer>
