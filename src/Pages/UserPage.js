@@ -9,7 +9,7 @@ import {
     InfiniteLoader
 } from 'Components'
 import unsplash from 'API/unsplash'
-import GridReducer, { initialState } from 'Reducers/GridReducer'
+import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
 import extractProps from 'Utilities/infiniteLoaderExtractProps'
 
@@ -40,7 +40,7 @@ const UserHeader = ({user}) => {
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
-    const [state, dispatch] = useReducer(GridReducer, initialState);
+    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
     const getProps = extractProps.photos;
 
     useEffect(() => {

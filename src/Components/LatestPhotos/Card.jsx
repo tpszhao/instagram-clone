@@ -9,6 +9,7 @@ import {
   PhotoStat} from './InfiniteLoader.styles'
 
 const imageContainerCSS=css`
+  cursor:pointer;
   overflow:hidden;
   width: 100%;
   min-height:30vmin;

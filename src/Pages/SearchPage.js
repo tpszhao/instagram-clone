@@ -7,7 +7,7 @@ import {
     GridLoader,
     InfiniteLoader
 } from 'Components'
-import GridReducer, { initialState } from 'Reducers/GridReducer'
+import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
 import extractProps from 'Utilities/infiniteLoaderExtractProps'
 import searchIcon from 'SVG/searchIcon.svg'
@@ -53,8 +53,8 @@ const SearchHeader = ({searchValue,searchType, total})=>{
 
 export default function SearchPage({history,match}) {
     const {searchValue,searchType} = match.params;
-    const [photos, photosDispatch] = useReducer(GridReducer, initialState);
-    const [collections, collectionsDispatch] = useReducer(GridReducer, initialState);
+    const [photos, photosDispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [collections, collectionsDispatch] = useReducer(InfiniteLoaderReducer, initialState);
 
     const state = {photos,collections};
     const dispatch = {
