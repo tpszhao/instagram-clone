@@ -34,15 +34,12 @@ export default function InfiniteLoader({
             const json = await toJson(response);
             let results;
             switch (query) {
-                case "users":
-                case "photos":
-                    results = json;
-                    break;
                 case "search":
                     dispatch(updateTotal(json.total));
                     results = json.results;
                     break;
                 default:
+                    results = json;
             }
             dispatch(nextPage(results));
             if (!results.length) {
@@ -56,12 +53,12 @@ export default function InfiniteLoader({
     };
     return (
         <InfiniteScroll
-        pageStart={1}
-        loadMore={loadMore}
-        hasMore={hasMore&&allowFetching}
-        loader={loader}
-        useWindow={true}>
-            {children}
+            pageStart={1}
+            loadMore={loadMore}
+            hasMore={hasMore&&allowFetching}
+            loader={loader}
+            useWindow={true}>
+                {children}
         </InfiniteScroll>
     )
 }

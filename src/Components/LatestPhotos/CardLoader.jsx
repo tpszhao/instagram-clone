@@ -1,41 +1,44 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { CardContainer } from './InfiniteLoader.styles'
 
-const Container = styled.div`
-    display:flex;
-    justify-content:center;
-    align-content:center;
+const UserInfoPlaceholder = styled.div`
+    display: flex;
+    align-items: center;
+    align-self:flex-start;
     height: 60px;
-    width: 100%;
+    text-decoration: none;
 `;
 
-const Fade = keyframes`
-    0% {
-        opacity:0.5;
-    }
-    100%{
-        opacity:1;
-    }
-`;
-
-const Dot = styled.div`
-    margin:2px;
-    width:6px;
-    height:6px;
-    background-color:rgb(200,200,200);
+const ProfileImagePlaceholder = styled.div`
+    margin: 8px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    animation: 1s ${Fade} linear;
-    animation-iteration-count:infinite;
-    animation-delay:${props => props.delay||'0.5s'};
+    background-color:rgba(219, 219, 219,0.5);
+`;
+
+const PhotoPlaceholder = styled.div`
+    width: 100%;
+    height:30vmin;
+    background-color:rgba(219, 219, 219,0.5);
+`;
+
+const PhotoStatPlaceholder = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 8px;
+    color:rgba(219, 219, 219,0.5);
 `;
 
 export default function CardLoader() {
     return (
-        <Container>
-            <Dot delay='0.4s'/>
-            <Dot delay='0.8s'/>
-            <Dot delay='1.2s'/>
-            <Dot delay='1.6s'/>
-        </Container>
+        <CardContainer>
+            <UserInfoPlaceholder>
+                <ProfileImagePlaceholder/>
+            </UserInfoPlaceholder>
+            <PhotoPlaceholder/>
+            <PhotoStatPlaceholder>loading</PhotoStatPlaceholder>
+        </CardContainer>
     )
 }
