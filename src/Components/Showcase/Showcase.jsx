@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const carouselStyle = css`
   width: 100%;
-  height: calc(100% - 90px);
+  height: calc(100% - 100px);
 `;
 
 const BottomContainer = styled.div`
@@ -29,12 +29,9 @@ const BottomContainer = styled.div`
 
 
 const ToolBar = styled.div`
-  padding:8px 16px;
+  align-self:flex-end;
+  padding: 8px;
   display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  align-items:center;
-  width:100%;
 `;
 
 const buttonStyle = {
