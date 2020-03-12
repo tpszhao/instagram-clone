@@ -1,11 +1,13 @@
-import React,{ useEffect, useReducer } from 'react'
+import React,{ useState, useEffect, useReducer } from 'react'
 import styled from 'styled-components';
 import { 
     GridHeader,
     GridContainer,
     GridItem,
     GridLoader,
-    InfiniteLoader
+    InfiniteLoader,
+    CustomModal,
+    Showcase
 } from 'Components'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
@@ -53,8 +55,13 @@ const SearchHeader = ({searchValue,searchType, total})=>{
 
 export default function SearchPage({history,match}) {
     const {searchValue,searchType} = match.params;
+
     const [photos, photosDispatch] = useReducer(InfiniteLoaderReducer, initialState);
     const [collections, collectionsDispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [initialSlide, setInitialSlide] = useState(0);
+
 
     const state = {photos,collections};
     const dispatch = {
@@ -83,38 +90,56 @@ export default function SearchPage({history,match}) {
         history.push(`/search/${searchType}/${searchValue}`)
     }
 
+    const openShowcase = index=>{
+        setInitialSlide(index);
+        setModalIsOpen(true);
+    }
+
     return (
-        <PageContainer>
-            <SearchHeader 
-                searchValue={searchValue} 
-                searchType={searchType}
-                total={state[searchType].total}/>
-            <SearchTypeList>
-                <SearchTypeLink 
-                    onClick={()=>changeSearchType('photos')}
-                    isSelected={searchType === 'photos'}>
-                    Photos
-                </SearchTypeLink>
-                <SearchTypeLink 
-                    onClick={()=>changeSearchType('collections')}
-                    isSelected={searchType === 'collections'}>
-                    Collections
-                </SearchTypeLink>
-            </SearchTypeList>
-            <InfiniteLoader
-                query="search"
-                searchType={searchType}
-                searchValue={searchValue}
-                state={state[searchType]}
-                dispatch={dispatch[searchType]}
-                loader={<GridLoader key='loading'/>}>
-                <GridContainer>
-                    {dataList.map((item,i)=>{
-                        const props = getProps[searchType](item);
-                        return <GridItem {...props} onClick={()=>console.log(i)}/>
-                    })}
-                </GridContainer>
-            </InfiniteLoader>
-        </PageContainer>
+        <>
+            <PageContainer>
+                <SearchHeader 
+                    searchValue={searchValue} 
+                    searchType={searchType}
+                    total={state[searchType].total}/>
+                <SearchTypeList>
+                    <SearchTypeLink 
+                        onClick={()=>changeSearchType('photos')}
+                        isSelected={searchType === 'photos'}>
+                        Photos
+                    </SearchTypeLink>
+                    <SearchTypeLink 
+                        onClick={()=>changeSearchType('collections')}
+                        isSelected={searchType === 'collections'}>
+                        Collections
+                    </SearchTypeLink>
+                </SearchTypeList>
+                <InfiniteLoader
+                    query="search"
+                    searchType={searchType}
+                    searchValue={searchValue}
+                    state={state[searchType]}
+                    dispatch={dispatch[searchType]}
+                    loader={<GridLoader key='loading'/>}>
+                    <GridContainer>
+                        {dataList.map((item,i)=>{
+                            const props = getProps[searchType](item);
+                            const onClick = (searchType === 'photos')?
+                                ()=>openShowcase(i):
+                                ()=>console.log(i)
+                            return <GridItem {...props} onClick={onClick}/>
+                        })}
+                    </GridContainer>
+                </InfiniteLoader>
+            </PageContainer>
+            <CustomModal
+                isOpen={modalIsOpen}
+                onRequestClose={()=>setModalIsOpen(false)}>
+                <Showcase 
+                    photoList={photos.dataList} 
+                    initialSlide={initialSlide}
+                    closeModal={()=>setModalIsOpen(false)}/>
+            </CustomModal>
+        </>
     )
 }

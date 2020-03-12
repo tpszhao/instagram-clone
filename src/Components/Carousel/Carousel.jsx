@@ -40,7 +40,7 @@ export default function Carousel({
   }, []);
 
   useEffect(() => {
-    !(counter===undefined)&&slider.current.slickNext();
+    counter&&slider.current.slickNext();
   }, [counter]);
 
   return (

@@ -8,8 +8,6 @@ export default function GridItem({
     overlayElement=null,
     onClick=()=>{}
 }) {
-    console.log(overlayElement);
-    console.log(<div>stuff</div>);
     return (
         <GridCell onClick={onClick}>
             <ImageLazyLoader 

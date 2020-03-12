@@ -3,7 +3,6 @@ import {
   Card, 
   CardLoader, 
   InfiniteLoader,
-  CustomModal,
   Showcase
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
