@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {NavBar} from 'Components'
-import {HomePage,UserPage,SearchPage} from 'Pages'
+import {HomePage,UserPage,SearchPage,CollectionPage} from 'Pages'
 import './App.css'
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage}/>
         <Route path="/user/:username" component={UserPage} />   
+        <Route path="/collection/:collectionID" component={CollectionPage} />   
+
         <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
       </Switch>
     </Router>

@@ -90,6 +90,11 @@ export default function SearchPage({history,match}) {
         history.push(`/search/${searchType}/${searchValue}`)
     }
 
+    const redirectToCollectionPage = collection =>{
+        history.push(`/collection/${collection.id}`)
+    }
+
+
     const openShowcase = index=>{
         setInitialSlide(index);
         setModalIsOpen(true);
@@ -126,7 +131,7 @@ export default function SearchPage({history,match}) {
                             const props = getProps[searchType](item);
                             const onClick = (searchType === 'photos')?
                                 ()=>openShowcase(i):
-                                ()=>console.log(i)
+                                ()=>redirectToCollectionPage(item)
                             return <GridItem {...props} onClick={onClick}/>
                         })}
                     </GridContainer>
