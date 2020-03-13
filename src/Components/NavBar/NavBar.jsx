@@ -51,9 +51,7 @@ function NavBar({
 
   useEffect(() => {
     const savedSearchHistory = localGet("SearchHistory");
-    const darkModeHistory = localGet("darkModeEnabled", false);
 
-    setDarkModeEnabled(darkModeHistory);
     setSearchHistory(savedSearchHistory);
     setSearchSuggestion(savedSearchHistory);
   }, []);
@@ -62,9 +60,6 @@ function NavBar({
     localSet("SearchHistory", searchHistory);
   }, [searchHistory]);
 
-  useEffect(() => {
-    localSet("darkModeEnabled", darkModeEnabled);
-  }, [darkModeEnabled])
 
   const changeSuggestions = e => {
     const searchValue = e.target.value;
