@@ -12,7 +12,7 @@ export const ModalContainer = styled.div`
     flex-wrap:nowrap;
     justify-content:space-around;
     align-items:center;
-    border: 1px solid rgb(219,219,219);
+    border: 1px solid ${props=>props.theme.borderColor};
     border-radius:5px;
     padding:30px;
 `;
@@ -28,9 +28,11 @@ export const Form = styled.form`
 
     padding:0px 10px;
     border-radius:14px;
-    border: 1px solid rgb(219, 219, 219);
 
-    background-color:${props => props.backgroundColor||'white'};
+    ${props=>`
+        background-color: ${props.theme.inputFieldBackground};
+        border: 1px solid ${props.theme.borderColor};
+    `}
 `;
 
 export const SearchInput = styled.input`
@@ -42,9 +44,14 @@ export const SearchInput = styled.input`
     border:none;
     text-align:center;
     padding: 0px 20px;
+
+    background-color:inherit;
     &:focus{
         text-align:left;
     } 
+    ${props=>`
+        color:${props.theme.inputTextColor};
+    `};
 `;
 
 

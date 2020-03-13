@@ -7,6 +7,7 @@ export const darkTheme = {
 
     textColor:'rgb(200, 200, 200)',
     inputTextColor:'rgb(219, 219, 219)',
+
     borderColor:'rgb(40,40,40)'
 }
 

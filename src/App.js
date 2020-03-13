@@ -19,12 +19,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+
 function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
 
   return (
     <Router>
-      <ThemeProvider theme={darkModeEnabled?darkTheme:lightTheme}>
+      <ThemeProvider theme={darkModeEnabled ? darkTheme : lightTheme}>
         <GlobalStyle/>
         <NavBar 
           darkModeEnabled={darkModeEnabled}
