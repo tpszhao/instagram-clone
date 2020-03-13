@@ -12,7 +12,7 @@ export const ModalContainer = styled.div`
     flex-wrap:nowrap;
     justify-content:space-around;
     align-items:center;
-    border: 1px solid rgb(219,219,219);
+    border: 1px solid ${props=>props.theme.borderColor};
     border-radius:5px;
     padding:30px;
 `;
@@ -28,9 +28,11 @@ export const Form = styled.form`
 
     padding:0px 10px;
     border-radius:14px;
-    border: 1px solid rgb(219, 219, 219);
 
-    background-color:${props => props.backgroundColor||'white'};
+    ${props=>`
+        background-color: ${props.theme.inputFieldBackground};
+        border: 1px solid ${props.theme.borderColor};
+    `}
 `;
 
 export const SearchInput = styled.input`
@@ -42,9 +44,14 @@ export const SearchInput = styled.input`
     border:none;
     text-align:center;
     padding: 0px 20px;
+
+    background-color:inherit;
     &:focus{
         text-align:left;
     } 
+    ${props=>`
+        color:${props.theme.inputTextColor};
+    `};
 `;
 
 
@@ -101,6 +108,10 @@ export const CardHeaderLink = styled(Link)`
     color:black;
     line-height:24px;
     cursor:pointer;
+
+    ${props=>`
+        color:${props.theme.textColor};
+    `}
 `;
 
 export const cardCSS = css`
@@ -134,6 +145,11 @@ export const HighlightMenuCard = styled.div`
         width: 100%;
         max-width:100vw;
     }
+
+    ${props=>`
+        background-color:${props.theme.backgroundColor};
+        border: 1px solid ${props.theme.borderColor};
+    `}
 `;
 
 export const HighlightHeader = styled.div`
@@ -144,7 +160,10 @@ export const HighlightHeader = styled.div`
     height: 60px;
     width: 100%;
     padding:0px 8px;
-    border-bottom: 1px solid rgb(219, 219, 219);
+    ${props=>`
+        border-bottom: 1px solid ${props.theme.borderColor};
+    `}
+
 `;
 
 export const HighlightCardsContainer = styled.div`

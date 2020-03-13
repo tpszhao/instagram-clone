@@ -24,12 +24,14 @@ const BottomContainer = styled.div`
   flex-direction:column;
   width:100%;
 
-  background-color:white;
+  background-color:${props=>props.theme.backgroundColor};
 `;
 
 
 const ToolBar = styled.div`
-  align-self:flex-end;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
   padding: 8px;
   display:flex;
 `;

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
+import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
 import { localGet, localSet } from "API/local";
-import homeIcon from "SVG/homeIcon.svg"
-import searchIcon from "SVG/searchIcon.svg"
+import homeIcon from "SVG/homeIcon.svg";
+import searchIcon from "SVG/searchIcon.svg";
+import sun from 'SVG/sun.svg';
+import moon from 'SVG/moon.svg';
 import {
   SearchBar,
   Form,
@@ -13,7 +16,33 @@ import {
   IconBar
 } from './NavBar.styles'
 
-function NavBar({ history, location }) {
+const DarkModeToggleContainer = styled.div`
+  cursor:pointer;
+  width:40px;
+  height:40px;
+  position:relative;
+`;
+
+const DarkModeToggleIcon =styled.div`
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:${props=>props.isVisible ? 1 : 0};
+  background-image:url("${props=>props.src}");
+  background-size:cover;
+  background-position:center center;
+  transition: 0.4s;
+`;
+
+
+
+
+function NavBar({ 
+  history, 
+  location,
+  darkModeEnabled,
+  setDarkModeEnabled
+}) {
   const searchInput = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
@@ -22,6 +51,9 @@ function NavBar({ history, location }) {
 
   useEffect(() => {
     const savedSearchHistory = localGet("SearchHistory");
+    const darkModeHistory = localGet("darkModeEnabled", false);
+
+    setDarkModeEnabled(darkModeHistory);
     setSearchHistory(savedSearchHistory);
     setSearchSuggestion(savedSearchHistory);
   }, []);
@@ -29,6 +61,10 @@ function NavBar({ history, location }) {
   useEffect(() => {
     localSet("SearchHistory", searchHistory);
   }, [searchHistory]);
+
+  useEffect(() => {
+    localSet("darkModeEnabled", darkModeEnabled);
+  }, [darkModeEnabled])
 
   const changeSuggestions = e => {
     const searchValue = e.target.value;
@@ -106,6 +142,11 @@ function NavBar({ history, location }) {
       </SearchSuggestions>
       <IconBar pathname={location.pathname}>
         <ButtonIcon src={homeIcon} onClick={()=>history.push('/')}/>
+        <DarkModeToggleContainer
+          onClick={()=>setDarkModeEnabled(!darkModeEnabled)}>
+          <DarkModeToggleIcon src={sun} isVisible={!darkModeEnabled}/>
+          <DarkModeToggleIcon src={moon} isVisible={darkModeEnabled}/>
+        </DarkModeToggleContainer>
       </IconBar>
     </SearchBar>
   );
