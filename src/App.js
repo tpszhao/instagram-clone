@@ -4,13 +4,22 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {NavBar} from 'Components'
-import {HomePage,UserPage,SearchPage,CollectionPage} from 'Pages'
+import {NavBar} from 'Components';
+import {HomePage,UserPage,SearchPage,CollectionPage} from 'Pages';
+import { createGlobalStyle } from 'styled-components';
 import './App.css'
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    /* background-color: black;
+    color:white; */
+  }
+`
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <NavBar/>
       <Switch>
         <Route path="/" exact component={HomePage}/>

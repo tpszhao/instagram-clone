@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import {LatestPhotos,HighlightsMenu, CustomModal} from 'Components'
 
 const Container = styled.div`
-    max-width:100vw;
     margin: auto;
     display: flex;
     position: relative;

@@ -29,7 +29,9 @@ const BottomContainer = styled.div`
 
 
 const ToolBar = styled.div`
-  align-self:flex-end;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
   padding: 8px;
   display:flex;
 `;
