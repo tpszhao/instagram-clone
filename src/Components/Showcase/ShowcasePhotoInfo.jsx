@@ -34,12 +34,12 @@ const ProfileImage = styled.img`
 
 const UserName = styled.span`
     text-decoration: none;
-    color: black;
+    color: ${props=>props.theme.textColor};
 `;
 
 const PhotoStat = styled.span`
     text-decoration: none;
-    color: black;
+    color: ${props=>props.theme.textColor};
 `;
 
 

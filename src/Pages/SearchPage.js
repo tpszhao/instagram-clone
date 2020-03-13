@@ -39,11 +39,13 @@ const SearchTypeLink = styled.div`
     position:relative;
     font-size: x-large;
     ${props=>props.isSelected&&`
-    border-bottom:2px solid black;
+        border-bottom:2px solid ${props.theme.textColor};
     `}    
 
     &:hover{
-        border-bottom:2px solid black;
+        ${props=>props.isSelected&&`
+        border-bottom:2px solid ${props.theme.textColor};
+        `}
     }
 `;
 

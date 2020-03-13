@@ -6,7 +6,6 @@ export const CardContainer = styled.div`
     width: 100%;
     max-width:100vw;
     margin: 10px;
-    border: 1px solid rgb(219, 219, 219);
     border-radius: 3px;
     display: flex;
     flex-direction: column;
@@ -17,6 +16,11 @@ export const CardContainer = styled.div`
         width: 100%;
         max-width:100vw;
     }
+
+    ${props=>`
+        border: 1px solid ${props.theme.borderColor};
+        background-color:${props.theme.backgroundColor};
+    `}
 `;
 
 export const UserInfo = styled(Link)`
@@ -36,7 +40,9 @@ export const ProfileImage = styled.img`
 
 export const UserName = styled.span`
     text-decoration: none;
-    color: black;
+    ${props=>`
+        color:${props.theme.textColor};
+    `}
 `;
 
 export const PhotoStat = styled.div`

@@ -101,6 +101,10 @@ export const CardHeaderLink = styled(Link)`
     color:black;
     line-height:24px;
     cursor:pointer;
+
+    ${props=>`
+        color:${props.theme.textColor};
+    `}
 `;
 
 export const cardCSS = css`
@@ -134,6 +138,11 @@ export const HighlightMenuCard = styled.div`
         width: 100%;
         max-width:100vw;
     }
+
+    ${props=>`
+        background-color:${props.theme.backgroundColor};
+        border: 1px solid ${props.theme.borderColor};
+    `}
 `;
 
 export const HighlightHeader = styled.div`
@@ -144,7 +153,10 @@ export const HighlightHeader = styled.div`
     height: 60px;
     width: 100%;
     padding:0px 8px;
-    border-bottom: 1px solid rgb(219, 219, 219);
+    ${props=>`
+        border-bottom: 1px solid ${props.theme.borderColor};
+    `}
+
 `;
 
 export const HighlightCardsContainer = styled.div`
