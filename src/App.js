@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,9 +8,14 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import {NavBar} from 'Components';
 import {HomePage,UserPage,SearchPage,CollectionPage} from 'Pages';
 import { darkTheme, lightTheme } from 'Themes'
-import './App.css'
+import { localGet, localSet } from "API/local";
 
 const GlobalStyle = createGlobalStyle`
+  *{
+      box-sizing: border-box;
+      outline: none;
+  }
+
   body {
     ${props=>`
       background-color:${props.theme.bodyBackgroundColor};
@@ -22,6 +27,16 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  
+  useEffect(() => {
+    const darkModeHistory = localGet("darkModeEnabled", false);
+
+    setDarkModeEnabled(darkModeHistory);
+  }, [])
+
+  useEffect(() => {
+    localSet("darkModeEnabled", darkModeEnabled);
+  }, [darkModeEnabled])
 
   return (
     <Router>
