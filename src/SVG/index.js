@@ -5,3 +5,4 @@ export {default as moon} from './moon.svg';
 export {default as nextIcon } from './nextIcon.svg';
 export {default as searchIcon} from './searchIcon.svg';
 export {default as sun} from './sun.svg';
+export {default as exploreIcon} from './exploreIcon.svg';

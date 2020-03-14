@@ -4,7 +4,9 @@ import {
     InfiniteLoader, 
     MasonryContainer, 
     MasonryItem,
-    GridLoader
+    GridLoader,
+    CustomModal,
+    Showcase
 } from "Components";
 import InfiniteLoaderReducer, {initialState} from "Reducers/InfiniteLoaderReducer";
 import { allowFetching } from "Actions/InfiniteLoaderActions";
@@ -40,6 +42,9 @@ export default function ExplorePage() {
     const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
     const {dataList:photoList} = state;
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [initialSlide, setInitialSlide] = useState(0);
+
     useEffect(() => {
         dispatch(allowFetching);
     }, []);
@@ -49,25 +54,43 @@ export default function ExplorePage() {
         setRandomHeightList([...randomHeightList,...heightListExtension]);
     },[photoList])
 
+    const openShowcase = index=>{
+        setInitialSlide(index);
+        setModalIsOpen(true);
+    }
+
 
 
     return (
-        <PageContainer>
-            <InfiniteLoader
-                query="photos"
-                searchType="listPhotos"
-                orderedBy="popular"
-                state={state}
-                dispatch={dispatch}
-                loader={<GridLoader key={0} />}>
-                <MasonryContainer>
-                    {photoList.map((photo,i)=>{
-                        const props = photoProps(photo);
-                        const height = randomHeightList[i]
-                        return <MasonryItem {...props} height={height}/>
-                    })}
-                </MasonryContainer>
-            </InfiniteLoader>
-        </PageContainer>
+        <>
+            <PageContainer>
+                <InfiniteLoader
+                    query="photos"
+                    searchType="listPhotos"
+                    orderedBy="popular"
+                    state={state}
+                    dispatch={dispatch}
+                    loader={<GridLoader key={0} />}>
+                    <MasonryContainer>
+                        {photoList.map((photo,i)=>{
+                            const props = photoProps(photo);
+                            const height = randomHeightList[i];
+                            return (
+                            <MasonryItem {...props} 
+                                height={height}
+                                onClick={()=>openShowcase(i)}/>)
+                        })}
+                    </MasonryContainer>
+                </InfiniteLoader>
+            </PageContainer>
+            <CustomModal
+                isOpen={modalIsOpen}
+                onRequestClose={()=>setModalIsOpen(false)}>
+                <Showcase 
+                    photoList={photoList} 
+                    initialSlide={initialSlide}
+                    closeModal={()=>setModalIsOpen(false)}/>
+            </CustomModal>
+        </>
     );
 }

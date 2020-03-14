@@ -22,7 +22,7 @@ export const SearchBar = styled.div`
 export const Form = styled.form`
     position:absolute;
     width:300px;
-    max-width:calc(100% - 96px);
+    max-width:calc(100% - 136px);
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
@@ -107,4 +107,9 @@ export const IconBar = styled.div`
     @media only screen and (max-width: 976px) {
         ${props=>(props.pathname === "/")&&'width:616px'};
     }
+`;
+
+export const RightSideIconContainer = styled.div`
+    display:flex;
+    align-items:center;
 `;
