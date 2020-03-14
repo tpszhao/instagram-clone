@@ -14,7 +14,7 @@ import unsplash from 'API/unsplash'
 import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
 import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
-import collectionIcon from 'SVG/collectionIcon.svg'
+import { collectionIcon } from 'SVG'
 
 
 const PageContainer = styled.div`

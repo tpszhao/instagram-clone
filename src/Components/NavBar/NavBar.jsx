@@ -3,10 +3,8 @@ import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
 import { localGet, localSet } from "API/local";
-import homeIcon from "SVG/homeIcon.svg";
-import searchIcon from "SVG/searchIcon.svg";
-import sun from 'SVG/sun.svg';
-import moon from 'SVG/moon.svg';
+import { homeIcon,searchIcon,sun,moon } from 'SVG'
+
 import {
   SearchBar,
   Form,
