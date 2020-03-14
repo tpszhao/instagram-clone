@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import {NavBar} from 'Components';
-import {HomePage,UserPage,SearchPage,CollectionPage} from 'Pages';
+import {HomePage,UserPage,SearchPage,CollectionPage,ExplorePage} from 'Pages';
 import { darkTheme, lightTheme } from 'Themes'
 import { localGet, localSet } from "API/local";
 
@@ -47,6 +47,7 @@ function App() {
           setDarkModeEnabled={setDarkModeEnabled}/>
         <Switch>
           <Route path="/" exact component={HomePage}/>
+          <Route path="/explore" exact component={ExplorePage}/>
           <Route path="/user/:username" component={UserPage} />   
           <Route path="/collection/:collectionID" component={CollectionPage} />   
           <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
