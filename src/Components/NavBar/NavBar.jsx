@@ -3,17 +3,16 @@ import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
 import { localGet, localSet } from "API/local";
-import homeIcon from "SVG/homeIcon.svg";
-import searchIcon from "SVG/searchIcon.svg";
-import sun from 'SVG/sun.svg';
-import moon from 'SVG/moon.svg';
+import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'SVG'
+
 import {
   SearchBar,
   Form,
   SearchInput,
   SearchSuggestions,
   SuggestionItem,
-  IconBar
+  IconBar,
+  RightSideIconContainer
 } from './NavBar.styles'
 
 const DarkModeToggleContainer = styled.div`
@@ -33,6 +32,9 @@ const DarkModeToggleIcon =styled.div`
   background-position:center center;
   transition: 0.4s;
 `;
+
+
+
 
 
 
@@ -137,11 +139,16 @@ function NavBar({
       </SearchSuggestions>
       <IconBar pathname={location.pathname}>
         <ButtonIcon src={homeIcon} onClick={()=>history.push('/')}/>
-        <DarkModeToggleContainer
-          onClick={()=>setDarkModeEnabled(!darkModeEnabled)}>
-          <DarkModeToggleIcon src={sun} isVisible={!darkModeEnabled}/>
-          <DarkModeToggleIcon src={moon} isVisible={darkModeEnabled}/>
-        </DarkModeToggleContainer>
+        <RightSideIconContainer>
+          <ButtonIcon width='24px' height='24px'
+            src={exploreIcon} 
+            onClick={()=>history.push('/explore')}/>
+          <DarkModeToggleContainer
+            onClick={()=>setDarkModeEnabled(!darkModeEnabled)}>
+            <DarkModeToggleIcon src={sun} isVisible={!darkModeEnabled}/>
+            <DarkModeToggleIcon src={moon} isVisible={darkModeEnabled}/>
+          </DarkModeToggleContainer>
+        </RightSideIconContainer>
       </IconBar>
     </SearchBar>
   );

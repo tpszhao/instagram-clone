@@ -18,12 +18,12 @@ export default function InfiniteLoader({
     searchValue='', 
     state:{page,hasMore,isLoading,allowFetching},
     dispatch,
-    ordered_by="latest",
+    orderedBy="latest",
     loader = <div key={0}>loading</div>,
     children
 }) {
     const params = (searchType === 'listPhotos')?
-        [page,15,ordered_by]:
+        [page,15,orderedBy]:
         [searchValue,page,15]
 
     const loadMore = async () => {

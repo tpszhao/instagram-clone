@@ -3,7 +3,7 @@ import {toJson} from 'unsplash-js'
 import unsplash from 'API/unsplash'
 import capitalize from 'Utilities/capitalize'
 import { ButtonIcon } from 'Components';
-import searchIcon from "SVG/searchIcon.svg"
+import { searchIcon } from "SVG"
 import {
     ModalContainer, 
     Form,

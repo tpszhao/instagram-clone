@@ -5,6 +5,8 @@ export { default as ButtonIcon } from "./ButtonIcon";
 export { default as ImageLazyLoader} from './ImageLazyLoader';
 export { default as CustomModal} from './CustomModal';
 
+export { MasonryContainer, MasonryItem } from './MasonryLayout';
+
 export { default as InfiniteLoader } from './InfiniteLoader'
 
 export { LatestPhotos, Card, CardLoader} from "./LatestPhotos";

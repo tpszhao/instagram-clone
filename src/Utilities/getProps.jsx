@@ -1,6 +1,6 @@
 import React from 'react'
 
-const photoProps = photo =>{
+export const photoProps = photo =>{
     const src = photo.urls.regular;
     const color = photo.color;
     const overlayElement = <div>{photo.likes} likes</div>
@@ -8,7 +8,7 @@ const photoProps = photo =>{
     return props;
 }
 
-const collectionProps = collection=>{
+export const collectionProps = collection=>{
     const coverPhoto = collection.cover_photo;
     const src = coverPhoto.urls.regular;
     const color = coverPhoto.color;
@@ -21,5 +21,6 @@ const getProps = {
     photos:photoProps,
     collections:collectionProps
 }
+
 
 export default getProps

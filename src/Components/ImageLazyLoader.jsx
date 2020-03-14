@@ -15,9 +15,13 @@ const Overlay = styled.div`
     transition: 0.5s;
 `;
 
-const Image = styled.img`
+const defaultImageCSS = css`
     width:100%;
     height:100%;
+`;
+
+const Image = styled.img`
+    ${props=>props.imageCSS}
     object-fit:${props=>`${props.objectFit||'cover'}`};
 `;
 
@@ -31,6 +35,7 @@ export default function ImageLazyLoader({
     objectFit='cover',
     placeholderColor,
     imageContainerCSS=defaultImageContainerCSS,
+    imageCSS=defaultImageCSS,
     onClick=()=>{}
 }) {
     const [opacity, setOpacity] = useState(1);
@@ -45,6 +50,7 @@ export default function ImageLazyLoader({
             <Image 
                 src={src}
                 objectFit={objectFit}
+                imageCSS={imageCSS}
                 onLoad={()=>setOpacity(0)}
                 alt="placeholder"/>
         </Container>
