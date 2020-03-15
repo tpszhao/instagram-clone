@@ -25,14 +25,10 @@ const PageContainer = styled.div`
     }
 `;
 
-const randomHeight = ()=>{
-    return `${generateRandomNumber(200,400)}px`
-}
-
 const generateRandomList = ()=>{
     let list = [];
     for (let i=0;i<15;i++){
-        list[i] = randomHeight();
+        list[i] = `${generateRandomNumber(200,400)}px`;
     }
     return list;
 }
