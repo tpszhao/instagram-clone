@@ -9,6 +9,7 @@ const defaultBreakPoint={
 }
 
 const Container = styled.div`
+    background-color:green;
     width:100%;
     display:flex;
     justify-content:center;

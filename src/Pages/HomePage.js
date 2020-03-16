@@ -17,7 +17,7 @@ const SideBar = styled.div`
     width:296px;
     height:100%;
     position: sticky;
-    top:${props=>`${props.stickyPos?62-props.stickyPos:62}px`};
+    top:${props=>`${props.stickyPos?90-props.stickyPos:90}px`};
     display: flex;
     flex-direction: column;
     align-items: center;
