@@ -9,10 +9,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
-import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
-import { searchIcon } from 'SVG'
+import InfiniteLoaderReducer, { initialState } from 'reducers/InfiniteLoaderReducer'
+import { reset, allowFetching, pauseFetching } from 'actions/InfiniteLoaderActions'
+import getProps from 'utilities/getProps'
+import { searchIcon } from 'assets/SVG'
 
 
 const PageContainer = styled.div`

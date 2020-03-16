@@ -8,10 +8,10 @@ import {
     CustomModal,
     Showcase
 } from "Components";
-import InfiniteLoaderReducer, {initialState} from "Reducers/InfiniteLoaderReducer";
-import { allowFetching } from "Actions/InfiniteLoaderActions";
-import generateRandomNumber from 'Utilities/generateRandomNumber'
-import { photoProps } from 'Utilities/getProps'
+import InfiniteLoaderReducer, {initialState} from "reducers/InfiniteLoaderReducer";
+import { allowFetching } from "actions/InfiniteLoaderActions";
+import generateRandomNumber from 'utilities/generateRandomNumber'
+import { photoProps } from 'utilities/getProps'
 
 
 const PageContainer = styled.div`
