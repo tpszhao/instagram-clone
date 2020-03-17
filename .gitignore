@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 
-newinfiniteLoaderReducer.js
+newInfiniteLoaderReducer.js
 
 # testing
 /coverage
