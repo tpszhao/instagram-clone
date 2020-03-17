@@ -11,8 +11,8 @@ import {
     Showcase
 } from 'Components'
 import unsplash from 'api/unsplash'
-import InfiniteLoaderReducer, { initialState } from 'reducers/InfiniteLoaderReducer'
-import { reset, allowFetching } from 'actions/InfiniteLoaderActions'
+import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
+import { reset, allowFetching } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 import { collectionIcon } from 'assets/SVG'
 
@@ -50,7 +50,7 @@ const CollectionHeader = ({collection}) => {
 
 export default function CollectionPage(props) {
     const [collection, setCollection] = useState(null);
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);

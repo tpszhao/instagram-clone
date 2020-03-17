@@ -9,7 +9,7 @@ import {
     updateTotal,
     noMoreResults,
     requestError
-} from 'actions/InfiniteLoaderActions';
+} from 'actions/infiniteLoaderActions';
 
 
 export default function InfiniteLoader({

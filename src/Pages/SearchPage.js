@@ -9,8 +9,8 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import InfiniteLoaderReducer, { initialState } from 'reducers/InfiniteLoaderReducer'
-import { reset, allowFetching, pauseFetching } from 'actions/InfiniteLoaderActions'
+import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
+import { reset, allowFetching, pauseFetching } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 import { searchIcon } from 'assets/SVG'
 
@@ -58,8 +58,8 @@ const SearchHeader = ({searchValue,searchType, total})=>{
 export default function SearchPage({history,match}) {
     const {searchValue,searchType} = match.params;
 
-    const [photos, photosDispatch] = useReducer(InfiniteLoaderReducer, initialState);
-    const [collections, collectionsDispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [photos, photosDispatch] = useReducer(infiniteLoaderReducer, initialState);
+    const [collections, collectionsDispatch] = useReducer(infiniteLoaderReducer, initialState);
     
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);

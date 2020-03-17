@@ -31,7 +31,8 @@ const SideBar = styled.div`
 `;
 
 
-export default function HomePage() {
+export default function HomePage(props) {
+    console.log(props);
     const [stickyPos, setStickyPos] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalScreen, setModalScreen] = useState(null);
