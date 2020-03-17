@@ -6,12 +6,12 @@ import {
   Showcase
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
+import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
 import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions';
 
 
 export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
-  const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+  const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
   const {dataList:photoList} = state;
 
   useEffect(() => {
