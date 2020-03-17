@@ -9,7 +9,7 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
+import InfiniteLoaderReducer, { initialState } from 'Reducers/NewinfiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 import { searchIcon } from 'SVG'

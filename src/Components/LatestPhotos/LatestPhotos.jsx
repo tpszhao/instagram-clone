@@ -6,7 +6,7 @@ import {
   Showcase
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
+import InfiniteLoaderReducer, { initialState } from 'Reducers/NewinfiniteLoaderReducer'
 import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions';
 
 

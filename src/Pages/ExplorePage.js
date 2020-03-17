@@ -8,7 +8,7 @@ import {
     CustomModal,
     Showcase
 } from "Components";
-import InfiniteLoaderReducer, {initialState} from "Reducers/InfiniteLoaderReducer";
+import InfiniteLoaderReducer, {initialState} from "Reducers/NewinfiniteLoaderReducer";
 import { ALLOW_FETCHING } from "Actions/InfiniteLoaderActions";
 import generateRandomNumber from 'Utilities/generateRandomNumber'
 import { photoProps } from 'Utilities/getProps'
