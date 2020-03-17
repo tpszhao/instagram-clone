@@ -15,7 +15,6 @@ import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderRedu
 import { RESET, ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 
-
 const PageContainer = styled.div`
     margin: auto;
     display: flex;
