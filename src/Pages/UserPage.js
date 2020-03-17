@@ -14,7 +14,7 @@ import unsplash from 'API/unsplash'
 import InfiniteLoaderReducer from 'Reducers/InfiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
-import { initialState } from 'Reducers/infiniteLoaderInitialState'
+import { initialState } from 'testfolder/infiniteLoaderInitialState'
 
 const PageContainer = styled.div`
     margin: auto;
