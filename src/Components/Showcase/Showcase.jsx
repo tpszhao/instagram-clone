@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { Carousel, ImageLazyLoader, ButtonIcon } from "Components";
 import ShowcasePhotoInfo from './ShowcasePhotoInfo'
-import { nextIcon } from "ASSETS/SVG/";
+import { nextIcon } from "SVG";
 
 const Container = styled.div`
   position: relative;

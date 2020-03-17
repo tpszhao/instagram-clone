@@ -12,7 +12,7 @@ import {
 import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/infiniteLoaderActions'
 import getProps from 'Utilities/getProps'
-import { searchIcon } from 'ASSETS/SVG/'
+import { searchIcon } from 'SVG'
 
 
 const PageContainer = styled.div`
