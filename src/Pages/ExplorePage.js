@@ -8,7 +8,7 @@ import {
     CustomModal,
     Showcase
 } from "Components";
-import InfiniteLoaderReducer, {initialState} from "Reducers/NewtestinfiniteLoaderReducer";
+import infiniteLoaderReducer, {initialState} from "Reducers/infiniteLoaderReducer";
 import { ALLOW_FETCHING } from "Actions/InfiniteLoaderActions";
 import generateRandomNumber from 'Utilities/generateRandomNumber'
 import { photoProps } from 'Utilities/getProps'
@@ -35,7 +35,7 @@ const generateRandomList = ()=>{
 
 export default function ExplorePage(props) {
     console.log(props);
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
     const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
     const {dataList:photoList} = state;
 

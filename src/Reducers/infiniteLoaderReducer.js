@@ -18,7 +18,7 @@ export const initialState={
     total:null
 }
 
-const InfiniteLoaderReducer = (state = initialState,action) =>{
+const infiniteLoaderReducer = (state = initialState,action) =>{
     switch(action.type){
         case RESET:
             return initialState;
@@ -43,4 +43,4 @@ const InfiniteLoaderReducer = (state = initialState,action) =>{
     }
 }
 
-export default InfiniteLoaderReducer;
+export default infiniteLoaderReducer;

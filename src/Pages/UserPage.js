@@ -11,7 +11,7 @@ import {
     Showcase
 } from 'Components'
 import unsplash from 'API/unsplash'
-import InfiniteLoaderReducer , { initialState } from 'Reducers/NewtestinfiniteLoaderReducer'
+import infiniteLoaderReducer , { initialState } from 'Reducers/infiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 
@@ -41,7 +41,7 @@ const UserHeader = ({user}) => {
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
