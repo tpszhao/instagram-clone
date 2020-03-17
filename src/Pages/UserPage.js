@@ -10,10 +10,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import unsplash from 'API/unsplash'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
-import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
+import unsplash from 'api/unsplash'
+import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
+import { RESET, ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
+import getProps from 'utilities/getProps'
 
 
 const PageContainer = styled.div`
@@ -42,14 +42,16 @@ const UserHeader = ({user}) => {
 
 export default function UserPage(props) {
     const [user, setUser] = useState(null);
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
 
+    console.log(props);
+
     useEffect(() => {
-        dispatch(reset);
-        dispatch(allowFetching);
+        dispatch(RESET);
+        dispatch(ALLOW_FETCHING);
         unsplash.users
             .profile(props.match.params.username)
             .then(toJson)

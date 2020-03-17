@@ -54,7 +54,7 @@ export default function ShowcasePhotoInfo({
             <UserLink to={`/user/${photo.user.username}`}>
                 <ProfileImage
                     src={photo.user.profile_image.medium}
-                    alt="avatar"/>
+                    alt=""/>
                 <UserName>{photo.user.name}</UserName>
             </UserLink>}
             <PhotoStat>{photo.likes} likes </PhotoStat>

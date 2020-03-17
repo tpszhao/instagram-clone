@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const SearchBar = styled.div`
+export const ToolBar = styled.div`
     position: sticky;
     top: 0px;
     z-index:1;
     width: 100%;
     max-width: 100vw;
-    height: 52px;
+    height: 80px;
+
+    font-size: 16px;
 
     display:flex;
     justify-content:center;
@@ -21,18 +23,19 @@ export const SearchBar = styled.div`
 
 export const Form = styled.form`
     position:absolute;
-    width:300px;
+    width:288px;
     max-width:calc(100% - 136px);
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+    
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
     padding:0px 10px;
-    border-radius:14px;
+    border-radius:20px;
 
     ${props=>`
         background-color: ${props.theme.inputFieldBackground};
@@ -45,7 +48,8 @@ export const SearchInput = styled.input`
     z-index: 2;
 
     width: 80%;
-    line-height: 28px;
+    line-height: 40px;
+    font-size:16px;
 
     outline: none;
     border:none;
@@ -65,9 +69,9 @@ export const SearchInput = styled.input`
 
 `;
 
-export const SearchSuggestions = styled.div`
+export const SearchSuggestionContainer = styled.div`
     ${props => !props.active && "display:none;"}
-    top: 44px;
+    top: calc(75% + 5px);
     width:300px;
     max-width:calc(100% - 96px);
     background-color: white;

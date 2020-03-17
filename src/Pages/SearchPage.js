@@ -9,10 +9,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
-import { reset, allowFetching, pauseFetching } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
-import { searchIcon } from 'SVG'
+import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
+import { RESET, ALLOW_FETCHING, PAUSE_FETCHING } from 'actions/infiniteLoaderActions'
+import getProps from 'utilities/getProps'
+import { searchIcon } from 'assets/SVG'
 
 
 const PageContainer = styled.div`
@@ -58,8 +58,8 @@ const SearchHeader = ({searchValue,searchType, total})=>{
 export default function SearchPage({history,match}) {
     const {searchValue,searchType} = match.params;
 
-    const [photos, photosDispatch] = useReducer(InfiniteLoaderReducer, initialState);
-    const [collections, collectionsDispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [photos, photosDispatch] = useReducer(infiniteLoaderReducer, initialState);
+    const [collections, collectionsDispatch] = useReducer(infiniteLoaderReducer, initialState);
     
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
@@ -73,18 +73,18 @@ export default function SearchPage({history,match}) {
     const dataList = state[searchType].dataList;
 
     useEffect(() => {
-        dispatch[searchType](allowFetching);
+        dispatch[searchType](ALLOW_FETCHING);
         return () => {
-            photosDispatch(pauseFetching);
-            collectionsDispatch(pauseFetching);
+            photosDispatch(PAUSE_FETCHING);
+            collectionsDispatch(PAUSE_FETCHING);
         };
     }, [searchType])
 
     useEffect(() => {
-        photosDispatch(allowFetching);
+        photosDispatch(ALLOW_FETCHING);
         return ()=>{
-            photosDispatch(reset);
-            collectionsDispatch(reset);
+            photosDispatch(RESET);
+            collectionsDispatch(RESET);
         }
     }, [searchValue])
 

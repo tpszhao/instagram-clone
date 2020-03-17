@@ -7,8 +7,8 @@ import {
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import {NavBar} from 'Components';
 import {HomePage,UserPage,SearchPage,CollectionPage,ExplorePage} from 'Pages';
-import { darkTheme, lightTheme } from 'Themes'
-import { localGet, localSet } from "API/local";
+import { darkTheme, lightTheme } from 'themes'
+import { localGet, localSet } from "api/local";
 
 const GlobalStyle = createGlobalStyle`
   *{

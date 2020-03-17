@@ -10,11 +10,11 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import unsplash from 'API/unsplash'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
-import { reset, allowFetching } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
-import { collectionIcon } from 'SVG'
+import unsplash from 'api/unsplash'
+import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
+import { RESET, ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
+import getProps from 'utilities/getProps'
+import { collectionIcon } from 'assets/SVG'
 
 
 const PageContainer = styled.div`
@@ -50,14 +50,14 @@ const CollectionHeader = ({collection}) => {
 
 export default function CollectionPage(props) {
     const [collection, setCollection] = useState(null);
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
 
     useEffect(() => {
-        dispatch(reset);
-        dispatch(allowFetching);
+        dispatch(RESET);
+        dispatch(ALLOW_FETCHING);
         unsplash.collections
             .getCollection(props.match.params.collectionID)
             .then(toJson)

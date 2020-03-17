@@ -89,7 +89,7 @@ export const Card = styled.div`
     position: relative;
     text-align: center;
     margin: 10px auto;
-    width: calc(296px * 0.9);
+    width: 296px;
     height: 296px;
     display: flex;
     flex-direction: column;
@@ -117,8 +117,8 @@ export const CardHeaderLink = styled(Link)`
 export const cardCSS = css`
     cursor:pointer;
     position:relative;
-    width: 90%;
-    height: 80%;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
 `;
 
 
@@ -127,13 +127,12 @@ export const ToolBar = styled.div`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0px 5%;
+    padding:8px;
 `;
 
 export const HighlightMenuCard = styled.div`
     width: 296px;
     min-height: 60px;
-    border: 1px solid rgb(219, 219, 219);
     border-radius: 3px;
     position: relative;
     margin-top: 16px;
@@ -160,10 +159,6 @@ export const HighlightHeader = styled.div`
     height: 60px;
     width: 100%;
     padding:0px 8px;
-    ${props=>`
-        border-bottom: 1px solid ${props.theme.borderColor};
-    `}
-
 `;
 
 export const HighlightCardsContainer = styled.div`
@@ -174,4 +169,13 @@ export const HighlightCardsContainer = styled.div`
         justify-content: space-around;
         width: 100%;
     }
+
+    &:empty{
+        border:none;
+    }
+
+    ${props=>`
+        border-top: 1px solid ${props.theme.borderColor};
+
+    `}
 `;

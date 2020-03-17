@@ -8,10 +8,10 @@ import {
     CustomModal,
     Showcase
 } from "Components";
-import InfiniteLoaderReducer, {initialState} from "Reducers/InfiniteLoaderReducer";
-import { allowFetching } from "Actions/InfiniteLoaderActions";
-import generateRandomNumber from 'Utilities/generateRandomNumber'
-import { photoProps } from 'Utilities/getProps'
+import infiniteLoaderReducer, {initialState} from "reducers/infiniteLoaderReducer";
+import { ALLOW_FETCHING } from "actions/infiniteLoaderActions";
+import generateRandomNumber from 'utilities/generateRandomNumber'
+import { photoProps } from 'utilities/getProps'
 
 
 const PageContainer = styled.div`
@@ -33,8 +33,9 @@ const generateRandomList = ()=>{
     return list;
 }
 
-export default function ExplorePage() {
-    const [state, dispatch] = useReducer(InfiniteLoaderReducer, initialState);
+export default function ExplorePage(props) {
+    console.log(props);
+    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
     const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
     const {dataList:photoList} = state;
 
@@ -42,7 +43,7 @@ export default function ExplorePage() {
     const [initialSlide, setInitialSlide] = useState(0);
 
     useEffect(() => {
-        dispatch(allowFetching);
+        dispatch(ALLOW_FETCHING);
     }, []);
 
     useEffect(()=>{

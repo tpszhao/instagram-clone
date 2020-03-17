@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
-import { localGet, localSet } from "API/local";
-import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'SVG'
+import { localGet, localSet } from "api/local";
+import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'assets/SVG'
 
 import {
-  SearchBar,
+  ToolBar,
   Form,
   SearchInput,
-  SearchSuggestions,
+  SearchSuggestionContainer,
   SuggestionItem,
   IconBar,
   RightSideIconContainer
@@ -49,7 +49,7 @@ function NavBar({
   const [inputValue, setInputValue] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [searchSuggestions, setSearchSuggestion] = useState([]);
+  const [SearchSuggestions, setSearchSuggestion] = useState([]);
 
   useEffect(() => {
     const savedSearchHistory = localGet("SearchHistory");
@@ -97,7 +97,7 @@ function NavBar({
   }
 
   return (
-    <SearchBar>
+    <ToolBar>
       <Form onSubmit={handleSubmit}>
         <ButtonIcon 
           width='28px' 
@@ -119,15 +119,15 @@ function NavBar({
           rotate={45}
           onClick={()=>setInputValue("")}/>
       </Form>
-      <SearchSuggestions active={isSearching}>
-        {searchSuggestions.map(item => {
+      <SearchSuggestionContainer active={isSearching}>
+        {SearchSuggestions.map(item => {
           return (
             <SuggestionItem key={item} onClick={() => redirect(item)}>
               {item}
             </SuggestionItem>
           );
         })}
-        {searchSuggestions.length > 0 && (
+        {SearchSuggestions.length > 0 && (
           <SuggestionItem
             onClick={() => {
               setSearchHistory([]);
@@ -136,7 +136,7 @@ function NavBar({
             Clear History
           </SuggestionItem>
         )}
-      </SearchSuggestions>
+      </SearchSuggestionContainer>
       <IconBar pathname={location.pathname}>
         <ButtonIcon src={homeIcon} onClick={()=>history.push('/')}/>
         <RightSideIconContainer>
@@ -150,7 +150,7 @@ function NavBar({
           </DarkModeToggleContainer>
         </RightSideIconContainer>
       </IconBar>
-    </SearchBar>
+    </ToolBar>
   );
 }
 
