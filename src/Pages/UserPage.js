@@ -11,9 +11,10 @@ import {
     Showcase
 } from 'Components'
 import unsplash from 'API/unsplash'
-import InfiniteLoaderReducer, { initialState } from 'Reducers/InfiniteLoaderReducer'
+import InfiniteLoaderReducer from 'Reducers/InfiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
+import { initialState } from 'Reducers/infiniteLoaderInitialState'
 
 const PageContainer = styled.div`
     margin: auto;
