@@ -11,7 +11,7 @@ import {
     Showcase
 } from 'Components'
 import unsplash from 'API/unsplash'
-import InfiniteLoaderReducer , { initialState } from 'Reducers/NewinfiniteLoaderReducer'
+import InfiniteLoaderReducer , { initialState } from 'Reducers/NewtestinfiniteLoaderReducer'
 import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 
