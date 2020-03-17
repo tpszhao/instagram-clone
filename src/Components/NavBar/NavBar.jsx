@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
 import { localGet, localSet } from "API/local";
-import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'Assets/SVG'
+import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'ASSETS/SVG/'
 
 import {
   ToolBar,
