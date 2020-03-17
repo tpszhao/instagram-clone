@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import {toJson} from 'unsplash-js'
-import unsplash from 'api/unsplash'
-import capitalize from 'utilities/capitalize'
+import unsplash from 'API/unsplash'
+import capitalize from 'Utilities/capitalize'
 import { ButtonIcon } from 'Components';
-import { searchIcon } from "assets/SVG"
+import { searchIcon } from "Assets/SVG"
 import {
     ModalContainer, 
     Form,

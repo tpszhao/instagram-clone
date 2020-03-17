@@ -1,7 +1,7 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
-import unsplash from "api/unsplash";
+import unsplash from "API/unsplash";
 
 import {
     START_LOADING,
@@ -9,7 +9,7 @@ import {
     UPDATE_TOTAL,
     NO_MORE_RESULTS,
     REQUEST_ERROR
-} from 'actions/infiniteLoaderActions';
+} from 'Actions/infiniteLoaderActions';
 
 
 export default function InfiniteLoader({

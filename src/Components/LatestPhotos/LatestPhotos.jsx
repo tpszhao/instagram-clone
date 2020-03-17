@@ -6,8 +6,8 @@ import {
   Showcase
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
-import { ALLOW_FETCHING } from 'actions/infiniteLoaderActions';
+import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
+import { ALLOW_FETCHING } from 'Actions/infiniteLoaderActions';
 
 
 export default function LatestPhotos({setModalIsOpen,setModalScreen}) {

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {cross} from 'assets/SVG'
+import {cross} from 'Assets/SVG'
 
 const Button = styled.div`
   cursor: pointer;

@@ -10,11 +10,11 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import unsplash from 'api/unsplash'
-import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
-import { RESET, ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
-import getProps from 'utilities/getProps'
-import { collectionIcon } from 'assets/SVG'
+import unsplash from 'API/unsplash'
+import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
+import { RESET, ALLOW_FETCHING } from 'Actions/infiniteLoaderActions'
+import getProps from 'Utilities/getProps'
+import { collectionIcon } from 'Assets/SVG'
 
 
 const PageContainer = styled.div`

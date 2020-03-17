@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toJson } from "unsplash-js";
-import unsplash from "api/unsplash";
-import { localGet, localSet } from "api/local";
+import unsplash from "API/unsplash";
+import { localGet, localSet } from "API/local";
 import { ButtonIcon, Showcase } from 'Components';
 import {HighlightCard,HighlightAddCollection} from './';
 import {

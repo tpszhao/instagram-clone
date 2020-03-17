@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'Utilities/node_modules/react'
 
 export const photoProps = photo =>{
     const src = photo.urls.regular;
