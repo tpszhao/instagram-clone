@@ -1,38 +1,38 @@
-export const reset = {
-    type:'reset'
+export const RESET = {
+    type:'RESET'
 }
 
-export const allowFetching = {
-    type:'allowFetching'
+export const ALLOW_FETCHING = {
+    type:'ALLOW_FETCHING'
 }
 
-export const pauseFetching = {
-    type:'pauseFetching'
+export const PAUSE_FETCHING = {
+    type:'PAUSE_FETCHING'
 }
 
 
-export const startLoading = {
-    type:'startLoading'
+export const START_LOADING = {
+    type:'START_LOADING'
 }
 
-export const nextPage = photos => {
+export const NEXT_PAGE = photos => {
     return{
-        type:'nextPage',
+        type:'NEXT_PAGE',
         payload:photos
     }
 }
 
-export const updateTotal = total =>{
+export const UPDATE_TOTAL = total =>{
     return{
-        type:'updateTotal',
+        type:'UPDATE_TOTAL',
         payload:total
     }
 }
 
-export const noMoreResults = {
-    type:'noMoreResults'
+export const NO_MORE_RESULTS = {
+    type:'NO_MORE_RESULTS'
 }
 
-export const requestError = {
-    type:'requestError'
+export const REQUEST_ERROR = {
+    type:'REQUEST_ERROR'
 }

@@ -9,7 +9,7 @@ import {
     Showcase
 } from "Components";
 import infiniteLoaderReducer, {initialState} from "reducers/infiniteLoaderReducer";
-import { allowFetching } from "actions/infiniteLoaderActions";
+import { ALLOW_FETCHING } from "actions/infiniteLoaderActions";
 import generateRandomNumber from 'utilities/generateRandomNumber'
 import { photoProps } from 'utilities/getProps'
 
@@ -43,7 +43,7 @@ export default function ExplorePage(props) {
     const [initialSlide, setInitialSlide] = useState(0);
 
     useEffect(() => {
-        dispatch(allowFetching);
+        dispatch(ALLOW_FETCHING);
     }, []);
 
     useEffect(()=>{

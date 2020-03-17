@@ -7,7 +7,7 @@ import {
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
 import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
-import { allowFetching } from 'actions/infiniteLoaderActions';
+import { ALLOW_FETCHING } from 'actions/infiniteLoaderActions';
 
 
 export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
@@ -15,7 +15,7 @@ export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
   const {dataList:photoList} = state;
 
   useEffect(() => {
-    dispatch(allowFetching);
+    dispatch(ALLOW_FETCHING);
   }, [])
 
   const closeModal = ()=>setModalIsOpen(false);

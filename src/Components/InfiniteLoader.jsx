@@ -4,11 +4,11 @@ import { toJson } from "unsplash-js";
 import unsplash from "api/unsplash";
 
 import {
-    startLoading,
-    nextPage,
-    updateTotal,
-    noMoreResults,
-    requestError
+    START_LOADING,
+    NEXT_PAGE,
+    UPDATE_TOTAL,
+    NO_MORE_RESULTS,
+    REQUEST_ERROR
 } from 'actions/infiniteLoaderActions';
 
 
@@ -29,25 +29,25 @@ export default function InfiniteLoader({
     const loadMore = async () => {
         if(isLoading || !allowFetching || !hasMore) return
         try {
-            dispatch(startLoading);
+            dispatch(START_LOADING);
             const response = await unsplash[query][searchType](...params);
             const json = await toJson(response);
             let results;
             switch (query) {
                 case "search":
-                    dispatch(updateTotal(json.total));
+                    dispatch(UPDATE_TOTAL(json.total));
                     results = json.results;
                     break;
                 default:
                     results = json;
             }
-            dispatch(nextPage(results));
+            dispatch(NEXT_PAGE(results));
             if (!results.length) {
-            dispatch(noMoreResults);
+            dispatch(NO_MORE_RESULTS);
             console.log("no more results");
             }
         } catch {
-            dispatch(requestError);
+            dispatch(REQUEST_ERROR);
             console.log("something went wrong");
         } 
     };

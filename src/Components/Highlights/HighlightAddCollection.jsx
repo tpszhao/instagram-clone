@@ -57,7 +57,7 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
             {!message&&card&&
                 <Photo 
                     src={card.photoList[0].urls.regular} 
-                    alt="placeholder"/>}
+                    alt=""/>}
             <Form onSubmit={handleSubmit}>
                 <ButtonIcon 
                     width='28px' 

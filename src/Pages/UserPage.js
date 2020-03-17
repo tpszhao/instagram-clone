@@ -12,7 +12,7 @@ import {
 } from 'Components'
 import unsplash from 'api/unsplash'
 import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
-import { reset, allowFetching } from 'actions/infiniteLoaderActions'
+import { RESET, ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 
 
@@ -50,8 +50,8 @@ export default function UserPage(props) {
     console.log(props);
 
     useEffect(() => {
-        dispatch(reset);
-        dispatch(allowFetching);
+        dispatch(RESET);
+        dispatch(ALLOW_FETCHING);
         unsplash.users
             .profile(props.match.params.username)
             .then(toJson)

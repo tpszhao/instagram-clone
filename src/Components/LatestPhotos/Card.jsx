@@ -21,7 +21,7 @@ export default function Card({ photo, onClick=()=>{} }) {
   return (
     <CardContainer>
       <UserInfo to={url}>
-        <ProfileImage src={photo.user.profile_image.medium} alt="placeholder" />
+        <ProfileImage src={photo.user.profile_image.medium} alt="" />
         <UserName>{photo.user.name}</UserName>
       </UserInfo>
       <ImageLazyLoader 

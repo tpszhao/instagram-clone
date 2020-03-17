@@ -10,7 +10,7 @@ import {
     Showcase
 } from 'Components'
 import infiniteLoaderReducer, { initialState } from 'reducers/infiniteLoaderReducer'
-import { reset, allowFetching, pauseFetching } from 'actions/infiniteLoaderActions'
+import { RESET, ALLOW_FETCHING, PAUSE_FETCHING } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 import { searchIcon } from 'assets/SVG'
 
@@ -73,18 +73,18 @@ export default function SearchPage({history,match}) {
     const dataList = state[searchType].dataList;
 
     useEffect(() => {
-        dispatch[searchType](allowFetching);
+        dispatch[searchType](ALLOW_FETCHING);
         return () => {
-            photosDispatch(pauseFetching);
-            collectionsDispatch(pauseFetching);
+            photosDispatch(PAUSE_FETCHING);
+            collectionsDispatch(PAUSE_FETCHING);
         };
     }, [searchType])
 
     useEffect(() => {
-        photosDispatch(allowFetching);
+        photosDispatch(ALLOW_FETCHING);
         return ()=>{
-            photosDispatch(reset);
-            collectionsDispatch(reset);
+            photosDispatch(RESET);
+            collectionsDispatch(RESET);
         }
     }, [searchValue])
 
