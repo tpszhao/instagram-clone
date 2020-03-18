@@ -1,5 +1,5 @@
-import areEqualShallow from 'utilities/areEqualShallow'
-
+import areEqualShallow from 'utilities/areEqualShallow';
+import generateRandomNumber from 'utilities/generateRandomNumber';
 
 const ALLOW_FETCHING = "ALLOW_FETCHING";
 const PAUSE_FETCHING = "PAUSE_FETCHING";
@@ -19,6 +19,7 @@ export const initialState = {
     },
     "/explore":{
         dataList:[],
+        heightList:[],
         page:1,
         hasMore:true,
     },
@@ -90,6 +91,15 @@ const NEXT_PAGE_ACTION = (state,payload)=>{
                 dataList:[...prevRouteState.dataList,...dataList],
                 page:prevRouteState.page + 1,
                 hasMore: !!dataList.length
+            }
+            if (route === "/explore"){
+                const newHeightList = dataList.map(()=>(
+                    `${generateRandomNumber(200,400)}px`
+                ));
+                newRouteState.heightList = [
+                    ...prevRouteState.heightList,
+                    ...newHeightList
+                ]
             }
             return {
                 ...stopLoadingState, 
