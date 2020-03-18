@@ -1,21 +1,26 @@
-import React, { useState,useEffect,useReducer } from "react";
+import React, { useEffect } from "react";
 import { 
   Card, 
   CardLoader, 
   InfiniteLoader,
-  Showcase
+  Showcase,
+  PhotoContext 
 } from "Components";
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
 import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions';
+import { useContext } from "react";
 
 
-export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
-  const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
-  const {dataList:photoList} = state;
+export default function LatestPhotos({
+  setModalIsOpen,
+  setModalScreen,
+  route,
+}) {
+  const {state,dispatch} = useContext(PhotoContext);
+  const photoList = state[route].dataList;
 
   useEffect(() => {
-    dispatch(ALLOW_FETCHING);
+    dispatch(ALLOW_FETCHING(route));
   }, [])
 
   const closeModal = ()=>setModalIsOpen(false);
@@ -31,10 +36,9 @@ export default function LatestPhotos({setModalIsOpen,setModalScreen}) {
 
   return (
     <InfiniteLoader
+      route={route}
       query='photos'
       searchType='listPhotos'
-      state={state}
-      dispatch={dispatch}
       loader={<CardLoader key='loading'/>}>
       <InfiniteContainer>
         {photoList.map((photo,i)=>{

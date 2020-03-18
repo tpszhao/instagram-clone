@@ -1,14 +1,21 @@
-import React,{useState, useEffect} from "react";
+import React,{ useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import {NavBar} from 'Components';
-import {HomePage,UserPage,SearchPage,CollectionPage,ExplorePage} from 'Pages';
+import { NavBar, PhotoContextProvider } from 'Components';
+import { 
+  HomePage,
+  ExplorePage,
+  SearchPage
+} from 'Pages';
 import { darkTheme, lightTheme } from 'Themes'
 import { localGet, localSet } from "API/local";
+
+
+
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -37,7 +44,7 @@ function App() {
   useEffect(() => {
     localSet("darkModeEnabled", darkModeEnabled);
   }, [darkModeEnabled])
-
+  
   return (
     <Router>
       <ThemeProvider theme={darkModeEnabled ? darkTheme : lightTheme}>
@@ -45,13 +52,16 @@ function App() {
         <NavBar 
           darkModeEnabled={darkModeEnabled}
           setDarkModeEnabled={setDarkModeEnabled}/>
-        <Switch>
-          <Route path="/" exact component={HomePage}/>
-          <Route path="/explore" exact component={ExplorePage}/>
-          <Route path="/user/:username" component={UserPage} />   
-          <Route path="/collection/:collectionID" component={CollectionPage} />   
-          <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
-        </Switch>
+        
+        <PhotoContextProvider>
+          <Switch>
+            <Route path="/" exact component={HomePage}/>
+            <Route path="/explore" exact component={ExplorePage}/>
+            {/* <Route path="/user/:username" component={UserPage} />    */}
+            {/* <Route path="/collection/:collectionID" component={CollectionPage} />    */}
+            <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
+          </Switch>
+        </PhotoContextProvider>
       </ThemeProvider>
     </Router>
   );

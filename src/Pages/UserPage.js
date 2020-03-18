@@ -12,7 +12,7 @@ import {
 } from 'Components'
 import unsplash from 'API/unsplash'
 import infiniteLoaderReducer , { initialState } from 'Reducers/infiniteLoaderReducer'
-import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 
 const PageContainer = styled.div`
@@ -49,7 +49,6 @@ export default function UserPage(props) {
     console.log(props);
 
     useEffect(() => {
-        dispatch(RESET);
         dispatch(ALLOW_FETCHING);
         unsplash.users
             .profile(props.match.params.username)

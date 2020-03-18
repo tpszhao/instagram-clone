@@ -12,7 +12,7 @@ import {
 } from 'Components'
 import unsplash from 'API/unsplash'
 import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
-import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 import { collectionIcon } from 'SVG'
 
@@ -56,7 +56,6 @@ export default function CollectionPage(props) {
     const [initialSlide, setInitialSlide] = useState(0);
 
     useEffect(() => {
-        dispatch(RESET);
         dispatch(ALLOW_FETCHING);
         unsplash.collections
             .getCollection(props.match.params.collectionID)

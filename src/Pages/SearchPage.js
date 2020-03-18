@@ -1,4 +1,4 @@
-import React,{ useState, useEffect, useReducer } from 'react'
+import React,{ useState, useEffect, useContext } from 'react'
 import styled from 'styled-components';
 import { 
     GridHeader,
@@ -7,10 +7,10 @@ import {
     GridLoader,
     InfiniteLoader,
     CustomModal,
-    Showcase
+    Showcase,
+    PhotoContext,
 } from 'Components'
-import infiniteLoaderReducer, { initialState } from 'Reducers/infiniteLoaderReducer'
-import { RESET, ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 import { searchIcon } from 'SVG'
 
@@ -55,36 +55,30 @@ const SearchHeader = ({searchValue,searchType, total})=>{
     return <GridHeader src={searchIcon} title={title} statList={statList}/>
 }
 
-export default function SearchPage({history,match}) {
-    const {searchValue,searchType} = match.params;
+export default function SearchPage({
+    history,
+    match: { params, path }
+}) {
+    const { searchValue, searchType } = params;
+    const { state, dispatch } = useContext(PhotoContext);
+    const { dataList:photoList } = state.searchPage.photos;
+    const { dataList, total } = state.searchPage[searchType];
 
-    const [photos, photosDispatch] = useReducer(infiniteLoaderReducer, initialState);
-    const [collections, collectionsDispatch] = useReducer(infiniteLoaderReducer, initialState);
-    
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
 
 
-    const state = {photos,collections};
-    const dispatch = {
-        photos:photosDispatch,
-        collections:collectionsDispatch
-    };
-    const dataList = state[searchType].dataList;
-
     useEffect(() => {
-        dispatch[searchType](ALLOW_FETCHING);
+        dispatch(ALLOW_FETCHING(path));
         return () => {
-            photosDispatch(PAUSE_FETCHING);
-            collectionsDispatch(PAUSE_FETCHING);
+            dispatch(PAUSE_FETCHING);
         };
     }, [searchType])
 
     useEffect(() => {
-        photosDispatch(ALLOW_FETCHING);
+        dispatch(ALLOW_FETCHING(path));
         return ()=>{
-            photosDispatch(RESET);
-            collectionsDispatch(RESET);
+            dispatch(PAUSE_FETCHING);
         }
     }, [searchValue])
 
@@ -108,7 +102,7 @@ export default function SearchPage({history,match}) {
                 <SearchHeader 
                     searchValue={searchValue} 
                     searchType={searchType}
-                    total={state[searchType].total}/>
+                    total={total}/>
                 <SearchTypeList>
                     <SearchTypeLink 
                         onClick={()=>changeSearchType('photos')}
@@ -122,11 +116,10 @@ export default function SearchPage({history,match}) {
                     </SearchTypeLink>
                 </SearchTypeList>
                 <InfiniteLoader
+                    route={path}
                     query="search"
                     searchType={searchType}
                     searchValue={searchValue}
-                    state={state[searchType]}
-                    dispatch={dispatch[searchType]}
                     loader={<GridLoader key='loading'/>}>
                     <GridContainer>
                         {dataList.map((item,i)=>{
@@ -143,7 +136,7 @@ export default function SearchPage({history,match}) {
                 isOpen={modalIsOpen}
                 onRequestClose={()=>setModalIsOpen(false)}>
                 <Showcase 
-                    photoList={photos.dataList} 
+                    photoList={photoList} 
                     initialSlide={initialSlide}
                     closeModal={()=>setModalIsOpen(false)}/>
             </CustomModal>

@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
+import { PhotoContext } from 'Components'
 
 import {
     START_LOADING,
     NEXT_PAGE,
-    UPDATE_TOTAL,
-    NO_MORE_RESULTS,
     REQUEST_ERROR
 } from 'Actions/InfiniteLoaderActions';
 
 
 export default function InfiniteLoader({
+    route,
     query, 
     searchType,
     searchValue='', 
-    state:{page,hasMore,isLoading,allowFetching},
-    dispatch,
     orderedBy="latest",
     loader = <div key={0}>loading</div>,
     children
 }) {
+    const {state,dispatch} = useContext(PhotoContext);
+    const { allowFetching, isLoading} = state;
+    const { 
+        page, 
+        hasMore 
+    } = (query === "search") ? state.searchPage[searchType]:state[route];
+
     const params = (searchType === 'listPhotos')?
         [page,15,orderedBy]:
         [searchValue,page,15]
@@ -32,20 +37,23 @@ export default function InfiniteLoader({
             dispatch(START_LOADING);
             const response = await unsplash[query][searchType](...params);
             const json = await toJson(response);
+            const total = json.total||null;
             let results;
             switch (query) {
                 case "search":
-                    dispatch(UPDATE_TOTAL(json.total));
                     results = json.results;
                     break;
                 default:
                     results = json;
             }
-            dispatch(NEXT_PAGE(results));
-            if (!results.length) {
-            dispatch(NO_MORE_RESULTS);
-            console.log("no more results");
-            }
+            console.log(results);
+            dispatch(NEXT_PAGE({
+                route,
+                dataList:results,
+                total,
+                keyword:searchValue,
+                searchType
+            }));
         } catch {
             dispatch(REQUEST_ERROR);
             console.log("something went wrong");
