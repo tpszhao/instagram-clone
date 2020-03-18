@@ -25,18 +25,10 @@ const PageContainer = styled.div`
     }
 `;
 
-const generateRandomList = ()=>{
-    let list = [];
-    for (let i=0;i<15;i++){
-        list[i] = `${generateRandomNumber(200,400)}px`;
-    }
-    return list;
-}
 
 export default function ExplorePage({match:{ path }}) {
     const { state, dispatch } = useContext(PhotoDataContext);
-    const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
-    const { dataList:photoList } = state[path];
+    const { dataList:photoList, heightList } = state[path];
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
@@ -44,11 +36,6 @@ export default function ExplorePage({match:{ path }}) {
     useEffect(() => {
         dispatch(ALLOW_FETCHING(path));
     }, []);
-
-    useEffect(()=>{
-        const heightListExtension = generateRandomList();
-        setRandomHeightList([...randomHeightList,...heightListExtension]);
-    },[photoList])
 
     const openShowcase = index=>{
         setInitialSlide(index);
@@ -67,7 +54,7 @@ export default function ExplorePage({match:{ path }}) {
                     <MasonryContainer>
                         {photoList.map((photo,i)=>{
                             const props = photoProps(photo);
-                            const height = randomHeightList[i];
+                            const height = heightList[i];
                             return (
                             <MasonryItem {...props} 
                                 height={height}
