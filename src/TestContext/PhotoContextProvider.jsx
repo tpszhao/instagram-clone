@@ -1,5 +1,5 @@
 import React, { useReducer, createContext } from 'react';
-import infiniteLoaderReducer, {initialState} from 'Reducers/infiniteLoaderReducer'
+import infiniteLoaderReducer, {initialState} from 'TestReducers/infiniteLoaderReducer'
 
 export const PhotoDataContext = createContext();
 

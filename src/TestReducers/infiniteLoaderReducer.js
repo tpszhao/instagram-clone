@@ -1,4 +1,4 @@
-import areEqualShallow from 'Utilities/areEqualShallow'
+import areEqualShallow from 'TestUtilities/areEqualShallow'
 
 
 const ALLOW_FETCHING = "ALLOW_FETCHING";

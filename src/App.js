@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { NavBar } from 'Components';
-import { PhotoDataContextProvider } from 'Context'
+import { PhotoDataContextProvider } from 'TestContext'
 import { 
   HomePage,
   ExplorePage,
@@ -14,8 +14,8 @@ import {
   UserPage,
   CollectionPage
 } from 'Pages';
-import { darkTheme, lightTheme } from 'Themes'
-import { localGet, localSet } from "API/local";
+import { darkTheme, lightTheme } from 'TestThemes'
+import { localGet, localSet } from "TestAPI/local";
 
 
 

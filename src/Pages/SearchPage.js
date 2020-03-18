@@ -9,10 +9,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import { PhotoDataContext } from 'Context'
-import { ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
-import { searchIcon } from 'SVG'
+import { PhotoDataContext } from 'TestContext'
+import { ALLOW_FETCHING, PAUSE_FETCHING } from 'TestActions/InfiniteLoaderActions'
+import getProps from 'TestUtilities/getProps'
+import { searchIcon } from 'assets/svg'
 
 
 const PageContainer = styled.div`

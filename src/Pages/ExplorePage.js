@@ -8,10 +8,10 @@ import {
     CustomModal,
     Showcase
 } from "Components";
-import { PhotoDataContext } from 'Context'
-import { ALLOW_FETCHING } from "Actions/InfiniteLoaderActions";
-import generateRandomNumber from 'Utilities/generateRandomNumber'
-import { photoProps } from 'Utilities/getProps'
+import { PhotoDataContext } from 'TestContext';
+import { ALLOW_FETCHING } from "TestActions/InfiniteLoaderActions";
+import generateRandomNumber from 'TestUtilities/generateRandomNumber';
+import { photoProps } from 'TestUtilities/getProps';
 
 
 const PageContainer = styled.div`

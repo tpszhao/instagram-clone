@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
-import { localGet, localSet } from "API/local";
-import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'SVG'
+import { localGet, localSet } from "TestAPI/local";
+import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'assets/svg'
 
 import {
   ToolBar,

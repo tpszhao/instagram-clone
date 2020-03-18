@@ -10,10 +10,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import { PhotoDataContext } from 'Context'
-import unsplash from 'API/unsplash'
-import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
-import getProps from 'Utilities/getProps'
+import { PhotoDataContext } from 'TestContext'
+import unsplash from 'TestAPI/unsplash'
+import { ALLOW_FETCHING } from 'TestActions/InfiniteLoaderActions'
+import getProps from 'TestUtilities/getProps'
 
 const PageContainer = styled.div`
     margin: auto;
