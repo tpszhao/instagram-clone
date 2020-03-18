@@ -9,9 +9,9 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import { PhotoDataContext } from 'TestContext'
-import { ALLOW_FETCHING, PAUSE_FETCHING } from 'TestActions/InfiniteLoaderActions'
-import getProps from 'TestUtilities/getProps'
+import { PhotoDataContext } from 'context'
+import { ALLOW_FETCHING, PAUSE_FETCHING } from 'actions/InfiniteLoaderActions'
+import getProps from 'utilities/getProps'
 import { searchIcon } from 'assets/svg'
 
 

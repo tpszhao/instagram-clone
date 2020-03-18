@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
-import unsplash from "TestAPI/unsplash";
-import { PhotoDataContext } from 'TestContext'
+import unsplash from "api/unsplash";
+import { PhotoDataContext } from 'context'
 
 import {
     START_LOADING,
     NEXT_PAGE,
     REQUEST_ERROR
-} from 'TestActions/InfiniteLoaderActions';
+} from 'actions/InfiniteLoaderActions';
 
 const determineParams = (route,state,searchType)=>{
     switch(route){

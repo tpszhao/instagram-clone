@@ -10,10 +10,10 @@ import {
     CustomModal,
     Showcase
 } from 'Components'
-import { PhotoDataContext } from 'TestContext'
-import unsplash from 'TestAPI/unsplash'
-import { ALLOW_FETCHING } from 'TestActions/InfiniteLoaderActions'
-import getProps from 'TestUtilities/getProps'
+import { PhotoDataContext } from 'context'
+import unsplash from 'api/unsplash'
+import { ALLOW_FETCHING } from 'actions/InfiniteLoaderActions'
+import getProps from 'utilities/getProps'
 import { collectionIcon } from 'assets/svg'
 
 

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {toJson} from 'unsplash-js'
-import unsplash from 'TestAPI/unsplash'
-import capitalize from 'TestUtilities/capitalize'
+import unsplash from 'api/unsplash'
+import capitalize from 'utilities/capitalize'
 import { ButtonIcon } from 'Components';
 import { searchIcon } from "assets/svg"
 import {

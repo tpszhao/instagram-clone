@@ -5,9 +5,9 @@ import {
   InfiniteLoader,
   Showcase,
 } from "Components";
-import { PhotoDataContext } from 'TestContext'
+import { PhotoDataContext } from 'context'
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import { ALLOW_FETCHING } from 'TestActions/InfiniteLoaderActions';
+import { ALLOW_FETCHING } from 'actions/InfiniteLoaderActions';
 import { useContext } from "react";
 
 

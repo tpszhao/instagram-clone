@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
-import { localGet, localSet } from "TestAPI/local";
+import { localGet, localSet } from "api/local";
 import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'assets/svg'
 
 import {
