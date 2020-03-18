@@ -10,9 +10,9 @@ export const ModalContainer = styled.div`
     display:flex;
     flex-direction:column;
     flex-wrap:nowrap;
-    justify-content:space-around;
+    justify-content:center;
     align-items:center;
-    border: 1px solid ${props=>props.theme.borderColor};
+    /* border: 1px solid ${props=>props.theme.borderColor}; */
     border-radius:5px;
     padding:30px;
 `;
@@ -27,6 +27,7 @@ export const Form = styled.form`
     align-items:center;
 
     padding:0px 10px;
+    margin-top:10px;
     border-radius:14px;
 
     ${props=>`

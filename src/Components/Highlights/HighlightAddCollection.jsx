@@ -13,7 +13,7 @@ import {
 } from './Highlights.styles'
 
 export default function HighlightAddCollection({cardList,setCardList,closeModal}) {
-    const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState("Search for photos below...");
     const [card, setCard] = useState(null);
     const [searchValue, setSearchValue] = useState();
     const [isSearching, setIsSearching] = useState(false);
@@ -70,7 +70,7 @@ export default function HighlightAddCollection({cardList,setCardList,closeModal}
                     onFocus={()=>setIsSearching(true)}
                     onBlur={()=>setIsSearching(false)}
                     type="text" 
-                    placeholder="Search for photos"/>
+                    placeholder="Search here!"/>
                 <ButtonIcon 
                     opacity={isSearching?1:0}
                     width='14px' 
