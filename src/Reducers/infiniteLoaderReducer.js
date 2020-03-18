@@ -1,3 +1,6 @@
+import areEqualShallow from 'Utilities/areEqualShallow'
+
+
 const ALLOW_FETCHING = "ALLOW_FETCHING";
 const PAUSE_FETCHING = "PAUSE_FETCHING";
 const START_LOADING = "START_LOADING";
@@ -20,6 +23,7 @@ export const initialState = {
         hasMore:true,
     },
     gridPage:{
+        route:null,
         keyword:null, 
         dataList:[],
         total:null,
@@ -27,6 +31,7 @@ export const initialState = {
         hasMore:true,
     },
     searchPage:{
+        route:"/search/:searchType/:searchValue",
         keyword:null,
 
         photos:{
@@ -46,7 +51,7 @@ export const initialState = {
 }
 
 const PRE_FETCHING_CLEANUP = (state,payload)=>{
-    const { route, keyword } = payload;
+    const { route } = payload;
     let result = {...state,allowFetching:true};
     let key;
     let prevState;
@@ -61,7 +66,8 @@ const PRE_FETCHING_CLEANUP = (state,payload)=>{
             key = "gridPage";
     }
     prevState = state[key];
-    if (keyword === prevState.keyword) return result;
+    if (areEqualShallow(prevState,payload,["route","keyword"])) return result
+
     return {...result,[key]:initialState[key]}
 }
 
@@ -98,6 +104,7 @@ const NEXT_PAGE_ACTION = (state,payload)=>{
                 page:prevSearchTypeState.page + 1,
                 hasMore: !!dataList.length,
                 total,
+                route
             }
             newRouteState = {
                 ...prevRouteState,
@@ -111,6 +118,7 @@ const NEXT_PAGE_ACTION = (state,payload)=>{
         default:
             prevRouteState = state.gridPage;
             newRouteState = {
+                route,
                 keyword,
                 total,
                 dataList:[...prevRouteState.dataList,...dataList],
