@@ -21,7 +21,7 @@ export const initialState = {
     },
     gridPage:{
         keyword:null, 
-        photoList:[],
+        dataList:[],
         total:null,
         page:1,
         hasMore:true,

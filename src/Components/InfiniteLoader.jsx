@@ -10,6 +10,19 @@ import {
     REQUEST_ERROR
 } from 'Actions/InfiniteLoaderActions';
 
+const determineParams = (route,state,searchType)=>{
+    switch(route){
+        case "/search/:searchType/:searchValue":
+            return state.searchPage[searchType];
+        case "/":
+        case "/explore":
+            return state[route];
+        default:
+            return state.gridPage;
+    }
+}
+
+
 
 export default function InfiniteLoader({
     route,
@@ -22,10 +35,8 @@ export default function InfiniteLoader({
 }) {
     const {state,dispatch} = useContext(PhotoContext);
     const { allowFetching, isLoading} = state;
-    const { 
-        page, 
-        hasMore 
-    } = (query === "search") ? state.searchPage[searchType]:state[route];
+    
+    const { page, hasMore } = determineParams(route,state,searchType);
 
     const params = (searchType === 'listPhotos')?
         [page,15,orderedBy]:
@@ -46,7 +57,6 @@ export default function InfiniteLoader({
                 default:
                     results = json;
             }
-            console.log(results);
             dispatch(NEXT_PAGE({
                 route,
                 dataList:results,

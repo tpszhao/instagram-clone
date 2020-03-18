@@ -8,7 +8,7 @@ import {
     InfiniteLoader,
     CustomModal,
     Showcase,
-    PhotoContext,
+    PhotoContext
 } from 'Components'
 import { ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'

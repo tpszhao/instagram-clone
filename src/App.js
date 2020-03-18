@@ -9,7 +9,9 @@ import { NavBar, PhotoContextProvider } from 'Components';
 import { 
   HomePage,
   ExplorePage,
-  SearchPage
+  SearchPage,
+  UserPage,
+  CollectionPage
 } from 'Pages';
 import { darkTheme, lightTheme } from 'Themes'
 import { localGet, localSet } from "API/local";
@@ -57,8 +59,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={HomePage}/>
             <Route path="/explore" exact component={ExplorePage}/>
-            {/* <Route path="/user/:username" component={UserPage} />    */}
-            {/* <Route path="/collection/:collectionID" component={CollectionPage} />    */}
+            <Route path="/user/:username" component={UserPage} />   
+            <Route path="/collection/:collectionID" component={CollectionPage} />   
             <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
           </Switch>
         </PhotoContextProvider>
