@@ -7,9 +7,9 @@ import {
     GridLoader,
     InfiniteLoader,
     CustomModal,
-    Showcase,
-    PhotoContext
+    Showcase
 } from 'Components'
+import { PhotoDataContext } from 'Context'
 import { ALLOW_FETCHING, PAUSE_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 import { searchIcon } from 'SVG'
@@ -60,7 +60,7 @@ export default function SearchPage({
     match: { params, path }
 }) {
     const { searchValue, searchType } = params;
-    const { state, dispatch } = useContext(PhotoContext);
+    const { state, dispatch } = useContext(PhotoDataContext);
     const { dataList:photoList } = state.searchPage.photos;
     const { dataList, total } = state.searchPage[searchType];
 

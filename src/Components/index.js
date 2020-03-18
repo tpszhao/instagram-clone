@@ -15,9 +15,5 @@ export {GridItem, GridLoader, GridHeader, GridContainer } from "./Grid";
 
 export { HighlightsMenu } from './Highlights'
 
-export { 
-    default as PhotoContextProvider, 
-    PhotoContext
-} from './PhotoContextProvider'
 
 

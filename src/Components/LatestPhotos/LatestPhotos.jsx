@@ -4,8 +4,8 @@ import {
   CardLoader, 
   InfiniteLoader,
   Showcase,
-  PhotoContext 
 } from "Components";
+import { PhotoDataContext } from 'Context'
 import {InfiniteContainer} from './InfiniteLoader.styles'
 import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions';
 import { useContext } from "react";
@@ -16,7 +16,7 @@ export default function LatestPhotos({
   setModalScreen,
   route,
 }) {
-  const {state,dispatch} = useContext(PhotoContext);
+  const {state,dispatch} = useContext(PhotoDataContext);
   const photoList = state[route].dataList;
 
   useEffect(() => {

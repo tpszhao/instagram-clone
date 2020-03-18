@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import InfiniteScroll from "react-infinite-scroller";
 import { toJson } from "unsplash-js";
 import unsplash from "API/unsplash";
-import { PhotoContext } from 'Components'
+import { PhotoDataContext } from 'Context'
 
 import {
     START_LOADING,
@@ -33,7 +33,7 @@ export default function InfiniteLoader({
     loader = <div key={0}>loading</div>,
     children
 }) {
-    const {state,dispatch} = useContext(PhotoContext);
+    const {state,dispatch} = useContext(PhotoDataContext);
     const { allowFetching, isLoading} = state;
     
     const { page, hasMore } = determineParams(route,state,searchType);

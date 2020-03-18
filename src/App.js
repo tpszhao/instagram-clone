@@ -5,7 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { NavBar, PhotoContextProvider } from 'Components';
+import { NavBar } from 'Components';
+import { PhotoDataContextProvider } from 'Context'
 import { 
   HomePage,
   ExplorePage,
@@ -54,8 +55,7 @@ function App() {
         <NavBar 
           darkModeEnabled={darkModeEnabled}
           setDarkModeEnabled={setDarkModeEnabled}/>
-        
-        <PhotoContextProvider>
+        <PhotoDataContextProvider>
           <Switch>
             <Route path="/" exact component={HomePage}/>
             <Route path="/explore" exact component={ExplorePage}/>
@@ -63,7 +63,7 @@ function App() {
             <Route path="/collection/:collectionID" component={CollectionPage} />   
             <Route path="/search/:searchType/:searchValue" component={SearchPage} />      
           </Switch>
-        </PhotoContextProvider>
+        </PhotoDataContextProvider>
       </ThemeProvider>
     </Router>
   );

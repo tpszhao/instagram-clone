@@ -6,9 +6,9 @@ import {
     MasonryItem,
     GridLoader,
     CustomModal,
-    Showcase,
-    PhotoContext
+    Showcase
 } from "Components";
+import { PhotoDataContext } from 'Context'
 import { ALLOW_FETCHING } from "Actions/InfiniteLoaderActions";
 import generateRandomNumber from 'Utilities/generateRandomNumber'
 import { photoProps } from 'Utilities/getProps'
@@ -34,7 +34,7 @@ const generateRandomList = ()=>{
 }
 
 export default function ExplorePage({match:{ path }}) {
-    const { state, dispatch } = useContext(PhotoContext);
+    const { state, dispatch } = useContext(PhotoDataContext);
     const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
     const { dataList:photoList } = state[path];
 

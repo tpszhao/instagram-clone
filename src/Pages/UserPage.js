@@ -8,9 +8,9 @@ import {
     GridLoader,
     InfiniteLoader,
     CustomModal,
-    Showcase,
-    PhotoContext
+    Showcase
 } from 'Components'
+import { PhotoDataContext } from 'Context'
 import unsplash from 'API/unsplash'
 import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
@@ -41,7 +41,7 @@ const UserHeader = ({user}) => {
 
 export default function UserPage({match}) {
     const [user, setUser] = useState(null);
-    const { state, dispatch } = useContext(PhotoContext);
+    const { state, dispatch } = useContext(PhotoDataContext);
     const { dataList } = state.gridPage;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
