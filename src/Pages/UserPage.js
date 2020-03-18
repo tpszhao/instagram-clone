@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useReducer} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import styled from 'styled-components';
 import {toJson} from 'unsplash-js'
 import {
@@ -8,11 +8,11 @@ import {
     GridLoader,
     InfiniteLoader,
     CustomModal,
-    Showcase
+    Showcase,
+    PhotoContext
 } from 'Components'
 import unsplash from 'API/unsplash'
-import infiniteLoaderReducer , { initialState } from 'Reducers/infiniteLoaderReducer'
-import { RESET, ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING } from 'Actions/InfiniteLoaderActions'
 import getProps from 'Utilities/getProps'
 
 const PageContainer = styled.div`
@@ -39,27 +39,26 @@ const UserHeader = ({user}) => {
 }
 
 
-export default function UserPage(props) {
+export default function UserPage({match}) {
     const [user, setUser] = useState(null);
-    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
+    const { state, dispatch } = useContext(PhotoContext);
+    const { dataList } = state.gridPage;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
 
-    console.log(props);
 
     useEffect(() => {
-        dispatch(RESET);
-        dispatch(ALLOW_FETCHING);
+        dispatch(ALLOW_FETCHING(match.path));
         unsplash.users
-            .profile(props.match.params.username)
+            .profile(match.params.username)
             .then(toJson)
             .then(json => {
                 setUser(json);
             }).catch(()=>{
                 setUser(null);
             });
-    }, [props.match.params.username]);
+    }, [match.params.username]);
 
     const openShowcase = index=>{
         setInitialSlide(index);
@@ -72,14 +71,13 @@ export default function UserPage(props) {
             <PageContainer>
                 <UserHeader user={user}/>
                 <InfiniteLoader
+                    route={match.path}
                     query='users'
                     searchType='photos'
                     searchValue={user.username}
-                    state={state}
-                    dispatch={dispatch}
                     loader={<GridLoader key='loading'/>}>
                     <GridContainer>
-                        {state.dataList.map((item,i)=>{
+                        {dataList.map((item,i)=>{
                             const props = getProps.photos(item);
                             return <GridItem {...props} onClick={()=>openShowcase(i)}/>
                         })}
@@ -90,7 +88,7 @@ export default function UserPage(props) {
                 isOpen={modalIsOpen}
                 onRequestClose={()=>setModalIsOpen(false)}>
                 <Showcase 
-                    photoList={state.dataList} 
+                    photoList={dataList} 
                     initialSlide={initialSlide}
                     showUserAvatar={false} 
                     closeModal={()=>setModalIsOpen(false)}/>

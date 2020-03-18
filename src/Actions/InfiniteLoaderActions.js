@@ -1,9 +1,9 @@
-export const RESET = {
-    type:'RESET'
-}
 
-export const ALLOW_FETCHING = {
-    type:'ALLOW_FETCHING'
+export const ALLOW_FETCHING = (route,keyword = null) => {
+    return {
+        type:'ALLOW_FETCHING',
+        payload:{ route, keyword }
+    }
 }
 
 export const PAUSE_FETCHING = {
@@ -15,22 +15,23 @@ export const START_LOADING = {
     type:'START_LOADING'
 }
 
-export const NEXT_PAGE = photos => {
-    return{
-        type:'NEXT_PAGE',
-        payload:photos
-    }
-}
-
-export const UPDATE_TOTAL = total =>{
-    return{
-        type:'UPDATE_TOTAL',
-        payload:total
-    }
-}
-
-export const NO_MORE_RESULTS = {
-    type:'NO_MORE_RESULTS'
+export const NEXT_PAGE = ({
+    route, 
+    dataList=[],
+    total=null,
+    keyword=null,
+    searchType="photos"
+}) => {
+        return{
+            type:'NEXT_PAGE',
+            payload:{
+                route, 
+                dataList,
+                total,
+                keyword,
+                searchType
+            }
+        }
 }
 
 export const REQUEST_ERROR = {

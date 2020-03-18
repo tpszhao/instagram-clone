@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState} from "react";
+import React, { useEffect, useContext, useState} from "react";
 import styled from "styled-components";
 import { 
     InfiniteLoader, 
@@ -6,9 +6,9 @@ import {
     MasonryItem,
     GridLoader,
     CustomModal,
-    Showcase
+    Showcase,
+    PhotoContext
 } from "Components";
-import infiniteLoaderReducer, {initialState} from "Reducers/infiniteLoaderReducer";
 import { ALLOW_FETCHING } from "Actions/InfiniteLoaderActions";
 import generateRandomNumber from 'Utilities/generateRandomNumber'
 import { photoProps } from 'Utilities/getProps'
@@ -33,17 +33,16 @@ const generateRandomList = ()=>{
     return list;
 }
 
-export default function ExplorePage(props) {
-    console.log(props);
-    const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
+export default function ExplorePage({match:{ path }}) {
+    const { state, dispatch } = useContext(PhotoContext);
     const [randomHeightList, setRandomHeightList] = useState(generateRandomList());
-    const {dataList:photoList} = state;
+    const { dataList:photoList } = state[path];
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [initialSlide, setInitialSlide] = useState(0);
 
     useEffect(() => {
-        dispatch(ALLOW_FETCHING);
+        dispatch(ALLOW_FETCHING(path));
     }, []);
 
     useEffect(()=>{
@@ -56,17 +55,14 @@ export default function ExplorePage(props) {
         setModalIsOpen(true);
     }
 
-
-
     return (
         <>
             <PageContainer>
                 <InfiniteLoader
+                    route={path}
                     query="photos"
                     searchType="listPhotos"
                     orderedBy="popular"
-                    state={state}
-                    dispatch={dispatch}
                     loader={<GridLoader key={0} />}>
                     <MasonryContainer>
                         {photoList.map((photo,i)=>{

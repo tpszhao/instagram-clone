@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
+import React,{ useState } from 'react'
 import styled from 'styled-components'
-import {LatestPhotos,HighlightsMenu, CustomModal} from 'Components'
+import { LatestPhotos, HighlightsMenu, CustomModal } from 'Components';
 
 const Container = styled.div`
     margin: auto;
@@ -31,16 +31,15 @@ const SideBar = styled.div`
 `;
 
 
-export default function HomePage(props) {
-    console.log(props);
+export default function HomePage({ match:{ path }}) {
     const [stickyPos, setStickyPos] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalScreen, setModalScreen] = useState(null);
-
     return (
         <>
             <Container>
                 <LatestPhotos
+                    route={path}
                     setModalIsOpen={setModalIsOpen}
                     setModalScreen={setModalScreen}/>
                 <SideBar stickyPos={stickyPos}>
