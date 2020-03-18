@@ -10,7 +10,6 @@ import {
 } from "Components";
 import { PhotoDataContext } from 'context';
 import { ALLOW_FETCHING } from "actions/InfiniteLoaderActions";
-import generateRandomNumber from 'utilities/generateRandomNumber';
 import { photoProps } from 'utilities/getProps';
 
 
