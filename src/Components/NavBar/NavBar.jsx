@@ -2,7 +2,6 @@ import React, { useReducer, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import styled from 'styled-components';
 import { ButtonIcon } from 'Components';
-import { localGet, localSet } from "api/local";
 import { homeIcon,searchIcon,sun,moon, exploreIcon} from 'assets/svg';
 import navBarSearchReducer, { initialState } from 'reducers/navBarSearchReducer';
 import {
@@ -57,7 +56,7 @@ function NavBar({
 }) {
   const searchInput = useRef(null);
   const [
-    { inputValue, isSearching, searchHistory, searchSuggestions }, 
+    { inputValue, isSearching, searchSuggestions }, 
     dispatch
   ] = useReducer(navBarSearchReducer, initialState)
 
