@@ -9,7 +9,7 @@ import {
     Showcase
 } from "Components";
 import { PhotoDataContext } from 'context';
-import { ALLOW_FETCHING } from "actions/testinfiniteLoaderActions";
+import { ALLOW_FETCHING } from "actions/infiniteLoaderActions";
 import { photoProps } from 'utilities/getProps';
 
 
