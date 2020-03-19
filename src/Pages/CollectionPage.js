@@ -12,7 +12,7 @@ import {
 } from 'Components'
 import { PhotoDataContext } from 'context'
 import unsplash from 'api/unsplash'
-import { ALLOW_FETCHING } from 'actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING } from 'actions/infiniteLoaderActions'
 import getProps from 'utilities/getProps'
 import { collectionIcon } from 'assets/svg'
 

@@ -8,7 +8,7 @@ import {
     START_LOADING,
     NEXT_PAGE,
     REQUEST_ERROR
-} from 'actions/InfiniteLoaderActions';
+} from 'actions/infiniteLoaderActions';
 
 const determineParams = (route,state,searchType)=>{
     switch(route){

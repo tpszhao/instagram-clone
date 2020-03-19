@@ -9,7 +9,7 @@ import {
     Showcase
 } from "Components";
 import { PhotoDataContext } from 'context';
-import { ALLOW_FETCHING } from "actions/InfiniteLoaderActions";
+import { ALLOW_FETCHING } from "actions/infiniteLoaderActions";
 import { photoProps } from 'utilities/getProps';
 
 
@@ -18,7 +18,7 @@ const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 936px;
+    width: 946px;
     @media only screen and (max-width: 936px) {
         width: 100%;
     }
