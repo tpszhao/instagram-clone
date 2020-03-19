@@ -50,7 +50,7 @@ const CollectionHeader = ({collection}) => {
 
 export default function CollectionPage({match}) {
     const [collection, setCollection] = useState(null);
-    const {state, dispatch} = useContext(PhotoDataContext);
+    const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList } = state.gridPage;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);

@@ -16,7 +16,7 @@ export default function LatestPhotos({
   setModalScreen,
   route,
 }) {
-  const {state,dispatch} = useContext(PhotoDataContext);
+  const [state, dispatch] = useContext(PhotoDataContext);
   const photoList = state[route].dataList;
 
   useEffect(() => {

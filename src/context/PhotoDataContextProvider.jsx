@@ -7,7 +7,7 @@ export const PhotoDataContext = createContext();
 export default function PhotoDataContextProvider({children}) {
     const [state, dispatch] = useReducer(infiniteLoaderReducer, initialState);
     return (
-        <PhotoDataContext.Provider value={{state,dispatch}}>
+        <PhotoDataContext.Provider value={[state, dispatch]}>
             {children}
         </PhotoDataContext.Provider>
     )

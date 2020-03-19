@@ -60,7 +60,7 @@ export default function SearchPage({
     match: { params, path }
 }) {
     const { searchValue, searchType } = params;
-    const { state, dispatch } = useContext(PhotoDataContext);
+    const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList:photoList } = state.searchPage.photos;
     const { dataList, total } = state.searchPage[searchType];
 

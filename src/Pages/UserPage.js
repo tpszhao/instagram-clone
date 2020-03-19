@@ -41,7 +41,7 @@ const UserHeader = ({user}) => {
 
 export default function UserPage({match}) {
     const [user, setUser] = useState(null);
-    const { state, dispatch } = useContext(PhotoDataContext);
+    const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList } = state.gridPage;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);

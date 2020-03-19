@@ -33,7 +33,7 @@ export default function InfiniteLoader({
     loader = <div key={0}>loading</div>,
     children
 }) {
-    const {state,dispatch} = useContext(PhotoDataContext);
+    const [state, dispatch] = useContext(PhotoDataContext);
     const { allowFetching, isLoading} = state;
     
     const { page, hasMore } = determineParams(route,state,searchType);

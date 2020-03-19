@@ -26,7 +26,7 @@ const PageContainer = styled.div`
 
 
 export default function ExplorePage({match:{ path }}) {
-    const { state, dispatch } = useContext(PhotoDataContext);
+    const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList:photoList, heightList } = state[path];
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
