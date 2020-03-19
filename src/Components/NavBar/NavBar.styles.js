@@ -72,7 +72,7 @@ export const SearchInput = styled.input`
 export const SearchSuggestionContainer = styled.div`
     ${props => !props.active && "display:none;"}
     top: calc(75% + 5px);
-    width:300px;
+    width:288px;
     max-width:calc(100% - 96px);
     background-color: white;
     background-clip: content-box;
