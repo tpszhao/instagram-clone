@@ -7,7 +7,7 @@ import {
 } from "Components";
 import { PhotoDataContext } from 'context'
 import {InfiniteContainer} from './InfiniteLoader.styles'
-import { ALLOW_FETCHING } from 'actions/InfiniteLoaderActions';
+import { ALLOW_FETCHING } from 'actions/testinfiniteLoaderActions';
 import { useContext } from "react";
 
 

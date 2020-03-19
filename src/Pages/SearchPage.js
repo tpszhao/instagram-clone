@@ -10,7 +10,7 @@ import {
     Showcase
 } from 'Components'
 import { PhotoDataContext } from 'context'
-import { ALLOW_FETCHING, PAUSE_FETCHING } from 'actions/InfiniteLoaderActions'
+import { ALLOW_FETCHING, PAUSE_FETCHING } from 'actions/testinfiniteLoaderActions'
 import getProps from 'utilities/getProps'
 import { searchIcon } from 'assets/svg'
 
