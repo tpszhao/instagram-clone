@@ -18,7 +18,7 @@ const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 936px;
+    width: 946px;
     @media only screen and (max-width: 936px) {
         width: 100%;
     }
