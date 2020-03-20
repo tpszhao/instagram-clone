@@ -69,18 +69,21 @@ export const AddToCollection = styled.button`
     font-size: 1em;
     margin: 1em;
     padding: 0.25em 1em;
-    color:rgb(150,150,150);
-    border: 2px solid rgb(219,219,219);
-    background-color:white;
+    opacity:0.7;
+
+    color:${props=>props.theme.textColor};
+    border: 2px solid rgb(150,150,150);
+    background-color:${props=>props.theme.backgroundColor};
     border-radius: 3px;
     &:hover{
         cursor: pointer;
-        background-color:rgb(219,219,219,0.3);
+        background-color:${props=>props.theme.modalBackgroundColor};
+        opacity:1;
     };
     &:active{
         cursor: pointer;
-        background-color:rgb(219,219,219);
-        color: white;
+        background-color:${props=>props.theme.modalBackgroundColor};
+        opacity:1;
     };
 `;
 
