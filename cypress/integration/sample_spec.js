@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 describe("example test", ()=>{
     it("go to explore page", ()=>{
         cy.visit("localhost:3000");
@@ -6,4 +8,6 @@ describe("example test", ()=>{
             expect(loc.pathname).to.include("explore")
         })
     })
+
+
 })
