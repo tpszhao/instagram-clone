@@ -96,6 +96,7 @@ function NavBar({
           onClick={handleSubmit}
           src={searchIcon} />
         <SearchInput
+          data-cy="search_input"
           ref={searchInput}
           type="text"
           placeholder="search for photos..."
