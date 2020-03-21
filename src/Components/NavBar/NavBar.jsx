@@ -129,6 +129,7 @@ function NavBar({
         <ButtonIcon src={homeIcon} onClick={()=>history.push('/')}/>
         <RightSideIconContainer>
           <ButtonIcon width='24px' height='24px'
+            data-cy="explore_page_icon"
             src={exploreIcon} 
             onClick={()=>history.push('/explore')}/>
           <DarkModeToggleContainer
