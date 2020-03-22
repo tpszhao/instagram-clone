@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { toJson } from "unsplash-js";
 import unsplash from "api/unsplash";
 import { localGet, localSet } from "api/local";
-import { ButtonIcon, Showcase } from 'Components';
-import {HighlightCard,HighlightAddCollection} from './';
+import { ButtonIcon, Showcase } from "Components";
+import { HighlightCard, HighlightAddCollection } from "./";
 import {
   HighlightMenuCard,
   HighlightHeader,
   HighlightCardsContainer
 } from "./Highlights.styles";
 
-
-export default function HighlightsMenu({ 
+export default function HighlightsMenu({
   setStickyPos,
   modalIsOpen,
   setModalIsOpen,
@@ -29,7 +28,7 @@ export default function HighlightsMenu({
 
   useEffect(() => {
     let autoPlay;
-    if(!modalIsOpen){
+    if (!modalIsOpen) {
       autoPlay = setInterval(() => {
         setCounter(idx => idx + 1);
       }, 3000);
@@ -37,7 +36,7 @@ export default function HighlightsMenu({
     return () => {
       clearInterval(autoPlay);
     };
-  }, [modalIsOpen])
+  }, [modalIsOpen]);
 
   useEffect(() => {
     const keywordList = cardList.map(card => card.keyword);
@@ -67,23 +66,26 @@ export default function HighlightsMenu({
     setCardList(newCardList);
   };
 
-  const addCollection = ()=>{
+  const addCollection = () => {
     const modalScreen = (
       <HighlightAddCollection
         cardList={cardList}
         setCardList={setCardList}
-        closeModal={()=>setModalIsOpen(false)}/>)
+        closeModal={() => setModalIsOpen(false)}
+      />
+    );
     setModalIsOpen(true);
-    setModalScreen(modalScreen)
-  }
+    setModalScreen(modalScreen);
+  };
 
-  const showcase = (photoList,initialSlide) => {
+  const showcase = (photoList, initialSlide) => {
     const modalScreen = (
       <Showcase
-        closeModal={()=>setModalIsOpen(false)}
+        closeModal={() => setModalIsOpen(false)}
         photoList={photoList}
-        initialSlide={initialSlide}/>
-    )
+        initialSlide={initialSlide}
+      />
+    );
     setModalScreen(modalScreen);
     setModalIsOpen(true);
   };
@@ -94,9 +96,10 @@ export default function HighlightsMenu({
         <span>Highlights</span>
         {cardList.length < 3 && (
           <ButtonIcon
-            width='16px'
-            height='16px'
-            style={{position:'absolute', right:'8px'}}
+            data-cy="highlight_modal_toggle"
+            width="16px"
+            height="16px"
+            style={{ position: "absolute", right: "8px" }}
             onClick={addCollection}
           />
         )}

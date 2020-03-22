@@ -1,34 +1,37 @@
 import React from "react";
-import {css} from 'styled-components';
-import {ImageLazyLoader} from 'Components'
+import { css } from "styled-components";
+import { ImageLazyLoader } from "Components";
 import {
   CardContainer,
   UserInfo,
   ProfileImage,
   UserName,
-  PhotoStat} from './InfiniteLoader.styles'
+  PhotoStat
+} from "./InfiniteLoader.styles";
 
-const imageContainerCSS=css`
-  cursor:pointer;
-  overflow:hidden;
+const imageContainerCSS = css`
+  cursor: pointer;
+  overflow: hidden;
   width: 100%;
-  min-height:30vmin;
+  min-height: 30vmin;
   max-height: 700px;
 `;
 
-export default function Card({ photo, onClick=()=>{} }) {
+export default function Card({ photo, onClick = () => {} }) {
   const url = `/user/${photo.user.username}`;
   return (
     <CardContainer>
-      <UserInfo to={url}>
+      <UserInfo data-cy="home_page_card_user_header" to={url}>
         <ProfileImage src={photo.user.profile_image.medium} alt="" />
         <UserName>{photo.user.name}</UserName>
       </UserInfo>
-      <ImageLazyLoader 
+      <ImageLazyLoader
+        data-cy="home_page_card_photo"
         onClick={onClick}
         src={photo.urls.regular}
         placeholderColor={photo.color}
-        imageContainerCSS={imageContainerCSS}/>
+        imageContainerCSS={imageContainerCSS}
+      />
       <PhotoStat>{`${photo.likes} likes`}</PhotoStat>
     </CardContainer>
   );
