@@ -22,10 +22,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
-    "extends": ["react-app","prettier"]
+    "extends": [
+      "react-app",
+      "prettier"
+    ]
   },
   "browserslist": {
     "production": [
@@ -40,6 +44,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^6.10.0"
+    "cypress": "^4.2.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-cypress": "^2.10.3"
   }
 }
