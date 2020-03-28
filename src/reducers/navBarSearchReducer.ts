@@ -8,7 +8,14 @@ const START_SEARCHING = "START_SEARCHING";
 const CLEAR_SEARCH_TERM = "CLEAR_SEARCH_TERM";
 const CLEAR_HISTORY = "CLEAR_HISTORY";
 
-export const initialState = {
+interface InitialState { 
+    inputValue:string;
+    searchHistory:string[];
+    isSearching:boolean;
+    searchSuggestions: string[];
+}
+
+export const initialState:InitialState = {
     inputValue:"",
     searchHistory:[],
     isSearching:false,

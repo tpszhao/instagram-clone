@@ -33,7 +33,11 @@ const DarkModeToggleContainer = styled.div`
   position: relative;
 `;
 
-const DarkModeToggleIcon = styled.div`
+
+const DarkModeToggleIcon = styled.div<{
+  isVisible: boolean;
+  src: string;
+}>`
   position:absolute;
   width:100%;
   height:100%;
@@ -44,8 +48,20 @@ const DarkModeToggleIcon = styled.div`
   transition: 0.4s;
 `;
 
-function NavBar({ history, location, darkModeEnabled, setDarkModeEnabled }) {
-  const searchInput = useRef(null);
+interface Props { 
+  history: any;
+  location: any;
+  darkModeEnabled: boolean;
+  setDarkModeEnabled: any;
+}
+
+function NavBar({
+  history,
+  location,
+  darkModeEnabled,
+  setDarkModeEnabled
+}:Props) {
+  const searchInput = useRef<HTMLInputElement>(null);
   const [{ inputValue, isSearching, searchSuggestions }, dispatch] = useReducer(
     navBarSearchReducer,
     initialState
@@ -55,7 +71,7 @@ function NavBar({ history, location, darkModeEnabled, setDarkModeEnabled }) {
     dispatch(GET_LOCAL);
   }, []);
 
-  const changeSuggestions = e => {
+  const changeSuggestions = (e: any) => {
     const searchValue = e.target.value;
     dispatch(CHANGE_SUGGESTIONS(searchValue));
   };
@@ -66,9 +82,9 @@ function NavBar({ history, location, darkModeEnabled, setDarkModeEnabled }) {
     dispatch(REDIRECT(value));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
-    searchInput.current.blur();
+    searchInput.current!.blur();
     !!inputValue && redirect(inputValue);
   };
 
