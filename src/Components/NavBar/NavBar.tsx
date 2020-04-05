@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ButtonIcon } from "Components";
 import { homeIcon, searchIcon, sun, moon, exploreIcon } from "assets/svg";
 import navBarSearchReducer, {
-  initialState
+  initialState,
 } from "reducers/navBarSearchReducer";
 import {
   ToolBar,
@@ -13,7 +13,7 @@ import {
   SearchSuggestionContainer,
   SuggestionItem,
   IconBar,
-  RightSideIconContainer
+  RightSideIconContainer,
 } from "./NavBar.styles";
 
 import {
@@ -23,7 +23,7 @@ import {
   ON_BLUR,
   START_SEARCHING,
   CLEAR_SEARCH_TERM,
-  CLEAR_HISTORY
+  CLEAR_HISTORY,
 } from "actions/navBarActions";
 
 const DarkModeToggleContainer = styled.div`
@@ -33,7 +33,6 @@ const DarkModeToggleContainer = styled.div`
   position: relative;
 `;
 
-
 const DarkModeToggleIcon = styled.div<{
   isVisible: boolean;
   src: string;
@@ -41,14 +40,14 @@ const DarkModeToggleIcon = styled.div<{
   position:absolute;
   width:100%;
   height:100%;
-  opacity:${props => (props.isVisible ? 1 : 0)};
-  background-image:url("${props => props.src}");
+  opacity:${(props) => (props.isVisible ? 1 : 0)};
+  background-image:url("${(props) => props.src}");
   background-size:cover;
   background-position:center center;
   transition: 0.4s;
 `;
 
-interface Props { 
+interface Props extends RouteComponentProps {
   history: any;
   location: any;
   darkModeEnabled: boolean;
@@ -59,8 +58,8 @@ function NavBar({
   history,
   location,
   darkModeEnabled,
-  setDarkModeEnabled
-}: Props & RouteComponentProps) {
+  setDarkModeEnabled,
+}: Props) {
   const searchInput = useRef<HTMLInputElement>(null);
   const [{ inputValue, isSearching, searchSuggestions }, dispatch] = useReducer(
     navBarSearchReducer,
@@ -82,7 +81,7 @@ function NavBar({
     dispatch(REDIRECT(value));
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     searchInput.current!.blur();
     !!inputValue && redirect(inputValue);
@@ -122,7 +121,7 @@ function NavBar({
         />
       </Form>
       <SearchSuggestionContainer active={isSearching}>
-        {searchSuggestions.map((item:any) => {
+        {searchSuggestions.map((item: any) => {
           return (
             <SuggestionItem key={item} onClick={() => redirect(item)}>
               {item}
