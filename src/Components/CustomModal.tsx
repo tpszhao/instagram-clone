@@ -4,7 +4,7 @@ import { ThemeContext } from "styled-components";
 
 const modalStyle = {
   overlay: {
-    zIndex: 50
+    zIndex: 50,
   },
   content: {
     top: "50%",
@@ -14,18 +14,22 @@ const modalStyle = {
     border: "none",
     padding: "none",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
+    transform: "translate(-50%, -50%)",
+  },
 };
 Modal.setAppElement("#root");
 
-export default function CustomModal({ children, ...rest }) {
+interface Props {
+  children: any;
+}
+
+export default function CustomModal({ children, ...rest }: Props & any) {
   const themeContext = useContext(ThemeContext);
   const { modalBackgroundColor: backgroundColor } = themeContext;
   const { overlay, content } = modalStyle;
   const style = {
     content: { ...content, backgroundColor },
-    overlay: { ...overlay, backgroundColor }
+    overlay: { ...overlay, backgroundColor },
   };
   return (
     <Modal {...rest} style={style}>

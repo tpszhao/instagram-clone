@@ -12,13 +12,21 @@ const imageContainerCSS=css`
     background-color:green;
 `;
 
+interface Props { 
+    src:string;
+    color:string;
+    overlayElement:any;
+    height:string;
+    onClick:any;
+}
+
 export default function MasonryItem({
     src,
     color='grey',
     overlayElement=null,
     height,
     onClick=()=>{}
-}) {
+}:Props ) {
     return (
         <Container height={height} onClick={onClick}>
             <ImageLazyLoader 

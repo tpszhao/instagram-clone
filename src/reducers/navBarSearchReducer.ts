@@ -22,7 +22,10 @@ export const initialState:InitialState = {
     searchSuggestions:[]
 }
 
-const navBarSearchReducer = (state=initialState,action)=>{
+const navBarSearchReducer = (
+    state: InitialState = initialState,
+    action: any
+) => {
     const { searchHistory } = state;
     switch(action.type){
         case GET_LOCAL:

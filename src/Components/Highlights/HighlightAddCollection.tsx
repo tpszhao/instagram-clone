@@ -9,30 +9,39 @@ import {
   Form,
   SearchInput,
   Photo,
-  AddToCollection
+  AddToCollection,
 } from "./Highlights.styles";
+
+interface Props {
+  cardList: any[];
+  setCardList: any;
+  closeModal: any;
+}
 
 export default function HighlightAddCollection({
   cardList,
   setCardList,
-  closeModal
-}) {
-  const [message, setMessage] = useState("Search for photos below...");
-  const [card, setCard] = useState(null);
-  const [searchValue, setSearchValue] = useState();
-  const [isSearching, setIsSearching] = useState(false);
+  closeModal,
+}: Props) {
+  const [message, setMessage] = useState<string | null>(
+    "Search for photos below..."
+  );
+  const [card, setCard] = useState<any>(null);
+  const [searchValue, setSearchValue] = useState<any>();
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
-  const onChange = e => {
+  const onChange = (e: any) => {
     setSearchValue(e.target.value);
     setIsSearching(true);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log("fetch photos");
     const newKeyword = capitalize(searchValue.trim());
     setSearchValue(newKeyword);
     const repeated =
-      cardList.find(card => card.keyword === newKeyword) || false;
+      cardList.find((card: any) => card.keyword === newKeyword) || false;
     if (repeated) {
       const message = `${newKeyword} already exists, please try something else`;
       setMessage(message);
@@ -41,7 +50,7 @@ export default function HighlightAddCollection({
     unsplash.photos
       .getRandomPhoto({ query: newKeyword, count: 10 })
       .then(toJson)
-      .then(Json => {
+      .then((Json: any) => {
         if (Json.errors) {
           const message = `We couldn't find any pictures for "${newKeyword}", please try something else`;
           setMessage(message);

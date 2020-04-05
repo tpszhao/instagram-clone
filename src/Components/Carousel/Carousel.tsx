@@ -13,6 +13,16 @@ var defaultSetting = {
   slidesToScroll: 1
 };
 
+interface Props {
+  containerCSS: any;
+  onClick: any;
+  reference: any;
+  vertical: boolean;
+  autoplay: boolean;
+  counter: number;
+  children: any;
+}
+
 export default function Carousel({
   containerCSS,
   onClick = () => {},
@@ -22,10 +32,10 @@ export default function Carousel({
   counter,
   children,
   ...rest
-}) {
+}: Props & any) {
   const [itemSize, setItemSize] = useState({ width: 0, height: 0 });
-  const container = useRef(null);
-  const slider = useRef(null);
+  const container = useRef<any>(null);
+  const slider = useRef<any>(null);
   useEffect(() => {
     const changeItemSize = () => {
       const { clientWidth: width, clientHeight: height } = container.current;
@@ -37,10 +47,10 @@ export default function Carousel({
       reference.current = slider.current;
     }
     return () => window.removeEventListener("resize", changeItemSize);
-  }, []);
+  }, [reference]);
 
   useEffect(() => {
-    counter&&slider.current.slickNext();
+    counter && slider.current.slickNext();
   }, [counter]);
 
   return (
@@ -50,8 +60,9 @@ export default function Carousel({
         ref={slider}
         autoplay={autoplay}
         vertical={vertical}
-        {...rest}>
-        {children.map((child, i) => {
+        {...rest}
+      >
+        {children.map((child: any, i: number) => {
           return (
             <Item key={i} {...itemSize}>
               {child}

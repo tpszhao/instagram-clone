@@ -7,30 +7,37 @@ import { HighlightCard, HighlightAddCollection } from "./";
 import {
   HighlightMenuCard,
   HighlightHeader,
-  HighlightCardsContainer
+  HighlightCardsContainer,
 } from "./Highlights.styles";
+
+interface Props {
+  setStickyPos: any;
+  modalIsOpen: boolean;
+  setModalIsOpen: any;
+  setModalScreen: any;
+}
 
 export default function HighlightsMenu({
   setStickyPos,
   modalIsOpen,
   setModalIsOpen,
-  setModalScreen
-}) {
-  const [cardList, setCardList] = useState([]);
-  const [counter, setCounter] = useState(0);
+  setModalScreen,
+}: Props) {
+  const [cardList, setCardList] = useState<any[]>([]);
+  const [counter, setCounter] = useState<number>(0);
 
   useEffect(() => {
     const keywordList = localGet("Highlights", []);
-    Promise.all(keywordList.map(fetchPhotos)).then(photoLists =>
+    Promise.all(keywordList.map(fetchPhotos)).then((photoLists: any[]) =>
       updateCardList(photoLists, keywordList)
     );
   }, []);
 
   useEffect(() => {
-    let autoPlay;
+    let autoPlay: any;
     if (!modalIsOpen) {
       autoPlay = setInterval(() => {
-        setCounter(idx => idx + 1);
+        setCounter((idx) => idx + 1);
       }, 3000);
     }
     return () => {
@@ -39,30 +46,30 @@ export default function HighlightsMenu({
   }, [modalIsOpen]);
 
   useEffect(() => {
-    const keywordList = cardList.map(card => card.keyword);
+    const keywordList = cardList.map((card: any) => card.keyword);
     localSet("Highlights", keywordList);
     if (cardList.length > 1) {
       setStickyPos((cardList.length - 1) * 316);
     } else {
       setStickyPos(0);
     }
-  }, [cardList]);
+  }, [cardList, setStickyPos]);
 
-  const fetchPhotos = async keyword => {
+  const fetchPhotos = async (keyword: string) => {
     return unsplash.photos
       .getRandomPhoto({ query: keyword, count: 10 })
       .then(toJson);
   };
 
-  const updateCardList = (photoLists, keywordList) => {
-    const newCardList = photoLists.map((photoList, i) => {
+  const updateCardList = (photoLists: any[], keywordList: string[]) => {
+    const newCardList = photoLists.map((photoList: any[], i: number) => {
       return { keyword: keywordList[i], photoList };
     });
     setCardList(newCardList);
   };
 
-  const deleteCard = card => {
-    const newCardList = cardList.filter(item => item !== card);
+  const deleteCard = (card: any) => {
+    const newCardList = cardList.filter((item: any) => item !== card);
     setCardList(newCardList);
   };
 
@@ -78,7 +85,7 @@ export default function HighlightsMenu({
     setModalScreen(modalScreen);
   };
 
-  const showcase = (photoList, initialSlide) => {
+  const showcase = (photoList: any[], initialSlide: number) => {
     const modalScreen = (
       <Showcase
         closeModal={() => setModalIsOpen(false)}
@@ -91,7 +98,7 @@ export default function HighlightsMenu({
   };
 
   return (
-    <HighlightMenuCard length={cardList.length}>
+    <HighlightMenuCard>
       <HighlightHeader>
         <span>Highlights</span>
         {cardList.length < 3 && (
@@ -105,7 +112,7 @@ export default function HighlightsMenu({
         )}
       </HighlightHeader>
       <HighlightCardsContainer>
-        {cardList.map(card => (
+        {cardList.map((card: any) => (
           <HighlightCard
             key={card.keyword}
             card={card}

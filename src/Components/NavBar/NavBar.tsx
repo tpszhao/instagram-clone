@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useRef } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonIcon } from "Components";
 import { homeIcon, searchIcon, sun, moon, exploreIcon } from "assets/svg";
@@ -60,7 +60,7 @@ function NavBar({
   location,
   darkModeEnabled,
   setDarkModeEnabled
-}:Props) {
+}: Props & RouteComponentProps) {
   const searchInput = useRef<HTMLInputElement>(null);
   const [{ inputValue, isSearching, searchSuggestions }, dispatch] = useReducer(
     navBarSearchReducer,
@@ -122,7 +122,7 @@ function NavBar({
         />
       </Form>
       <SearchSuggestionContainer active={isSearching}>
-        {searchSuggestions.map(item => {
+        {searchSuggestions.map((item:any) => {
           return (
             <SuggestionItem key={item} onClick={() => redirect(item)}>
               {item}

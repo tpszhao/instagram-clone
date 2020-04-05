@@ -66,14 +66,7 @@ export const SearchInput = styled.input`
     `};
 `;
 
-interface SearchSuggestionContainerProps {
-  active: boolean;
-}
-
-export const SearchSuggestionContainer =
-  styled.div <
-  SearchSuggestionContainerProps >
-  `
+export const SearchSuggestionContainer = styled.div<{ active: boolean }>`
   ${props => !props.active && "display:none;"}
   top: calc(75% + 5px);
   width: 288px;
@@ -104,7 +97,7 @@ export const SuggestionItem = styled.div`
   }
 `;
 
-export const IconBar = styled.div`
+export const IconBar = styled.div<{ pathname: string }>`
   width: 944px;
   max-width: 100vw;
   margin: auto;

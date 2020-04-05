@@ -17,7 +17,15 @@ const imageContainerCSS = css`
   max-height: 700px;
 `;
 
-export default function Card({ photo, onClick = () => {} }) {
+interface Props { 
+  photo: any;
+  onClick: any;
+}
+
+export default function Card({
+  photo,
+  onClick = () => { }
+}:Props ) {
   const url = `/user/${photo.user.username}`;
   return (
     <CardContainer>

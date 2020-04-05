@@ -2,19 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { cross } from "assets/svg";
 
-const Button = styled.div`
+const Button = styled.div<any>`
   cursor: pointer;
-  ${props => `
+  ${(props) => `
     width:${props.width || "40px"};
     height:${props.height || "40px"};
     opacity:${props.opacity};
     margin: ${props.margin || "0px"};
   `}
-  transform: ${props => `rotate(${props.rotate}deg)`};
-  background-image:url("${props => props.src}");
+  transform: ${(props) => `rotate(${props.rotate}deg)`};
+  background-image:url("${(props) => props.src}");
   background-size:cover;
   background-position:center center;
 `;
+
+interface Props {
+  style: any;
+  rotate: number;
+  src: string;
+  onClick: any;
+  opacity: number;
+}
 
 export default function ButtonIcon({
   style = {},
@@ -23,7 +31,7 @@ export default function ButtonIcon({
   onClick,
   opacity = 1,
   ...rest
-}) {
+}: Props & any) {
   return (
     <Button
       {...rest}

@@ -15,7 +15,7 @@ export const Container = styled.div`
     }
 `;
 
-export const Image = styled.div`
+export const Image = styled.div<{ src:string, alt:string}>`
     width: 150px;
     height:150px;
     grid-column: 1/2;

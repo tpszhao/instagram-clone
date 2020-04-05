@@ -1,7 +1,13 @@
 import React from 'react';
-import {Container,Image,Title,Stats} from './GridHeader.styles'
+import { Container, Image, Title, Stats } from './GridHeader.styles'
 
-export default function GridHeader({src,title,statList=[]}) {    
+interface Props { 
+    src: string;
+    title: string;
+    statList: any[];
+}
+
+export default function GridHeader({src,title,statList=[]}:Props) {    
     return (
     <Container>
         <Image src={src} alt=""/>

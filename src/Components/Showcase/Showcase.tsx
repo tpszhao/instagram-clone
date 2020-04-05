@@ -24,7 +24,7 @@ const BottomContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const ToolBar = styled.div`
@@ -37,18 +37,25 @@ const ToolBar = styled.div`
 
 const buttonStyle = {
   width: "24px",
-  height: "24px"
+  height: "24px",
 };
+
+interface Props {
+  initialSlide: number;
+  photoList: any[];
+  closeModal: any;
+  showUserAvatar?: boolean;
+}
 
 export default function Showcase({
   initialSlide = 0,
   photoList,
   closeModal,
-  showUserAvatar = true
-}) {
-  const pictureCarousel = useRef(null);
-  const [slickIndex, setNextIndex] = useState(initialSlide);
-  const [opacity, setOpacity] = useState(1);
+  showUserAvatar = true,
+}: Props) {
+  const pictureCarousel = useRef<any>(null);
+  const [slickIndex, setNextIndex] = useState<number>(initialSlide);
+  const [opacity, setOpacity] = useState<number>(1);
 
   const next = () => {
     pictureCarousel.current.slickNext();
@@ -58,7 +65,7 @@ export default function Showcase({
     pictureCarousel.current.slickPrev();
   };
 
-  const beforeChange = (oldIndex, newIndex) => {
+  const beforeChange = (oldIndex: number, newIndex: number) => {
     setOpacity(0);
     setTimeout(() => {
       setOpacity(1);
@@ -74,7 +81,7 @@ export default function Showcase({
         beforeChange={beforeChange}
         initialSlide={initialSlide}
       >
-        {photoList.map(photo => (
+        {photoList.map((photo: any) => (
           <ImageLazyLoader
             key={photo.id}
             objectFit="scale-down"

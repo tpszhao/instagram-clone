@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 
-export default function GridContainer({children}) {
+export default function GridContainer({children}:any) {
     return (
         <Container>
             {children}
