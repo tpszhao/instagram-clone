@@ -26,9 +26,9 @@ interface Props {
   route: string;
   query: string;
   searchType: string;
-  searchValue: string;
-  orderedBy: string;
-  loader: any;
+  searchValue?: string;
+  orderedBy?: string;
+  loader?: any;
   children: any;
 }
 

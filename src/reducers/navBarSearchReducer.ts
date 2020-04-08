@@ -8,87 +8,85 @@ const START_SEARCHING = "START_SEARCHING";
 const CLEAR_SEARCH_TERM = "CLEAR_SEARCH_TERM";
 const CLEAR_HISTORY = "CLEAR_HISTORY";
 
-interface InitialState { 
-    inputValue:string;
-    searchHistory:string[];
-    isSearching:boolean;
-    searchSuggestions: string[];
+interface InitialState {
+  inputValue: string;
+  searchHistory: string[];
+  isSearching: boolean;
+  searchSuggestions: string[];
 }
 
-export const initialState:InitialState = {
-    inputValue:"",
-    searchHistory:[],
-    isSearching:false,
-    searchSuggestions:[]
-}
+export const initialState: InitialState = {
+  inputValue: "",
+  searchHistory: [],
+  isSearching: false,
+  searchSuggestions: [],
+};
 
 const navBarSearchReducer = (
-    state: InitialState = initialState,
-    action: any
+  state: InitialState = initialState,
+  action: any
 ) => {
-    const { searchHistory } = state;
-    switch(action.type){
-        case GET_LOCAL:
-            const savedSearchHistory = localGet("SearchHistory");
-            console.log(savedSearchHistory);
+  const { searchHistory } = state;
+  switch (action.type) {
+    case GET_LOCAL:
+      const savedSearchHistory = localGet("SearchHistory");
 
-            return {
-                ...state,
-                searchHistory:savedSearchHistory,
-                searchSuggestions:savedSearchHistory
-            }
-        
-        case START_SEARCHING:
-            return { ...state, isSearching:true };
+      return {
+        ...state,
+        searchHistory: savedSearchHistory,
+        searchSuggestions: savedSearchHistory,
+      };
 
-        case CLEAR_SEARCH_TERM:
-            return { ...state, inputValue:"" };
+    case START_SEARCHING:
+      return { ...state, isSearching: true };
 
-        case REDIRECT:
-            const { value } = action.payload;
-            const removeRepeat = searchHistory.filter(item => item !== value);
-            const newSearchHistory = [value, ...removeRepeat];
-            localSet("SearchHistory", newSearchHistory);
+    case CLEAR_SEARCH_TERM:
+      return { ...state, inputValue: "" };
 
-            return {
-                ...state,
-                isSearching:false,
-                searchHistory:newSearchHistory,
-                inputValue:value
-            }
+    case REDIRECT:
+      const { value } = action.payload;
+      const removeRepeat = searchHistory.filter((item) => item !== value);
+      const newSearchHistory = [value, ...removeRepeat];
+      localSet("SearchHistory", newSearchHistory);
 
-        case CHANGE_SUGGESTIONS:
-            const { inputValue } = action.payload;
-            console.log(searchHistory);
-            const searchSuggestions = searchHistory.filter(item =>
-                item.includes(inputValue)
-            );
-            return {
-                ...state,
-                isSearching:true,
-                inputValue,
-                searchSuggestions
-            }
+      return {
+        ...state,
+        isSearching: false,
+        searchHistory: newSearchHistory,
+        inputValue: value,
+      };
 
-        case ON_BLUR:
-            return {
-                ...state,
-                isSearching: false,
-                searchSuggestions:searchHistory
-            }
-        
-        case CLEAR_HISTORY:
-            localSet("SearchHistory", []);
+    case CHANGE_SUGGESTIONS:
+      const { inputValue } = action.payload;
+      const searchSuggestions = searchHistory.filter((item) =>
+        item.includes(inputValue)
+      );
+      return {
+        ...state,
+        isSearching: true,
+        inputValue,
+        searchSuggestions,
+      };
 
-            return {
-                ...state,
-                searchHistory:[],
-                searchSuggestions:[]
-            }
+    case ON_BLUR:
+      return {
+        ...state,
+        isSearching: false,
+        searchSuggestions: searchHistory,
+      };
 
-        default:
-            return state;
-    }
-}
+    case CLEAR_HISTORY:
+      localSet("SearchHistory", []);
+
+      return {
+        ...state,
+        searchHistory: [],
+        searchSuggestions: [],
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default navBarSearchReducer;

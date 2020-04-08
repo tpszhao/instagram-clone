@@ -37,7 +37,6 @@ export default function HighlightAddCollection({
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("fetch photos");
     const newKeyword = capitalize(searchValue.trim());
     setSearchValue(newKeyword);
     const repeated =

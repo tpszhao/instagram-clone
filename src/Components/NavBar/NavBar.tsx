@@ -75,8 +75,7 @@ function NavBar({
     dispatch(CHANGE_SUGGESTIONS(searchValue));
   };
 
-  const redirect = (value = "search") => {
-    console.log("redirect");
+  const redirect = (value: string = "search") => {
     history.push(`/search/photos/${value}`);
     dispatch(REDIRECT(value));
   };
