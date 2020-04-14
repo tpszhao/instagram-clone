@@ -4,7 +4,13 @@ export const ALLOW_FETCHING = (
 ) => {
   return {
     type: "ALLOW_FETCHING",
-    payload: { route, keyword },
+    payload: {
+      route,
+      keyword,
+      dataList: [],
+      total: null,
+      searchType: "photos",
+    },
   };
 };
 
