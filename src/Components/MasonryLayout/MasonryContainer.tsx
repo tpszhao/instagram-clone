@@ -20,9 +20,9 @@ const ColumnContainer = styled.div<{ width: any }>`
 `;
 
 interface Props {
-  defaultColumnCount: number;
-  breakPoint: any;
-  children: any[];
+  defaultColumnCount?: number;
+  breakPoint?: any;
+  children?: any[];
 }
 
 export default function MasonryContainer({

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { RouteComponentProps } from "react-router-dom";
 import { LatestPhotos, HighlightsMenu, CustomModal } from "Components";
 
 const Container = styled.div`
@@ -12,7 +13,7 @@ const Container = styled.div`
     align-items: center;
   }
 `;
-const SideBar = styled.div`
+const SideBar = styled.div<{stickyPos:number;}>`
   margin: 10px 16px;
   width: 296px;
   height: 100%;
@@ -30,10 +31,10 @@ const SideBar = styled.div`
   }
 `;
 
-export default function HomePage({ match: { path } }) {
-  const [stickyPos, setStickyPos] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalScreen, setModalScreen] = useState(null);
+export default function HomePage({ match: { path } }:RouteComponentProps) {
+  const [stickyPos, setStickyPos] = useState<number>(0);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalScreen, setModalScreen] = useState<any>(null);
   return (
     <>
       <Container>

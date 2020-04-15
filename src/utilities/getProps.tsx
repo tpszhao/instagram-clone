@@ -17,7 +17,8 @@ export const collectionProps = (collection: any) => {
   return props;
 };
 
-const getProps = {
+
+const getProps:{[key:string]:any;} = {
   photos: photoProps,
   collections: collectionProps,
 };
