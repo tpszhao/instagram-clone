@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react'
 import styled from 'styled-components';
+import { RouteComponentProps } from "react-router-dom";
 import {toJson} from 'unsplash-js'
 import {
     GridHeader,
@@ -26,7 +27,17 @@ const PageContainer = styled.div`
     }
 `;
 
-const UserHeader = ({user}) => {
+interface UserType{
+    username:string;
+    total_likes:number;
+    total_photos:number;
+    followers_count:number;
+    profile_image:{[key:string]:string};
+    name:string;
+    errors?:any;
+}
+
+const UserHeader = ({user}:{user:UserType}) => {
     const statList = [
         `${user.total_likes} likes`,
         `${user.total_photos} photos`,
@@ -38,14 +49,17 @@ const UserHeader = ({user}) => {
                 statList={statList}/>
 }
 
+interface Params{
+  username:string;
+}
 
-export default function UserPage({match}) {
-    const [user, setUser] = useState(null);
+export default function UserPage({match}:RouteComponentProps<Params>) {
+    const [user, setUser] = useState<UserType|null>(null);
     const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList } = state.gridPage;
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [initialSlide, setInitialSlide] = useState(0);
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const [initialSlide, setInitialSlide] = useState<number>(0);
 
 
     useEffect(() => {
@@ -53,14 +67,14 @@ export default function UserPage({match}) {
         unsplash.users
             .profile(match.params.username)
             .then(toJson)
-            .then(json => {
+            .then((json:any) => {
                 setUser(json);
             }).catch(()=>{
                 setUser(null);
             });
     }, [match.params.username]);
 
-    const openShowcase = index=>{
+    const openShowcase = (index:number)=>{
         setInitialSlide(index);
         setModalIsOpen(true);
     }
@@ -77,7 +91,7 @@ export default function UserPage({match}) {
                     searchValue={user.username}
                     loader={<GridLoader key='loading'/>}>
                     <GridContainer>
-                        {dataList.map((item,i)=>{
+                        {dataList.map((item:any,i:number)=>{
                             const props = getProps.photos(item);
                             return <GridItem {...props} onClick={()=>openShowcase(i)}/>
                         })}

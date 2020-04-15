@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState} from "react";
 import styled from "styled-components";
+import { RouteComponentProps } from "react-router-dom";
 import { 
     InfiniteLoader, 
     MasonryContainer, 
@@ -25,18 +26,20 @@ const PageContainer = styled.div`
 `;
 
 
-export default function ExplorePage({match:{ path }}) {
+export default function ExplorePage({
+    match:{ path }
+}:RouteComponentProps) {
     const [state, dispatch] = useContext(PhotoDataContext);
     const { dataList:photoList, heightList } = state[path];
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [initialSlide, setInitialSlide] = useState(0);
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const [initialSlide, setInitialSlide] = useState<number>(0);
 
     useEffect(() => {
         dispatch(ALLOW_FETCHING(path));
     }, []);
 
-    const openShowcase = index=>{
+    const openShowcase = (index:number) =>{
         setInitialSlide(index);
         setModalIsOpen(true);
     }
@@ -51,7 +54,7 @@ export default function ExplorePage({match:{ path }}) {
                     orderedBy="popular"
                     loader={<GridLoader key={0} />}>
                     <MasonryContainer>
-                        {photoList.map((photo,i)=>{
+                        {photoList.map((photo:any,i:number)=>{
                             const props = photoProps(photo);
                             const height = heightList[i];
                             return (

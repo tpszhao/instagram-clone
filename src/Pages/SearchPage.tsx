@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import { RouteComponentProps } from "react-router-dom";
 import {
   GridHeader,
   GridContainer,
@@ -31,7 +32,7 @@ const SearchTypeList = styled.div`
   justify-content: flex-start;
 `;
 
-const SearchTypeLink = styled.div`
+const SearchTypeLink = styled.div<{isSelected: boolean;}>`
   cursor: pointer;
   padding: 5px 15px;
   margin: 10px;
@@ -52,20 +53,39 @@ const SearchTypeLink = styled.div`
   }
 `;
 
-const SearchHeader = ({ searchValue, searchType, total }) => {
+
+interface SearchHeaderProps{
+  searchValue:string;
+  searchType:string;
+  total:number;
+}
+
+const SearchHeader = ({ 
+  searchValue, 
+  searchType, 
+  total 
+}:SearchHeaderProps) => {
   const title = `Search results for "${searchValue}"`;
   const statList = total !== null ? [`${total} ${searchType} found`] : [];
   return <GridHeader src={searchIcon} title={title} statList={statList} />;
 };
 
-export default function SearchPage({ history, match: { params, path } }) {
+interface Params{
+  searchValue:string;
+  searchType:string;
+}
+
+export default function SearchPage({ 
+  history, 
+  match:{ params, path }
+}:RouteComponentProps<Params>) {
   const { searchValue, searchType } = params;
   const [state, dispatch] = useContext(PhotoDataContext);
   const { dataList: photoList } = state.searchPage.photos;
   const { dataList, total } = state.searchPage[searchType];
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [initialSlide, setInitialSlide] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [initialSlide, setInitialSlide] = useState<number>(0);
 
   useEffect(() => {
     dispatch(ALLOW_FETCHING(path));
@@ -81,15 +101,15 @@ export default function SearchPage({ history, match: { params, path } }) {
     };
   }, [searchValue]);
 
-  const changeSearchType = searchType => {
+  const changeSearchType = (searchType:string) => {
     history.push(`/search/${searchType}/${searchValue}`);
   };
 
-  const redirectToCollectionPage = collection => {
+  const redirectToCollectionPage = (collection:any) => {
     history.push(`/collection/${collection.id}`);
   };
 
-  const openShowcase = index => {
+  const openShowcase = (index:number) => {
     setInitialSlide(index);
     setModalIsOpen(true);
   };
@@ -126,7 +146,7 @@ export default function SearchPage({ history, match: { params, path } }) {
           loader={<GridLoader key="loading" />}
         >
           <GridContainer>
-            {dataList.map((item, i) => {
+            {dataList.map((item:any, i:number) => {
               const props = getProps[searchType](item);
               const onClick =
                 searchType === "photos"
